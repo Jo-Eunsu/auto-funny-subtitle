@@ -1,0 +1,67 @@
+{
+    "effect": {
+        "id":"s1",
+        "name":"neutral-1",
+        "uid":"~/Titles.localized/예능자막/neutral-1/neutral-1.moti"
+    },
+    "title": { 
+        "param":[
+            {
+                "name":"Position",
+                "key":"9999/10003/10009/1/100/101",
+                "value":"0 -760.267"
+            },
+            {
+                "name":"Alignment",
+                "key":"9999/10003/10009/2/354/10038/401",
+                "value":"1 (Center)"
+            }
+            
+        ],
+        "text-style-ref":"ts1",
+        "text-style-def":{
+            "id":"ts1"
+        },
+        "text-style":{
+            "font":"paybooc OTF",
+            "fontSize":"150",
+            "fontFace":"ExtraBold",
+            "fontColor":"1 0.999974 0.999991 1",
+            "bold":"1",
+            "alignment":"center"
+            
+        
+        } 
+    },
+    "effect": {
+        "id":"r7",
+        "name":"negative-1",
+        "uid":"~/Titles.localized/예능자막/negative-1/negative-1.moti"
+    },
+    "title": { 
+        "param":[
+            {
+                "name":"Position",
+                "key":"9999/10003/12143/10738/10009/1/100/101",
+                "value":"5.64 50"
+            },
+            {
+                "name":"Alignment",
+                "key":"9999/10003/12143/10738/10009/2/354/10038/401",
+                "value":"1 (Center)"
+            }
+            
+        ],
+        "text-style-ref":"ts4",
+        "text-style-def":{
+            "id":"ts4"
+        },
+        "text-style":{
+            "font":"Wandohope",
+            "fontSize":"240",
+            "fontFace":"Bold",
+            "fontColor":"1 0.999974 0.999991 1",
+            "bold":"1",
+            "alignment":"center"
+    }
+}
