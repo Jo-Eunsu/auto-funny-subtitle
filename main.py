@@ -1,7 +1,11 @@
+# JSON 파일을 불러오기 위해 모듈 임포트
+import json
 
+# Azure Text Analytics API 모듈
 from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 
+# XML 파일을 불러오기 위해 모듈 임포트
 from xml.etree.ElementTree import parse
 
 import sys
@@ -34,8 +38,15 @@ xml_file = sys.argv[1]
 video_info = parse(xml_file)
 root = video_info.getroot()
 
+# 예능자막 템플릿에 관한 정보를 태그 형태로 만들기 위해서
+# 딕셔너리 형태의 정보 기록
+with open('title-template/neutral-1.json') as positive_sub_file:
+    positive_sub = json.load(positive_sub_file)
+
+
 # XML에서 자막에 해당되는 클립 정보를 읽기
 for title in root.iter("title"):
+
     # 자막 텍스트 추출
     subtitle = [title.find("text").findtext("text-style"),]
     print(subtitle[0], "- 스타일: ", title.attrib["ref"])
