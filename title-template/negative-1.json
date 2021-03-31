@@ -2,36 +2,32 @@
     "effect": {
         "id":"r7",
         "name":"negative-1",
-        "uid":"~/Titles.localized/예능자막/negative-1/negative-1.moti",
-        "src":""
+        "uid":"~/Generators.localized/예능자막/negative-1/negative-1.motn",
+        "src":"file://~/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/negative-1/negative-1.motn"
         
     },
-    "title": { 
-        "param":[
+    "video": {
+        "name": "negative-1",
+        "param": [
             {
-                "name":"Position",
-                "key":"9999/10003//12143/10738/10009/1/100/101",
-                "value":"5.64 50"
+                "name": "Position",
+                "key": "9999/10003/12143/10738/10009/1/100/10",
+                "value": "5.64 472.294"
+                
             },
             {
-                "name":"Alignment",
-                "key":"9999/10003//12143/10738/10009/2/354/10038/401",
-                "value":"1 (Center)"
+                "name": "Alignment",
+                "key": "9999/10003/12143/10738/10009/2/354/10038/401",
+                "value": "1 (Center)"
+                
+            },
+            {
+                "name": "Text",
+                "key": "9999/10003/12143/10738/10009/2/369",
+                "value": "그래가지고 지금 머리 아파"
+                
             }
-            
-        ],
-        "text-style-ref":"ts4",
-        "text-style-def":{
-            "id":"ts4"
-        },
-        "text-style":{
-            "font":"Wandohope",
-            "fontSize":"240",
-            "fontFace":"Bold",
-            "fontColor":"1 0.999974 0.999991 1",
-            "bold":"1",
-            "alignment":"center"
-            
-        } 
+        
+        ]
     }
 }
