@@ -25,8 +25,8 @@
         <format id="r3" name="FFVideoFormat720p2997" frameDuration="1001/30000s" width="1280" height="720" colorSpace="1-1-1 (Rec. 709)"/>
         <format id="r4" frameDuration="100/2997s" width="1280" height="720"/>
         <effect id="r5" name="Custom" uid=".../Titles.localized/Build In:Out.localized/Custom.localized/Custom.moti"/>
-        <effect id="r6" name="neutral-1" uid="~/Titles.localized/예능자막/neutral-1/neutral-1.moti"/>
-        <effect id="r7" name="negative-1" uid="~/Titles.localized/예능자막/negative-1/negative-1.moti"/>
+        <effect id="r6" name="neutral-1" uid="~/Titles.localized/예능자막/neutral-1/neutral-1.moti" src="file://~//Movies/Motion%20Templates.localized/Titles.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/neutral-1/neutral-1.moti"/>
+        <effect id="r7" name="negative-1" uid="~/Titles.localized/예능자막/negative-1/negative-1.moti" src="file://~/Movies/Motion%20Templates.localized/Titles.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/negative-1/negative-1.moti"/>
     </resources>
     <library location="file:///Users/jo-eunsu/Movies/Untitled%201%201.fcpbundle/">
         <event name="2021-03-31 1" uid="F15D323E-10E8-456A-980D-92F24B9255B3">
