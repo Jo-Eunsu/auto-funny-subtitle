@@ -8,7 +8,8 @@
             "type": "shell",
             "command": "python",
             "args": [
-                "${file}"
+                "${file}",
+                "video-sample/히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.fcpxml"
             ],
             "options": {
                 "env": {
