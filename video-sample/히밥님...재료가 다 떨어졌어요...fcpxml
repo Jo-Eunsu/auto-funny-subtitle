@@ -5,8 +5,8 @@
     <resources>
         <format id="r1" frameDuration="100/2997s" width="1280" height="720" colorSpace="1-1-1 (Rec. 709)"/>
         <asset id="r2" name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY" uid="F56271EA8FC726EA0B2E46E1683E5D34" start="0s" duration="6415409/5000s" hasVideo="1" format="r3" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100">
-            <media-rep kind="original-media" sig="F56271EA8FC726EA0B2E46E1683E5D34" src="file:///Users/jo-eunsu/Documents/src/capstone-project/auto-funny-subtitle/video-sample/%E1%84%92%E1%85%B5%E1%84%87%E1%85%A1%E1%86%B8%E1%84%82%E1%85%B5%E1%86%B7...%E1%84%8C%E1%85%A2%E1%84%85%E1%85%AD%E1%84%80%E1%85%A1%20%E1%84%83%E1%85%A1%20%E1%84%84%E1%85%A5%E1%86%AF%E1%84%8B%E1%85%A5%E1%84%8C%E1%85%A7%E1%86%BB%E1%84%8B%E1%85%A5%E1%84%8B%E1%85%AD...-TTfzRbSFtLY.mp4">
-                <bookmark>Ym9va9wDAAAAAAQQMAAAAGfFb9gxUXXBlyQSKw72p0PFgwBAuO6R4IoVmonju7UyzAIAAAQAAAADAwAAABgAKAUAAAABAQAAVXNlcnMAAAAIAAAAAQEAAGpvLWV1bnN1CQAAAAEBAABEb2N1bWVudHMAAAADAAAAAQEAAHNyYwAQAAAAAQEAAGNhcHN0b25lLXByb2plY3QTAAAAAQEAAGF1dG8tZnVubnktc3VidGl0bGUADAAAAAEBAAB2aWRlby1zYW1wbGU8AAAAAQEAAO2eiOuwpeuLmC4uLuyerOujjOqwgCDri6Qg65ao7Ja07KGM7Ja07JqULi4uLVRUZnpSYlNGdExZLm1wNCAAAAABBgAAEAAAACAAAAAwAAAARAAAAFAAAABoAAAAhAAAAJgAAAAIAAAABAMAAJ5TAAAAAAAACAAAAAQDAABoiwUAAAAAAAgAAAAEAwAAwrAFAAAAAAAIAAAABAMAAObDBQAAAAAACAAAAAQDAADWTuMBAAAAAAgAAAAEAwAApU/jAQAAAAAIAAAABAMAALX08wEAAAAACAAAAAQDAAAB8fMBAAAAACAAAAABBgAABAEAABQBAAAkAQAANAEAAEQBAABUAQAAZAEAAHQBAAAIAAAAAAQAAEHDA0TtAAAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAAAAAAAAAAAAAIAAAABAMAAAYAAAAAAAAABAAAAAMDAAD1AQAACAAAAAEJAABmaWxlOi8vLwwAAAABAQAATWFjaW50b3NoIEhECAAAAAQDAAAAoB8IugAAAAgAAAAABAAAQcHeRIAAAAAkAAAAAQEAAEUwMTZDRUE5LTVDMkItNDFCMS1CRTJGLTJBNDMwMTc5NEEzQRgAAAABAgAAgQAAAAEAAADvEwAAAQAAAAAAAAAAAAAAAQAAAAEBAAAvAAAAAAAAAAEFAAAaAAAAAQEAAE5TVVJMRG9jdW1lbnRJZGVudGlmaWVyS2V5AAAEAAAAAwMAAP/rBQDYAAAA/v///wEAAAAAAAAAEQAAAAQQAADcAAAAAAAAAAUQAACEAQAAAAAAABAQAAC8AQAAAAAAAEAQAACsAQAAAAAAAAIgAACIAgAAAAAAAAUgAAD4AQAAAAAAABAgAAAIAgAAAAAAABEgAAA8AgAAAAAAABIgAAAcAgAAAAAAABMgAAAsAgAAAAAAACAgAABoAgAAAAAAADAgAACUAgAAAAAAAAHAAADcAQAAAAAAABHAAAAgAAAAAAAAABLAAADsAQAAAAAAABDQAAAEAAAAAAAAAJwCAIDAAgAAAAAAAA==</bookmark>
+            <media-rep kind="original-media" sig="F56271EA8FC726EA0B2E46E1683E5D34" src="file:///Users/jo-eunsu/Movies/Untitled%201.fcpbundle/2021-03-31%201/Original%20Media/%E1%84%92%E1%85%B5%E1%84%87%E1%85%A1%E1%86%B8%E1%84%82%E1%85%B5%E1%86%B7...%E1%84%8C%E1%85%A2%E1%84%85%E1%85%AD%E1%84%80%E1%85%A1%20%E1%84%83%E1%85%A1%20%E1%84%84%E1%85%A5%E1%86%AF%E1%84%8B%E1%85%A5%E1%84%8C%E1%85%A7%E1%86%BB%E1%84%8B%E1%85%A5%E1%84%8B%E1%85%AD...-TTfzRbSFtLY.mp4">
+                <bookmark>Ym9va6gDAAAAAAQQMAAAANsdaBOUtEV1jnKCoSi1Jns+a0s48og5bR5NlBsBJKfZpAIAAAQAAAADAwAAABgAKAUAAAABAQAAVXNlcnMAAAAIAAAAAQEAAGpvLWV1bnN1BgAAAAEBAABNb3ZpZXMAABQAAAABAQAAVW50aXRsZWQgMS5mY3BidW5kbGUMAAAAAQEAADIwMjEtMDMtMzEgMQ4AAAABAQAAT3JpZ2luYWwgTWVkaWEAAGwAAAABAQAA4YSS4YW14YSH4YWh4Ya44YSC4YW14Ya3Li4u4YSM4YWi4YSF4YWt4YSA4YWhIOGEg+GFoSDhhIThhaXhhq/hhIvhhaXhhIzhhafhhrvhhIvhhaXhhIvhha0uLi4tVFRmelJiU0Z0TFkubXA0HAAAAAEGAAAQAAAAIAAAADAAAABAAAAAXAAAAHAAAACIAAAACAAAAAQDAACeUwAAAAAAAAgAAAAEAwAAaIsFAAAAAAAIAAAABAMAAMsCCgAAAAAACAAAAAQDAAAD/8UAAAAAAAgAAAAEAwAAdPj2AQAAAAAIAAAABAMAAHz49gEAAAAACAAAAAQDAACF+PYBAAAAABwAAAABBgAAIAEAADABAABAAQAAUAEAAGABAABwAQAAgAEAAAgAAAAABAAAQcMDRO0AAAAYAAAAAQIAAAEAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAgAAAAEAwAABQAAAAAAAAAEAAAAAwMAAPUBAAAIAAAAAQkAAGZpbGU6Ly8vDAAAAAEBAABNYWNpbnRvc2ggSEQIAAAABAMAAACgHwi6AAAACAAAAAAEAABBwd5EgAAAACQAAAABAQAARTAxNkNFQTktNUMyQi00MUIxLUJFMkYtMkE0MzAxNzk0QTNBGAAAAAECAACBAAAAAQAAAO8TAAABAAAAAAAAAAAAAAABAAAAAQEAAC8AAAAAAAAAAQUAAMwAAAD+////AQAAAAAAAAAQAAAABBAAAPwAAAAAAAAABRAAAJABAAAAAAAAEBAAAMQBAAAAAAAAQBAAALQBAAAAAAAAAiAAAJACAAAAAAAABSAAAAACAAAAAAAAECAAABACAAAAAAAAESAAAEQCAAAAAAAAEiAAACQCAAAAAAAAEyAAADQCAAAAAAAAICAAAHACAAAAAAAAMCAAAJwCAAAAAAAAAcAAAOQBAAAAAAAAEcAAACAAAAAAAAAAEsAAAPQBAAAAAAAAENAAAAQAAAAAAAAA</bookmark>
             </media-rep>
             <metadata>
                 <md key="com.apple.proapps.studio.rawToLogConversion" value="0"/>
@@ -23,171 +23,83 @@
             </metadata>
         </asset>
         <format id="r3" name="FFVideoFormat720p2997" frameDuration="1001/30000s" width="1280" height="720" colorSpace="1-1-1 (Rec. 709)"/>
-        <effect id="r4" name="neutral-1" uid="~/Generators.localized/예능자막/neutral-1/neutral-1.motn" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/neutral-1/neutral-1.motn"/>
-        <effect id="r5" name="positive-1" uid="~/Generators.localized/예능자막/positive-1/positive-1.motn" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/positive-1/positive-1.motn"/>
-        <effect id="r6" name="negative-1" uid="~/Generators.localized/예능자막/negative-1/negative-1.motn" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/negative-1/negative-1.motn"/>
-        <effect id="r7" name="neutral-1" uid="~/Titles.localized/예능자막/neutral-1/neutral-1.moti" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Titles.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/neutral-1/neutral-1.moti"/>
-        <effect id="r8" name="Custom" uid=".../Titles.localized/Build In:Out.localized/Custom.localized/Custom.moti"/>
-        <effect id="r9" name="C05-1" uid="~/Generators.localized/시작하세요! 모션 5/C05-1/C05-1.motn" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%89%E1%85%A6%E1%84%8B%E1%85%AD!%20%E1%84%86%E1%85%A9%E1%84%89%E1%85%A7%E1%86%AB%205/C05-1/C05-1.motn"/>
+        <format id="r4" frameDuration="100/2997s" width="1280" height="720"/>
+        <effect id="r5" name="negative-1" uid="~/Generators.localized/예능자막/negative-1/negative-1.motn" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/negative-1/negative-1.motn"/>
+        <effect id="r6" name="Custom" uid=".../Titles.localized/Build In:Out.localized/Custom.localized/Custom.moti"/>
+        <effect id="r7" name="neutral-1" uid="~/Generators.localized/예능자막/neutral-1/neutral-1.motn" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/neutral-1/neutral-1.motn"/>
+        <effect id="r8" name="positive-1" uid="~/Generators.localized/예능자막/positive-1/positive-1.motn" src="file:///Users/jo-eunsu/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/positive-1/positive-1.motn"/>
     </resources>
-    <library location="file:///Users/jo-eunsu/Movies/Untitled%201%201.fcpbundle/">
-        <event name="2021-03-31 1" uid="50F04B7A-B9A9-4523-9C17-7ED8431BA662">
-            <project name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY" uid="C9EA1B87-5467-4D5E-8622-305F6C126E75" modDate="2021-03-31 23:54:07 +0900">
-                <sequence duration="429800/2997s" format="r1" tcStart="0s" audioLayout="stereo" audioRate="48k">
+    <library location="file:///Users/jo-eunsu/Movies/Untitled%201.fcpbundle/">
+        <event name="2021-04-02 1" uid="3EA20AF2-391C-402D-B479-CC3B3AB0E3DE">
+            <project name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY" uid="D124740F-C9CF-477C-8F57-BA1471134654" modDate="2021-04-02 10:35:46 +0900">
+                <sequence duration="345400/2997s" format="r1" tcStart="0s" audioLayout="stereo" audioRate="48k">
                     <spine>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="0s" ref="r2" duration="49000/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="49000/2997s" ref="r2" duration="7100/2997s" start="49000/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <video name="neutral-1" lane="1" offset="49000/2997s" ref="r4" duration="7100/2997s" start="3600s">
-                                <param name="Position" key="9999/10003/10009/1/100/101" value="0 -760.267"/>
-                                <param name="Alignment" key="9999/10003/10009/2/354/10038/401" value="1 (Center)"/>
-                                <param name="Text" key="9999/10003/10009/2/369" value="오늘 나는 많이 준비했다고 생각했는데"/>
-                            </video>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="56100/2997s" ref="r2" duration="8100/2997s" start="56100/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <video name="positive-1" lane="1" offset="56100/2997s" ref="r5" duration="8100/2997s" start="3600s">
-                                <param name="Position" key="9999/13170/13174/1/100/101" value="0 -458.624"/>
-                                <param name="Shear" key="9999/13170/13174/1/100/106" value="0.174533 0"/>
-                                <param name="Anchor Point" key="9999/13170/13174/1/100/107" value="0 -58"/>
-                                <param name="Alignment" key="9999/13170/13174/2/354/12188/401" value="1 (Center)"/>
-                                <param name="Text" key="9999/13170/13174/2/369" value="지금 약간 조금 떨립니다"/>
-                            </video>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="64200/2997s" ref="r2" duration="3700/2997s" start="64200/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <video name="negative-1" lane="1" offset="64200/2997s" ref="r6" duration="3700/2997s" start="3600s">
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="0s" ref="r2" duration="49000/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="49000/2997s" ref="r2" duration="7100/2997s" start="49000/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="56100/2997s" ref="r2" duration="8100/2997s" start="56100/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="64200/2997s" ref="r2" duration="3700/2997s" start="64200/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="67900/2997s" ref="r2" duration="8500/2997s" start="67900/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="76400/2997s" ref="r2" duration="9600/2997s" start="76400/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="86000/2997s" ref="r2" duration="13300/2997s" start="86000/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="99300/2997s" ref="r2" duration="11800/2997s" start="99300/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="111100/2997s" ref="r2" duration="50200/2997s" start="111100/2997s" audioRole="dialogue" format="r4" tcFormat="NDF">
+                            <video name="negative-1" lane="1" offset="111100/2997s" ref="r5" duration="50200/2997s" start="3600s">
                                 <param name="Position" key="9999/10003/12143/10738/10009/1/100/101" value="5.64 472.294"/>
                                 <param name="Alignment" key="9999/10003/12143/10738/10009/2/354/10038/401" value="1 (Center)"/>
-                                <param name="Text" key="9999/10003/12143/10738/10009/2/369" value="그래가지고 지금 머리 아파"/>
+                                <param name="Text" key="9999/10003/12143/10738/10009/2/369" value="한번 아 네 저는 잘 모르는 사람이에요 뜻"/>
                             </video>
                         </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="67900/2997s" ref="r2" duration="8500/2997s" start="67900/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <video name="neutral-1" lane="1" offset="67900/2997s" ref="r4" duration="8500/2997s" start="3600s">
-                                <param name="Position" key="9999/10003/10009/1/100/101" value="0 -760.267"/>
-                                <param name="Alignment" key="9999/10003/10009/2/354/10038/401" value="1 (Center)"/>
-                                <param name="Text" key="9999/10003/10009/2/369" value="네가 한 것 때문에 오늘 게스트 소개해 드릴게요"/>
-                            </video>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="76400/2997s" ref="r2" duration="9600/2997s" start="76400/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <title name="neutral-1" lane="1" offset="76400/2997s" ref="r7" duration="9600/2997s" start="3600s">
-                                <param name="Position" key="9999/10003/10009/1/100/101" value="0 -760.267"/>
-                                <param name="Alignment" key="9999/10003/10009/2/354/10038/401" value="1 (Center)"/>
-                                <text>
-                                    <text-style ref="ts1">유튜브에서 이제야 밥 먹자</text-style>
-                                </text>
-                                <text-style-def id="ts1">
-                                    <text-style font="paybooc OTF" fontSize="150" fontFace="ExtraBold" fontColor="1 0.999974 0.999991 1" bold="1" alignment="center"/>
-                                </text-style-def>
-                            </title>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="86000/2997s" ref="r2" duration="13300/2997s" start="86000/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <title name="굉장히 여기저기 다니면서 하고 계신데 오늘 김포까지 와" lane="1" offset="86000/2997s" ref="r8" duration="13300/2997s" start="86000/2997s">
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="161300/2997s" ref="r2" duration="11700/2997s" start="161300/2997s" audioRole="dialogue" format="r4" tcFormat="NDF">
+                            <title name="그래서 오늘 같이 함께 하면서 여기는 뭐 하는데" lane="1" offset="161300/2997s" ref="r6" duration="11700/2997s" start="161300/2997s">
                                 <param name="Alignment" key="9999/10199/10201/2/354/1002961760/401" value="1 (Center)"/>
                                 <param name="Line Spacing" key="9999/10199/10201/2/354/1002961760/404" value="-14"/>
                                 <param name="Out Sequencing" key="9999/10199/10201/4/10233/201/202" value="0 (To)"/>
                                 <text>
-                                    <text-style ref="ts2">굉장히 여기저기 다니면서 하고 계신데 오늘 김포까지 와주셨습니다</text-style>
+                                    <text-style ref="ts1">그래서 오늘 같이 함께 하면서 여기는 뭐 하는데</text-style>
+                                </text>
+                                <text-style-def id="ts1">
+                                    <text-style font="Apple SD Gothic Neo" fontSize="70" fontFace="Regular" fontColor="0.999999 0.999974 0.999991 1" strokeColor="0 0 0 1" strokeWidth="6" baseline="-510" alignment="center" lineSpacing="-14"/>
+                                </text-style-def>
+                            </title>
+                        </asset-clip>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="173000/2997s" ref="r2" duration="19900/2997s" start="173000/2997s" audioRole="dialogue" format="r4" tcFormat="NDF">
+                            <title name="자면은 음식을 만드는 데 시켜 드시는 편이죠" lane="1" offset="173000/2997s" ref="r6" duration="19900/2997s" start="173000/2997s">
+                                <param name="Alignment" key="9999/10199/10201/2/354/1002961760/401" value="1 (Center)"/>
+                                <param name="Line Spacing" key="9999/10199/10201/2/354/1002961760/404" value="-14"/>
+                                <param name="Out Sequencing" key="9999/10199/10201/4/10233/201/202" value="0 (To)"/>
+                                <text>
+                                    <text-style ref="ts2">자면은 음식을 만드는 데 시켜 드시는 편이죠</text-style>
                                 </text>
                                 <text-style-def id="ts2">
                                     <text-style font="Apple SD Gothic Neo" fontSize="70" fontFace="Regular" fontColor="0.999999 0.999974 0.999991 1" strokeColor="0 0 0 1" strokeWidth="6" baseline="-510" alignment="center" lineSpacing="-14"/>
                                 </text-style-def>
                             </title>
                         </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="99300/2997s" ref="r2" duration="11800/2997s" start="99300/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <title name="시범 계속 해 드릴게요 안녕 안녕하세요" lane="1" offset="99300/2997s" ref="r8" duration="11800/2997s" start="99300/2997s">
-                                <param name="Alignment" key="9999/10199/10201/2/354/1002961760/401" value="1 (Center)"/>
-                                <param name="Line Spacing" key="9999/10199/10201/2/354/1002961760/404" value="-14"/>
-                                <param name="Out Sequencing" key="9999/10199/10201/4/10233/201/202" value="0 (To)"/>
-                                <text>
-                                    <text-style ref="ts3">시범 계속 해 드릴게요 안녕 안녕하세요</text-style>
-                                </text>
-                                <text-style-def id="ts3">
-                                    <text-style font="Apple SD Gothic Neo" fontSize="70" fontFace="Regular" fontColor="0.999999 0.999974 0.999991 1" strokeColor="0 0 0 1" strokeWidth="6" baseline="-510" alignment="center" lineSpacing="-14"/>
-                                </text-style-def>
-                            </title>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="111100/2997s" ref="r2" duration="50200/2997s" start="111100/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                            <video name="C05-1" lane="1" offset="138500/2997s" ref="r9" duration="30000/2997s" start="3600s">
-                                <param name="Position" key="9999/1999778582/1999778750/1/100/101" value="-388.1 0"/>
-                                <param name="Anchor Point" key="9999/1999778582/1999778750/1/100/107" value="0 31.475"/>
-                                <param name="Fade In" key="9999/1999778582/1999778750/2/319/322" value="1"/>
-                                <param name="타이틀 Text" key="9999/1999778582/1999778750/2/369" value="다른 텍스트로 전환"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="192900/2997s" ref="r2" duration="39800/2997s" start="192900/2997s" audioRole="dialogue" format="r4" tcFormat="NDF">
+                            <video name="neutral-1" lane="1" offset="192900/2997s" ref="r7" duration="39800/2997s" start="3600s">
+                                <param name="Position" key="9999/10003/10009/1/100/101" value="0 -760.267"/>
+                                <param name="Alignment" key="9999/10003/10009/2/354/10038/401" value="1 (Center)"/>
+                                <param name="Text" key="9999/10003/10009/2/369" value="네 10% 는 이렇게 돼 있는 거 먹는 게 제일 좋죠 괜찮겠어요"/>
                             </video>
                         </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="161300/2997s" ref="r2" duration="11700/2997s" start="161300/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="232700/2997s" ref="r2" duration="18800/2997s" start="232700/2997s" audioRole="dialogue" format="r4" tcFormat="NDF">
+                            <video name="positive-1" lane="1" offset="232700/2997s" ref="r8" duration="18800/2997s" start="3600s">
+                                <param name="Position" key="9999/13170/13174/1/100/101" value="0 -458.624"/>
+                                <param name="Shear" key="9999/13170/13174/1/100/106" value="0.174533 0"/>
+                                <param name="Anchor Point" key="9999/13170/13174/1/100/107" value="0 -58"/>
+                                <param name="Alignment" key="9999/13170/13174/2/354/12188/401" value="1 (Center)"/>
+                                <param name="Text" key="9999/13170/13174/2/369" value="지금 만들었네요 음식"/>
+                            </video>
                         </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="173000/2997s" ref="r2" duration="19900/2997s" start="173000/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="192900/2997s" ref="r2" duration="39800/2997s" start="192900/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="232700/2997s" ref="r2" duration="18800/2997s" start="232700/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="251500/2997s" ref="r2" duration="4900/2997s" start="251500/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="256400/2997s" ref="r2" duration="15200/2997s" start="256500/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="271600/2997s" ref="r2" duration="12600/2997s" start="271700/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="284200/2997s" ref="r2" duration="5300/2997s" start="284300/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="289500/2997s" ref="r2" duration="6600/2997s" start="289600/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="296100/2997s" ref="r2" duration="6400/2997s" start="296200/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="302500/2997s" ref="r2" duration="26400/2997s" start="302600/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="328900/2997s" ref="r2" duration="12200/2997s" start="329000/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="341100/2997s" ref="r2" duration="4300/2997s" start="341200/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="345400/2997s" ref="r2" duration="7000/2997s" start="345600/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="352400/2997s" ref="r2" duration="7700/2997s" start="353700/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="360100/2997s" ref="r2" duration="14500/2997s" start="361500/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="374600/2997s" ref="r2" duration="3300/2997s" start="376000/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="377900/2997s" ref="r2" duration="6900/2997s" start="379300/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="384800/2997s" ref="r2" duration="9100/2997s" start="386200/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="393900/2997s" ref="r2" duration="21400/2997s" start="395300/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="415300/2997s" ref="r2" duration="10100/2997s" start="416700/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
-                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="425400/2997s" ref="r2" duration="4400/2997s" start="426800/2997s" audioRole="dialogue" format="r3" tcFormat="NDF">
-                            <conform-rate srcFrameRate="29.97" scaleEnabled="0"/>
-                        </asset-clip>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="251500/2997s" ref="r2" duration="4900/2997s" start="251500/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="256400/2997s" ref="r2" duration="15200/2997s" start="256500/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="271600/2997s" ref="r2" duration="12600/2997s" start="271700/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="284200/2997s" ref="r2" duration="5300/2997s" start="284300/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="289500/2997s" ref="r2" duration="6600/2997s" start="289600/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="296100/2997s" ref="r2" duration="6400/2997s" start="296200/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="302500/2997s" ref="r2" duration="26400/2997s" start="302600/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="328900/2997s" ref="r2" duration="12200/2997s" start="329000/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
+                        <asset-clip name="히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.mp4" offset="341100/2997s" ref="r2" duration="4300/2997s" start="341200/2997s" audioRole="dialogue" format="r4" tcFormat="NDF"/>
                     </spine>
                 </sequence>
             </project>
