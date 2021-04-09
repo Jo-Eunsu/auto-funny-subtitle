@@ -20,7 +20,7 @@ def authenticate_client():
 client = authenticate_client()
 
 def detect_abuse(sentence: str) -> int:
-    filter = ["시발", "개새끼", "병신", "썅", "좆같네", "좃같네", "좋같네", "아 씨", "아씨", "야발"]
+    filter = ["시발", "개새끼", "병신", "썅", "좆같네", "좃같네", "좋같네", "아 씨", "아씨", "야발", "염병"]
     for filter_item in filter:
         if sentence.find(filter_item) is not EMPTY:
             return sentence.find(filter_item)
