@@ -18,7 +18,7 @@ def sentiment_analysis_example(client):
     # 2. 결과를 스크린샷으로 찍는다. (10개 정도)
     # 3. 스크린샷을 sample_screenshots 폴더에 올린다.
     # 4. 스크린샷을 보고 어떻게 정확도를 올릴까 분석해본다.
-    documents = ["여기에 텍스트 입력"]
+    documents = ["죽어도 죽지않는게 사람이다"]
     response = client.analyze_sentiment(documents=documents, language="ko")[0]
     print("Document Sentiment: {}".format(response.sentiment))
     print("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n".format(
