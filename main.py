@@ -26,6 +26,14 @@ def detect_abuse(sentence: str) -> int:
             return sentence.find(filter_item)
     return EMPTY
 
+def detect_interjection(sentence: str) -> int:
+    filter = ["무야호", "오진다", "오매", "좋은그" ]
+    for filter_item in filter:
+        if sentence.find(filter_item) is not EMPTY:
+            return sentence.find(filter_item)
+    return POSITIVE
+
+
 def sentiment_analysis_example(client):
     positive_sum = 0.0
     neutral_sum = 0.0
@@ -35,7 +43,7 @@ def sentiment_analysis_example(client):
     # 2. 결과를 스크린샷으로 찍는다. (10개 정도)
     # 3. 스크린샷을 sample_screenshots 폴더에 올린다.
     # 4. 스크린샷을 보고 어떻게 정확도를 올릴까 분석해본다.
-    documents = ["야 이 병신아"]
+    documents = ["무야호 시발"]
     
     # 미리 걸러낼 것들이 있으면 if문으로 걸러내기
     if documents[0].find("ㅋㅋㅋㅋㅋ") is not EMPTY:
@@ -46,6 +54,9 @@ def sentiment_analysis_example(client):
     elif detect_abuse(documents[0]) is not EMPTY:
         print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(0.0, 0.0, 1.0))
         negative_sum = 1.0
+    elif detect_interjection(documents[0]) is not EMPTY:
+        print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(1.0, 0.0, 0.0))
+        positive_sum = 1.0
     else:
         response = client.analyze_sentiment(documents=documents, language="ko")[0]
         print("Document Sentiment: {}".format(response.sentiment))
