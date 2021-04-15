@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.04; neutral=0.56; negative=0.40 
+
+Sentence: 콩트같은것들이 되게 붐이었어요.
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.04
+Neutral=0.56
+Negative=0.40

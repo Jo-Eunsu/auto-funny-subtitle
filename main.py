@@ -43,7 +43,7 @@ def sentiment_analysis_example(client):
     # 2. 결과를 스크린샷으로 찍는다. (10개 정도)
     # 3. 스크린샷을 sample_screenshots 폴더에 올린다.
     # 4. 스크린샷을 보고 어떻게 정확도를 올릴까 분석해본다.
-    documents = ["신나는 토요일 밤 유후~"]
+    documents = ["우와 대박!"]
     
     # 미리 걸러낼 것들이 있으면 if문으로 걸러내기
     with open("analysis-results/" + documents[0] + ".txt", "w") as result_file:

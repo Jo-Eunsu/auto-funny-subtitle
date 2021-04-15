@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.32; neutral=0.44; negative=0.24 
+
+Sentence: 그래 이런 배경에서 학교에서 친구들이 쉬는 시간에 쥐를 잡자 게임하고 놀았어요.
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.32
+Neutral=0.44
+Negative=0.24

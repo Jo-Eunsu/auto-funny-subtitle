@@ -1,0 +1,15 @@
+Document Sentiment: negative
+Overall scores: positive=0.00; neutral=0.07; negative=0.93 
+
+Sentence: 그래!
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.16
+Neutral=0.83
+Negative=0.01
+Sentence: 신나는 토요일 불타는 이 밤 유후~
+Sentence 2 sentiment: negative
+Sentence score:
+Positive=0.00
+Neutral=0.07
+Negative=0.93

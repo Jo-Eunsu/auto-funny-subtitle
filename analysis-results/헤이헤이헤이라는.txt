@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.04; neutral=0.89; negative=0.07 
+
+Sentence: 헤이헤이헤이라는
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.04
+Neutral=0.89
+Negative=0.07

@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.37; neutral=0.62; negative=0.01 
+
+Sentence: 우와 대박!
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.37
+Neutral=0.62
+Negative=0.01
