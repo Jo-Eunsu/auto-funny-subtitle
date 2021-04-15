@@ -1,9 +1,8 @@
 {
     "effect": {
-        "id":"s1",
+        "id":"s2",
         "name":"neutral-1",
-        "uid":"~/Generators.localized/예능자막/neutral-1/neutral-1.motn",
-        "src":"file://~/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/neutral-1/neutral-1.motn"
+        "uid":"~/Generators.localized/예능자막/neutral-1/neutral-1.motn"
     },
     "video": {
         "name": "netural-1",
@@ -12,19 +11,16 @@
                 "name": "Position",
                 "key": "9999/10003/10009/1/100/101",
                 "value": "0 -760.267"
-                
             },
             {
                 "name": "Alignment",
                 "key": "9999/10003/10009/2/354/10038/401",
                 "value": "1 (Center)"
-                
             },
             {
                 "name": "Text",
                 "key": "9999/10003/10009/2/369",
-                "value": "오늘 나는 많이 준비했다고 생각했는데"
-                
+                "value": ""
             }
         
         ]

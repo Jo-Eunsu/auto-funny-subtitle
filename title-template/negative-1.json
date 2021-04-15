@@ -1,9 +1,8 @@
 {
     "effect": {
-        "id":"r7",
+        "id":"s3",
         "name":"negative-1",
-        "uid":"~/Generators.localized/예능자막/negative-1/negative-1.motn",
-        "src":"file://~/Movies/Motion%20Templates.localized/Generators.localized/%E1%84%8B%E1%85%A8%E1%84%82%E1%85%B3%E1%86%BC%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A1%E1%86%A8/negative-1/negative-1.motn"
+        "uid":"~/Generators.localized/예능자막/negative-1/negative-1.motn"
         
     },
     "video": {
@@ -24,7 +23,7 @@
             {
                 "name": "Text",
                 "key": "9999/10003/12143/10738/10009/2/369",
-                "value": "그래가지고 지금 머리 아파"
+                "value": ""
                 
             }
         
