@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.02; neutral=0.84; negative=0.14 
+
+Sentence: 이거 보고 다 앞으로 달려오세요.
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.02
+Neutral=0.84
+Negative=0.14

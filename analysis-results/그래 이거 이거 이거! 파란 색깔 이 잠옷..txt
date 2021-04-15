@@ -1,0 +1,15 @@
+Document Sentiment: neutral
+Overall scores: positive=0.01; neutral=0.96; negative=0.03 
+
+Sentence: 그래 이거 이거 이거!
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.01
+Neutral=0.98
+Negative=0.01
+Sentence: 파란 색깔 이 잠옷.
+Sentence 2 sentiment: neutral
+Sentence score:
+Positive=0.00
+Neutral=0.95
+Negative=0.05

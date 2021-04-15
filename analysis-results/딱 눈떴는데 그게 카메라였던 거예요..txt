@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.03; neutral=0.87; negative=0.10 
+
+Sentence: 딱 눈떴는데 그게 카메라였던 거예요.
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.03
+Neutral=0.87
+Negative=0.10

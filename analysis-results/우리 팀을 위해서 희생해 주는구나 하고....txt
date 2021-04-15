@@ -1,0 +1,9 @@
+Document Sentiment: negative
+Overall scores: positive=0.02; neutral=0.02; negative=0.96 
+
+Sentence: 우리 팀을 위해서 희생해 주는구나 하고...
+Sentence 1 sentiment: negative
+Sentence score:
+Positive=0.02
+Neutral=0.02
+Negative=0.96
