@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.02; neutral=0.96; negative=0.02 
+
+Sentence: 신나는 토요일 밤 유후~
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.02
+Neutral=0.96
+Negative=0.02

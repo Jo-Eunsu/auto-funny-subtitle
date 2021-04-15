@@ -43,40 +43,41 @@ def sentiment_analysis_example(client):
     # 2. 결과를 스크린샷으로 찍는다. (10개 정도)
     # 3. 스크린샷을 sample_screenshots 폴더에 올린다.
     # 4. 스크린샷을 보고 어떻게 정확도를 올릴까 분석해본다.
-    documents = ["야발 무야호"]
+    documents = ["신나는 토요일 밤 유후~"]
     
     # 미리 걸러낼 것들이 있으면 if문으로 걸러내기
-    if documents[0].find("ㅋㅋㅋㅋㅋ") is not EMPTY:
-        print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(1.0, 0.0, 0.0))
-        positive_sum = 1.0
-    elif documents[0].find("ㅠㅠ") is not EMPTY:
-        pass            # pass로 나중에 코드 입력하도록 남겨둠
-    elif detect_abuse(documents[0]) is not EMPTY:
-        print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(0.0, 0.0, 1.0))
-        negative_sum = 1.0
-    elif detect_interjection(documents[0]) is not EMPTY:
-        print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(1.0, 0.0, 0.0))
-        positive_sum = 1.0
-    else:
-        response = client.analyze_sentiment(documents=documents, language="ko")[0]
-        print("Document Sentiment: {}".format(response.sentiment))
-        print("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n".format(
-            response.confidence_scores.positive,
-            response.confidence_scores.neutral,
-            response.confidence_scores.negative,
-        ))
-        for idx, sentence in enumerate(response.sentences):
-            print("Sentence: {}".format(sentence.text))
-            print("Sentence {} sentiment: {}".format(idx+1, sentence.sentiment))
-            print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(
-                sentence.confidence_scores.positive,
-                sentence.confidence_scores.neutral,
-                sentence.confidence_scores.negative,
-            ))
-            positive_sum += sentence.confidence_scores.positive
-            neutral_sum += sentence.confidence_scores.neutral
-            negative_sum += sentence.confidence_scores.negative
-            count += 1
+    with open("analysis-results/" + documents[0] + ".txt", "w") as result_file:
+      if documents[0].find("ㅋㅋㅋㅋㅋ") is not EMPTY:
+          result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n\n".format(1.0, 0.0, 0.0))
+          positive_sum = 1.0
+      elif documents[0].find("ㅠㅠ") is not EMPTY:
+          pass            # pass로 나중에 코드 입력하도록 남겨둠
+      elif detect_abuse(documents[0]) is not EMPTY:
+          result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n\n".format(0.0, 0.0, 1.0))
+          negative_sum = 1.0
+      elif detect_interjection(documents[0]) is not EMPTY:
+          result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n\n".format(1.0, 0.0, 0.0))
+          positive_sum = 1.0
+      else:
+          response = client.analyze_sentiment(documents=documents, language="ko")[0]
+          result_file.write("Document Sentiment: {}\n".format(response.sentiment))
+          result_file.write("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n\n".format(
+              response.confidence_scores.positive,
+              response.confidence_scores.neutral,
+              response.confidence_scores.negative,
+          ))
+          for idx, sentence in enumerate(response.sentences):
+              result_file.write("Sentence: {}".format(sentence.text) + "\n")
+              result_file.write("Sentence {} sentiment: {}".format(idx+1, sentence.sentiment) + "\n")
+              result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(
+                  sentence.confidence_scores.positive,
+                  sentence.confidence_scores.neutral,
+                  sentence.confidence_scores.negative,
+              ))
+              positive_sum += sentence.confidence_scores.positive
+              neutral_sum += sentence.confidence_scores.neutral
+              negative_sum += sentence.confidence_scores.negative
+              count += 1
         
     if max(positive_sum, neutral_sum, negative_sum) is positive_sum:
         return POSITIVE
