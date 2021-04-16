@@ -131,7 +131,7 @@ class FCPX_XML:
     __output_xml_dest = ""
 
     # 템플릿 정보 파일(JSON)을 처리하는 객체 생성
-    __funny_subtitle_templates = Template_JSON()
+    __funny_title_text_templates = Template_JSON()
 
     # 기본 생성자: XML을 불러와 ElementTree 자료형으로 저장, Azure AI API의 클라이언트 정보 불러오기
     def __init__(self, input_xml_dest: str) -> None:
@@ -169,31 +169,44 @@ class FCPX_XML:
     def xml_text_analysis(self) -> None:
         # XML에서 자막에 해당되는 클립 정보를 읽기
         try:
-            for title in self.__xml_root.iter("title"):
-                # 자막 텍스트 추출
-                subtitle = [title.find("text").findtext("text-style"),]
-                print(subtitle[0], "- 스타일: ", title.attrib["ref"])
-                # 읽어들인 자막 텍스트를 바탕으로 문장 감정을 분석해 최종 감정을 문자열로 출력
-                result_analysis = self.__sentiment_analysis(subtitle)
-                self.title_template_modification(title, result_analysis)
+            # asset-clip 태그를 찾기
+            # asset-clip 태그는 파이널컷에서 메인 스토리라인에 들어가는 각 동영상 클립의 정보
+            for asset_clip in self.__xml_root.iter("asset-clip"):
+                for title in asset_clip.findall("title"):
+                    # 자막 텍스트 추출
+                    title_text = [title.find("text").findtext("text-style"),]
+                    title_offset = title["offset"]
+                    print(title_text[0], "- 스타일: ", title.attrib["ref"])
+                    # 읽어들인 자막 텍스트를 바탕으로 문장 감정을 분석해 최종 감정을 문자열로 출력
+                    result_analysis = self.__sentiment_analysis(title_text)
+                    self.title_xml_modification(title, result_analysis, title_offset)
+                
+                
 
         except KeyboardInterrupt:
             print("\n\n사용자에 의한 강제 취소\n")
 
+    # 자막 텍스트 자체의 정보가 저장된 effect 태그를 새로 쓰는 함수
+    def effect_xml_modifiction(self, emotion: str):
+        effect_tag_info = self.effect_tag(emotion)
+
     # 자막 텍스트의 감정에 따라 예능자막을 지정해서 XML을 고쳐쓰는 함수
-    def title_template_modification(self, text: str, emotion: str):
+    def title_xml_modification(self, text: str, emotion: str, offset: str) -> None:
         pass 
 
-    # XML에서 특정 자막 템플릿의 정보가 들어 있는 effects 태그의 객체(Element)를 생성해주는 함수
-    def effect_tag(self) -> Element:
-        pass
+    # XML에서 특정 감정(emotion)에 자막 템플릿의 정보가 들어 있는 effects 태그의 객체(Element)를 생성해주는 메소드
+    def effect_tag(self, emotion: str) -> Element:
+        emotion_json = self.__funny_title_text_templates.get_template(emotion)
+        effect_element = Element(tag="effect", attrib=emotion_json["effect"])
+        return effect_element
 
-    # XML에서 각 자막 클립에 특정 자막 템플릿을 적용시킨 video 태그의 객체(Element)를 생성해주는 함수
+    # XML에서 각 자막 클립에 특정 자막 템플릿을 적용시킨 video 태그의 객체(Element)를 생성해주는 메소드
     def title_video_tag(self) -> Element:
         pass
 
-    # 새로운 XML 파일을 작성하는 함수
+    # 새로운 XML 파일을 작성하는 메소드
     def write_xml(self):
+        # 수정된 트리(__xml_tree)를 새로운 파일 경로(__output_xml_dest)에 fcpxml 파일로 작성
         self.__xml_tree.write(self.__output_xml_dest)
 
 
@@ -202,7 +215,7 @@ def main() -> int:
 
     # 파이널 컷 XML 파일을 읽어오고 파이널컷 예능자막 템플릿 정보 추출
     fcpx_xml = FCPX_XML(sys.argv[1])
-    # XML의 자막 텍스트를 읽어와서 텍스트 정보 분석
+    # XML의 자막 텍스트를 읽어와서 텍스트 정보 분석 후 수정
     fcpx_xml.xml_text_analysis()
     # 수정된 XML 파일을 따로 저장
     fcpx_xml.write_xml()
