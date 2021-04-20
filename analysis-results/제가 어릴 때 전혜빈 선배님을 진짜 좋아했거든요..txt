@@ -1,0 +1,9 @@
+Document Sentiment: positive
+Overall scores: positive=0.83; neutral=0.11; negative=0.06 
+
+Sentence: 제가 어릴 때 전혜빈 선배님을 진짜 좋아했거든요.
+Sentence 1 sentiment: positive
+Sentence score:
+Positive=0.83
+Neutral=0.11
+Negative=0.06

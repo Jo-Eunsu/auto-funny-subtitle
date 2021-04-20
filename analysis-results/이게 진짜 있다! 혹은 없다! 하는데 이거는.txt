@@ -1,0 +1,21 @@
+Document Sentiment: neutral
+Overall scores: positive=0.09; neutral=0.85; negative=0.06 
+
+Sentence: 이게 진짜 있다!
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.22
+Neutral=0.75
+Negative=0.03
+Sentence: 혹은 없다!
+Sentence 2 sentiment: neutral
+Sentence score:
+Positive=0.03
+Neutral=0.84
+Negative=0.13
+Sentence: 하는데 이거는
+Sentence 3 sentiment: neutral
+Sentence score:
+Positive=0.01
+Neutral=0.96
+Negative=0.03

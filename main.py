@@ -170,7 +170,44 @@ class FCPX_XML:
         # 텍스트별 최종 감정을 저장하는 리스트, 감정별 자막 번호를 지정하는 리스트 작성
         result_emotions = []
         result_emotion_nums = []
-        for response in responses:
+        for i, response in enumerate(responses):
+            
+            if documents[i].find("ㅋㅋㅋㅋㅋ") is not EMPTY:
+                response.confidence_scores.positive = 1.0
+            elif detect_abuse(documents[0]) is not EMPTY:
+                result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n\n".format(0.0, 0.0, 1.0))
+                negative_sum = 1.0
+            elif detect_interjection(documents[0]) is not EMPTY:
+                result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n\n".format(1.0, 0.0, 0.0))
+                positive_sum = 1.0
+            else:
+                response = client.analyze_sentiment(documents=documents, language="ko")[0]
+                result_file.write("Document Sentiment: {}\n".format(response.sentiment))
+                result_file.write("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n\n".format(
+                    response.confidence_scores.positive,
+                    response.confidence_scores.neutral,
+                    response.confidence_scores.negative,
+                ))
+                for idx, sentence in enumerate(response.sentences):
+                    result_file.write("Sentence: {}".format(sentence.text) + "\n")
+                    result_file.write("Sentence {} sentiment: {}".format(idx+1, sentence.sentiment) + "\n")
+                    result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(
+                        sentence.confidence_scores.positive,
+                        sentence.confidence_scores.neutral,
+                        sentence.confidence_scores.negative,
+                    ))
+                    positive_sum += sentence.confidence_scores.positive
+                    neutral_sum += sentence.confidence_scores.neutral
+                    negative_sum += sentence.confidence_scores.negative
+                    count += 1
+                
+            if max(positive_sum, neutral_sum, negative_sum) is positive_sum:
+                return POSITIVE
+            elif max(positive_sum, neutral_sum, negative_sum) is neutral_sum:
+                return NEUTRAL
+            else:
+                return NEGATIVE
+
             # 텍스트 분석 결과를 긍정값, 중립값, 부정값 순서로 딕셔너리로 리턴
             result_score = {
                 "positive": response.confidence_scores.positive,        # 긍정 값

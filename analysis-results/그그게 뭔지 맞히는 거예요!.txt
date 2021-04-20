@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.09; neutral=0.49; negative=0.42 
+
+Sentence: 그그게 뭔지 맞히는 거예요!
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.09
+Neutral=0.49
+Negative=0.42

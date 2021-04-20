@@ -1,0 +1,9 @@
+Document Sentiment: positive
+Overall scores: positive=0.53; neutral=0.43; negative=0.04 
+
+Sentence: 다시 한 번 언니에게 고마운 마음을 가졌죠.
+Sentence 1 sentiment: positive
+Sentence score:
+Positive=0.53
+Neutral=0.43
+Negative=0.04

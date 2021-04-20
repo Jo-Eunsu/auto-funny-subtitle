@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.24; neutral=0.74; negative=0.02 
+
+Sentence: 사실 여걸식스는 여걸파이브가 원조였습니다.
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.24
+Neutral=0.74
+Negative=0.02

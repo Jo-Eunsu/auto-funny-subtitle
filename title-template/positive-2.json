@@ -1,0 +1,38 @@
+{
+    "effect": {
+        "id":"s1",
+        "name":"positive-1",
+        "uid":"~/Generators.localized/예능자막/positive-1/positive-1.motn"
+    },
+    "video": {
+        "name": "positive-1",
+        "param": [
+            {
+                "name": "Position",
+                "key": "9999/13170/13174/1/100/101",
+                "value": "0 -458.624"
+            },
+            {
+                "name": "Shear",
+                "key": "9999/13170/13174/1/100/106",
+                "value": "0.174533 0"
+            },
+            {
+                "name": "Anchor Point",
+                "key": "9999/13170/13174/1/100/107",
+                "value": "0 -58"
+            },
+            {
+                "name": "Alignment",
+                "key": "9999/13170/13174/2/354/12188/401",
+                "value": "1 (Center)"
+            },
+            {
+                "name": "Text",
+                "key": "9999/13170/13174/2/369",
+                "value": ""
+            }
+        
+        ]
+    }
+}    

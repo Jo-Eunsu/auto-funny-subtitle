@@ -1,0 +1,9 @@
+Document Sentiment: neutral
+Overall scores: positive=0.25; neutral=0.59; negative=0.16 
+
+Sentence: 진실게임 같은 거 보면은 이야기하다 보면 좀 나와요.
+Sentence 1 sentiment: neutral
+Sentence score:
+Positive=0.25
+Neutral=0.59
+Negative=0.16

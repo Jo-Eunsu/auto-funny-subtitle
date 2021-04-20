@@ -1,0 +1,9 @@
+Document Sentiment: negative
+Overall scores: positive=0.05; neutral=0.02; negative=0.93 
+
+Sentence: 그냥 당연하지 당연하지 하면 재미가 없잖아요
+Sentence 1 sentiment: negative
+Sentence score:
+Positive=0.05
+Neutral=0.02
+Negative=0.93
