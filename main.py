@@ -8,7 +8,7 @@ from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 
 # XML 파일을 불러오기 위해 모듈 임포트
-from xml.etree.ElementTree import Element, ElementTree, parse
+from xml.etree.ElementTree import Element, ElementTree, SubElement, parse
 
 # AI API에서 제공하는 감정의 리스트와 상수
 POSITIVE = 0
@@ -50,28 +50,25 @@ class AzureAnalytics:
 class Template_JSON:
     # 자막 템플릿의 정보가 담겨 있는 딕셔너리 - {"감정": [한 감정에 들어 있는 자막 템플릿의 정보 리스트]} 형태
     __template_info = {}
-    # 각 자막 템플릿의 유형 중 몇 번째 자막을 선택할 것인지 결정하는 리스트
-    __template_select = []
+    # 각 자막 템플릿의 유형 중 몇 번째 자막을 선택할 것인지 결정하는 딕셔너리 - {"감정": 자막 번호}
+    __template_select = {}
     # 자막 템플릿의 감정 유형을 저장하는 딕셔너리. {"감정": "지정값"}으로 이루어짐
     __emotions = {}
     __emotion_count = 0
 
     # 생성자
     def __init__(self) -> None:
-        # 템플릿 객체에 우리가 사용할 감정 추가
-        # 각 위치는 0번째부터 POSITIVE, NEUTRAL, NEGATIVE 순으로 지정
-        self.add_emotion("positive")
-        self.add_emotion("neutral")
-        self.add_emotion("negative")
-
-        # 추가한 감정에 맞는 템플릿 파일 불러오기
+        # 템플릿 파일 불러오기
         self.append_template("title-template/positive-1.json", "positive")
         self.append_template("title-template/neutral-1.json", "neutral")
         self.append_template("title-template/negative-1.json", "negative")
 
         # 각 감정마다 몇 번째로 추가한 템플릿을 쓸 건지 결정
-        self.set_template_selection([0, 0, 0])
+        self.__template_select["positive"] = 0
+        self.__template_select["neutral"] = 0
+        self.__template_select["negative"] = 0
 
+    # json 파일을 열어서 딕셔너리 자료형으로 리턴하는 함수
     def __open_json(self, json_file_path: str) -> dict:
         try:
             with open(json_file_path) as json_file:
@@ -81,17 +78,16 @@ class Template_JSON:
             print(json_file_path + ": json 파일을 찾지 못했습니다.")
             print(fe)
             return None
-    # 감정 유형을 더하는 함수
-    def add_emotion(self, emotion: str):
-        self.__emotions[emotion] = self.__emotion_count
-        self.__template_info[emotion] = []
-        self.__template_select.append(0)
-        self.__emotion_count += 1
+    
     # 자막 템플릿의 정보가 저장된 JSON 파일을 불러와 리스트에 추가
     def append_template(self, input_json_dest: str, type_str: str) -> None:
         json_dict = self.__open_json(input_json_dest)
         # AI API가 제공하는 다양한 감정타입에 따라 자막 템플릿 분류 -> "type": positive, neutral, negative 등
+        if type_str not in self.__template_info: 
+            self.__template_info[type_str] = []
         self.__template_info[type_str].append(json_dict)
+        self.__template_select[type_str] = 0
+    
     # 자막 템플릿의 정보 표시
     def show_templates(self):
         try:
@@ -106,18 +102,24 @@ class Template_JSON:
             print(ve)
         except Exception:
             print("자막 템플릿 정보를 불러오는 데 문제가 발생했습니다.")
-    # 몇 번째 자막 템플릿을 지정할 것인지 지정하는 함수
-    def set_template_selection(self, selection_numbers: list):
-        for i, num in enumerate(selection_numbers):
-            self.__template_select[i] = num
     
     # 감정분석 결과에 따라 미리 저장된 템플릿 정보(딕셔너리)를 꺼내오는 함수
     def get_template(self, emotion: str) -> dict:
         return self.__template_info[emotion][self.__template_select[self.__emotions[emotion]]]
 
-    # 각 감정 키에 해당하는 값을 리턴하는 함수
-    def get_emotion_value(self, emotion: str) -> int:
-        return self.__emotions[emotion]
+    def get_template_at_number(self, emotion: str, number: int) -> dict:
+        return self.__template_info[emotion][number]
+
+    def get_all_template(self) -> list:
+        all_template_list = []
+        for template_emotion in self.__template_info.values():
+            for template_emotion_num in template_emotion:
+                all_template_list.append(template_emotion_num)
+        return all_template_list
+
+    # 모든 감정의 종류를 리스트 형태로 리턴하는 함수
+    def get_emotion_list(self) -> list:
+        return self.__template_info.keys()
 
     
 
@@ -129,9 +131,10 @@ class FCPX_XML:
     __xml_root = None
     # 새로 만들어진 XML 파일이 저장될 경로
     __output_xml_dest = ""
-
-    # 템플릿 정보 파일(JSON)을 처리하는 객체 생성
-    __funny_title_text_templates = Template_JSON()
+    # 템플릿 JSON 파일 자체를 담는 객체
+    __funny_title_text_templates = None
+    # effect XML 태그를 담고 있는 Element 객체 리스트
+    __effect_tag = []
 
     # 기본 생성자: XML을 불러와 ElementTree 자료형으로 저장, Azure AI API의 클라이언트 정보 불러오기
     def __init__(self, input_xml_dest: str) -> None:
@@ -143,27 +146,50 @@ class FCPX_XML:
         self.__api_client = AzureAnalytics().get_client()
         # 수정된 XML 파일의 이름을 따로 지정
         self.__output_xml_dest = input_xml_dest.replace(".fcpxml", "") + "-edit.fcpxml"
+        # 템플릿 정보 파일(JSON)을 처리하는 객체 생성
+        self.__funny_title_text_templates = Template_JSON()
+
+        # 등록한 모든 템플릿에 대해 effect 태그 재작성
+        self.__effect_xml_modifiction()
+        
+        # 템플릿 정보를 XML에 기록하기 위해 effect라는 Elements 객체 생성
+        for emotion in self.__funny_title_text_templates.get_emotion_list():
+            pass
+        
 
     # Azure AI Text Analytics 서비스(client)를 이용해 텍스트(documents)의 감정(긍정, 중립, 부정) 분석
-    def __sentiment_analysis(self, documents: list) -> str:
+    def __sentiment_analysis(self, documents: list):
         # API를 사용하여 입력받은 텍스트의 감정을 분석하고, 분석 결과를 response에 저장
-        response = self.__api_client.analyze_sentiment(documents=documents, language="ko")[0]
-        # 텍스트 분석 결과를 긍정값, 중립값, 부정값 순서로 딕셔너리로 리턴
-        result_score = {
-            "positive": response.confidence_scores.positive,        # 긍정 값
-            "neutral": response.confidence_scores.neutral,         # 중립 값
-            "negative": response.confidence_scores.negative        # 부정 값
-        }
+        responses = []
+        for document in documents:
+            if document is None or document is "":
+                return None, None
+            else:
+                responses.append(self.__api_client.analyze_sentiment([document], language="ko")[0])
 
-        # 정확도 개선 로직 추가가 필요한 부분
-        if result_score["positive"] >= 0.5:
-            result_emotion = "positive"
-        elif result_score["negative"] >= 0.5:
-            result_emotion = "negative"
-        else:
-            result_emotion = "neutral"
+        # 텍스트별 최종 감정을 저장하는 리스트, 감정별 자막 번호를 지정하는 리스트 작성
+        result_emotions = []
+        result_emotion_nums = []
+        for response in responses:
+            # 텍스트 분석 결과를 긍정값, 중립값, 부정값 순서로 딕셔너리로 리턴
+            result_score = {
+                "positive": response.confidence_scores.positive,        # 긍정 값
+                "neutral": response.confidence_scores.neutral,         # 중립 값
+                "negative": response.confidence_scores.negative        # 부정 값
+            }
+
+            # 정확도 개선 로직 추가가 필요한 부분
+            if result_score["positive"] >= 0.5:
+                result_emotions.append("positive")
+                result_emotion_nums.append(0)
+            elif result_score["negative"] >= 0.5:
+                result_emotions.append("negative")
+                result_emotion_nums.append(0)
+            else:
+                result_emotions.append("neutral")
+                result_emotion_nums.append(0)
         
-        return result_emotion
+        return result_emotions, result_emotion_nums
 
     # 각 자막 텍스트에 대해 감정분석
     def xml_text_analysis(self) -> None:
@@ -172,33 +198,82 @@ class FCPX_XML:
             # asset-clip 태그를 찾기
             # asset-clip 태그는 파이널컷에서 메인 스토리라인에 들어가는 각 동영상 클립의 정보
             for asset_clip in self.__xml_root.iter("asset-clip"):
-                for title in asset_clip.findall("title"):
+                # title 태그를 video 태그로 바꾸는 데 필요한 변수 준비물.
+                # title_element: title 태그의 Element 객체, title_text: title 태그 안에 있는 text값, results: 감정분석 결과 반환된 감정 텍스트들의 집합
+                title_element = []
+                title_text = []
+                results = []
+                template_number = []
+                
+                for title in asset_clip.iter("title"):
                     # 자막 텍스트 추출
-                    title_text = [title.find("text").findtext("text-style"),]
-                    title_offset = title["offset"]
-                    print(title_text[0], "- 스타일: ", title.attrib["ref"])
-                    # 읽어들인 자막 텍스트를 바탕으로 문장 감정을 분석해 최종 감정을 문자열로 출력
-                    result_analysis = self.__sentiment_analysis(title_text)
-                    self.title_xml_modification(title, result_analysis, title_offset)
-                
-                
+                    title_text.append(title.find("text").findtext("text-style"))
+                    print(title_text[len(title_text)-1], "- 스타일: ", title.attrib["ref"])
 
+                # 읽어들인 자막 텍스트를 바탕으로 문장 감정을 분석해 예능자막을 지정하고 XML에 적용
+                if asset_clip.find("title") is not None:
+                    # 자막 분석 결과(감정 텍스트)와 각 감정별 템플릿의 번호를 추출
+                    results, template_number = self.__sentiment_analysis(title_text)
+                    # 태그 내 자막 텍스트가 있으면 다음을 수행
+                    if results is not None:
+                        # 기존에 있던 자막 템플릿 불러오기
+                        existing_titles = []
+                        for title in asset_clip.iter("title"):
+                            existing_titles.append(title)
+                        # 분석 결과를 XML에 반영
+                        self.title_xml_modification(asset_clip, title_text, results, template_number)
+                        # 기존 자막 템플릿 삭제
+                        for existing_title in existing_titles:
+                            asset_clip.remove(existing_title)
         except KeyboardInterrupt:
             print("\n\n사용자에 의한 강제 취소\n")
 
     # 자막 텍스트 자체의 정보가 저장된 effect 태그를 새로 쓰는 함수
-    def effect_xml_modifiction(self, emotion: str):
-        effect_tag_info = self.effect_tag(emotion)
+    def __effect_xml_modifiction(self):
+        # json 객체에서 모든 템플릿 정보를 불러들임
+        all_templates = self.__funny_title_text_templates.get_all_template()
+        # resources 태그 불러오기 (effect 태그의 정보는 resources 태그 안에 있음)
+        resources = self.__xml_root.find("resources")
+        
 
-    # 자막 텍스트의 감정에 따라 예능자막을 지정해서 XML을 고쳐쓰는 함수
-    def title_xml_modification(self, text: str, emotion: str, offset: str) -> None:
-        pass 
+        # 모든 템플릿의 effect 태그 정보를 XML에 기록
+        for template in all_templates:
+            # 중복되는 effect 태그가 있으면 지우기 - 중복된 effect 태그가 있으면 오류가 생길 수 있음
+            for existing_effect in self.__xml_root.iter("effect"):
+                if existing_effect.attrib["name"] == template["effect"]["name"]:
+                    resources.remove(existing_effect)
 
-    # XML에서 특정 감정(emotion)에 자막 템플릿의 정보가 들어 있는 effects 태그의 객체(Element)를 생성해주는 메소드
-    def effect_tag(self, emotion: str) -> Element:
-        emotion_json = self.__funny_title_text_templates.get_template(emotion)
-        effect_element = Element(tag="effect", attrib=emotion_json["effect"])
-        return effect_element
+            # 템플릿의 effect 태그를 추출해 resources 태그 불러오기
+            SubElement(resources, "effect", template["effect"])
+
+    # 자막 텍스트의 감정에 따라 예능자막을 지정해서 XML의 title 태그를 고쳐쓰는 함수 
+    # (title_element: 기존 자막의 태그 정보가 담겨있는 element 객체, text: 입력 문자열, emotion: 감정, type: 같은 감정의 템플릿이 여러 개면 특정 번호 지정, offset: )
+    def title_xml_modification(self, asset_clip_element: Element, texts: list, emotions: list, template_numbers: list) -> None:
+        # asset-clip 태그 안에 있는 모든 title 태그 찾기 (enumerate 사용)
+        for i, title_element in enumerate(asset_clip_element.iter("title")):
+            # 각 title 태그에 들어 있는 텍스트의 감정에 알맞는 템플릿(json) 불러오기
+            template_json = self.__funny_title_text_templates.get_template_at_number(emotions[i], template_numbers[i])["video"]
+            # 템플릿 json의 id를 ref로 변수 생성해서 자막 텍스트에 연결하도록 지정
+            ref: int = self.__funny_title_text_templates.get_template_at_number(emotions[i], template_numbers[i])["effect"]["id"]
+            # 테스트용: 각 텍스트에 대해 결과 감정을 출력
+            print("Result Emotion:", emotions[i])
+            # 해당 템플릿 json의 video 태그 속성 불러오기
+            video_tag_attrib = title_element.attrib
+            # video 태그의 이름 속성을 템플릿의 video 속성에서 붙여넣기
+            video_tag_attrib["name"] = template_json["name"]
+            # video 태그의 ref 속성을 템플릿의 ref로 수정
+            video_tag_attrib["ref"] = ref
+            # XML에 태그를 추가하기 위해 video라는 Element 객체 생성해서 asset-clip 태그에 붙여주기
+            video_element = SubElement(asset_clip_element, "video", video_tag_attrib)
+
+            # json 파일에 담겨 있는 여러 param 태그 탐색
+            for param_attrib in template_json["param"]:
+                # 이름 속성이 Text인 param 태그를 찾아 자막 텍스트 삽입
+                if param_attrib["name"] == "Text":
+                    param_attrib["value"] = texts[i]
+                # param 태그를 만들어서 video 태그 안에 달아주기
+                SubElement(video_element, "param", param_attrib)                
+            
 
     # XML에서 각 자막 클립에 특정 자막 템플릿을 적용시킨 video 태그의 객체(Element)를 생성해주는 메소드
     def title_video_tag(self) -> Element:
@@ -207,7 +282,7 @@ class FCPX_XML:
     # 새로운 XML 파일을 작성하는 메소드
     def write_xml(self):
         # 수정된 트리(__xml_tree)를 새로운 파일 경로(__output_xml_dest)에 fcpxml 파일로 작성
-        self.__xml_tree.write(self.__output_xml_dest)
+        self.__xml_tree.write(self.__output_xml_dest, encoding="utf8", xml_declaration=True)
 
 
 # 메인함수 실행

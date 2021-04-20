@@ -9,7 +9,7 @@
             "command": "python3",
             "args": [
                 "${file}",
-                "video-sample/히밥님...재료가 다 떨어졌어요...-TTfzRbSFtLY.fcpxml"
+                "./히밥님...재료가 다 떨어졌어요...fcpxml"
             ],
             "options": {
                 "env": {
