@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "args": [
-                "./히밥님...재료가 다 떨어졌어요...fcpxml"
+                "히밥님...재료가 다 떨어졌어요...fcpxml"
             ],
             "console": "integratedTerminal"
         }

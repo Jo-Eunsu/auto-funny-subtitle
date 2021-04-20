@@ -60,6 +60,7 @@ class Template_JSON:
     def __init__(self) -> None:
         # 템플릿 파일 불러오기
         self.append_template("title-template/positive-1.json", "positive")
+        self.append_template("title-template/positive-2.json", "positive")
         self.append_template("title-template/neutral-1.json", "neutral")
         self.append_template("title-template/negative-1.json", "negative")
 
@@ -152,10 +153,6 @@ class FCPX_XML:
         # 등록한 모든 템플릿에 대해 effect 태그 재작성
         self.__effect_xml_modifiction()
         
-        # 템플릿 정보를 XML에 기록하기 위해 effect라는 Elements 객체 생성
-        for emotion in self.__funny_title_text_templates.get_emotion_list():
-            pass
-        
 
     # Azure AI Text Analytics 서비스(client)를 이용해 텍스트(documents)의 감정(긍정, 중립, 부정) 분석
     def __sentiment_analysis(self, documents: list):
@@ -171,62 +168,55 @@ class FCPX_XML:
         result_emotions = []
         result_emotion_nums = []
         for i, response in enumerate(responses):
-            
-            if documents[i].find("ㅋㅋㅋㅋㅋ") is not EMPTY:
-                response.confidence_scores.positive = 1.0
-            elif detect_abuse(documents[0]) is not EMPTY:
-                result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n\n".format(0.0, 0.0, 1.0))
-                negative_sum = 1.0
-            elif detect_interjection(documents[0]) is not EMPTY:
-                result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n\n".format(1.0, 0.0, 0.0))
-                positive_sum = 1.0
-            else:
-                response = client.analyze_sentiment(documents=documents, language="ko")[0]
-                result_file.write("Document Sentiment: {}\n".format(response.sentiment))
-                result_file.write("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n\n".format(
-                    response.confidence_scores.positive,
-                    response.confidence_scores.neutral,
-                    response.confidence_scores.negative,
-                ))
-                for idx, sentence in enumerate(response.sentences):
-                    result_file.write("Sentence: {}".format(sentence.text) + "\n")
-                    result_file.write("Sentence {} sentiment: {}".format(idx+1, sentence.sentiment) + "\n")
-                    result_file.write("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(
-                        sentence.confidence_scores.positive,
-                        sentence.confidence_scores.neutral,
-                        sentence.confidence_scores.negative,
-                    ))
-                    positive_sum += sentence.confidence_scores.positive
-                    neutral_sum += sentence.confidence_scores.neutral
-                    negative_sum += sentence.confidence_scores.negative
-                    count += 1
-                
-            if max(positive_sum, neutral_sum, negative_sum) is positive_sum:
-                return POSITIVE
-            elif max(positive_sum, neutral_sum, negative_sum) is neutral_sum:
-                return NEUTRAL
-            else:
-                return NEGATIVE
-
-            # 텍스트 분석 결과를 긍정값, 중립값, 부정값 순서로 딕셔너리로 리턴
-            result_score = {
-                "positive": response.confidence_scores.positive,        # 긍정 값
-                "neutral": response.confidence_scores.neutral,         # 중립 값
-                "negative": response.confidence_scores.negative        # 부정 값
-            }
-
-            # 정확도 개선 로직 추가가 필요한 부분
-            if result_score["positive"] >= 0.5:
+            # 감정을 분석해서 결과값에 감정 문자열과 자막 번호 지정하는 코드
+            # 1. 특수 함수 - 필터링을 통해 감정 설정
+            if documents[i].find("ㅋㅋ") is not EMPTY:
                 result_emotions.append("positive")
-                result_emotion_nums.append(0)
-            elif result_score["negative"] >= 0.5:
+                result_emotion_nums.append(1)
+            elif self.__detect_abuse(documents[i]) is not EMPTY:
                 result_emotions.append("negative")
                 result_emotion_nums.append(0)
-            else:
-                result_emotions.append("neutral")
+            elif self.__detect_interjection(documents[i]) is not EMPTY:
+                result_emotions.append("positive")
                 result_emotion_nums.append(0)
+            # 2. 일반 함수 - positive, neutral, negative 함수 중 가장 높은 값을 지정
+            else:
+                positive_score = response.confidence_scores.positive
+                neutral_score = response.confidence_scores.neutral
+                negative_score = response.confidence_scores.negative
+                
+                if max(positive_score, neutral_score, negative_score) is positive_score:
+                    result_emotions.append("positive")
+                    result_emotion_nums.append(0)
+                elif max(positive_score, neutral_score, negative_score) is neutral_score:
+                    result_emotions.append("neutral")
+                    result_emotion_nums.append(0)
+                else:
+                    result_emotions.append("negative")
+                    result_emotion_nums.append(0)
+            
+            # 테스트용: 각 텍스트에 대해 결과 감정을 출력
+            print("Input Text:", documents[i])
+            print("Result Emotion:", result_emotions[i])
         
         return result_emotions, result_emotion_nums
+
+    # 문장 안에서 욕설을 찾아내는 함수 - 욕설이 없을 경우 -1 리턴, 있을 경우 위치값 리턴
+    def __detect_abuse(self, sentence: str) -> int: 
+        filter = ["시발", "개새끼", "병신", "썅", "좆같네", "좃같네", "좋같네", "아 씨", "아씨", "야발"]
+        for filter_item in filter: 
+            if sentence.find(filter_item) is not EMPTY:
+                return sentence.find(filter_item)
+        return EMPTY 
+
+    # 문장 안에서 감탄사를 찾아내는 함수 - 감탄사가 없을 경우 -1 리턴, 있을 경우 위치값 리턴
+    def __detect_interjection(self, sentence: str) -> int:
+        filter = ["무야호", "오진다", "오매", "좋은그" ]
+        for filter_item in filter:
+            if sentence.find(filter_item) is not EMPTY:
+                return sentence.find(filter_item)
+        return EMPTY
+
 
     # 각 자막 텍스트에 대해 감정분석
     def xml_text_analysis(self) -> None:
@@ -245,7 +235,6 @@ class FCPX_XML:
                 for title in asset_clip.iter("title"):
                     # 자막 텍스트 추출
                     title_text.append(title.find("text").findtext("text-style"))
-                    print(title_text[len(title_text)-1], "- 스타일: ", title.attrib["ref"])
 
                 # 읽어들인 자막 텍스트를 바탕으로 문장 감정을 분석해 예능자막을 지정하고 XML에 적용
                 if asset_clip.find("title") is not None:
@@ -292,8 +281,6 @@ class FCPX_XML:
             template_json = self.__funny_title_text_templates.get_template_at_number(emotions[i], template_numbers[i])["video"]
             # 템플릿 json의 id를 ref로 변수 생성해서 자막 텍스트에 연결하도록 지정
             ref: int = self.__funny_title_text_templates.get_template_at_number(emotions[i], template_numbers[i])["effect"]["id"]
-            # 테스트용: 각 텍스트에 대해 결과 감정을 출력
-            print("Result Emotion:", emotions[i])
             # 해당 템플릿 json의 video 태그 속성 불러오기
             video_tag_attrib = title_element.attrib
             # video 태그의 이름 속성을 템플릿의 video 속성에서 붙여넣기
