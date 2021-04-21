@@ -181,7 +181,7 @@
 	<cameraType>0</cameraType>
 	<cameraName>Active Camera</cameraName>
 	<mirrorHMD>0</mirrorHMD>
-	<panZoom camera="0" zoom="0.57777780294418335" panX="13" panY="5" mode="2" centered="1"/>
+	<panZoom camera="0" zoom="0.45277777314186096" panX="80" panY="5" mode="2" centered="1"/>
 </viewer>
 
 <projectPanel>
@@ -218,7 +218,7 @@
 	<displayEffects>1</displayEffects>
 	<videoVerticalZoom>1</videoVerticalZoom>
 	<audioVerticalZoom>1</audioVerticalZoom>
-	<displayRange in="-43043 116000 3 0" out="1204203 116000 3 0"/>
+	<displayRange in="-454477191 1118164062 3 0" out="10416449471 1000000000 3 0"/>
 </timeline>
 
 <curveeditor>
@@ -226,8 +226,8 @@
 	<snapping>0</snapping>
 	<displayAudioWaveform>0</displayAudioWaveform>
 	<lockKeyframesInTime>0</lockKeyframesInTime>
-	<displayRange in="-43043 116000 3 0" out="1204203 116000 3 0"/>
-	<currentviewvolume originx="-0.37106034482758621" originy="-62.5" width="10.752120689655172" height="125"/>
+	<displayRange in="-454477191 1118164062 3 0" out="10416449471 1000000000 3 0"/>
+	<currentviewvolume originx="-0.4064494705607879" originy="-62.5" width="10.822898942" height="125"/>
 	<snapshotChannels>0</snapshotChannels>
 </curveeditor>
 
@@ -273,7 +273,6 @@
 		<target object="10040" channel="./14/16" name="Color"/>
 	</publishSettings>
 	<currentFrame>0 1 1 0</currentFrame>
-	<currentObject>10000</currentObject>
 	<activeLayer>10003</activeLayer>
 	<timeRange offset="0 1 1 0" duration="1201200 120000 1 0"/>
 	<playRange offset="0 1 1 0" duration="1201200 120000 1 0"/>
@@ -299,7 +298,7 @@
 		<flags>0</flags>
 		<timing in="0 1 1 0" out="-2002 120000 1 0" offset="0 1 1 0"/>
 		<foldFlags>0</foldFlags>
-		<baseFlags>17</baseFlags>
+		<baseFlags>16</baseFlags>
 		<parameter name="Properties" id="1" flags="8589938704"/>
 		<parameter name="Object" id="2" flags="8589938704"/>
 	</scenenode>
@@ -534,7 +533,7 @@
 					<font>BinggraeSamanco-Bold</font>
 					<defaultFont>Helvetica</defaultFont>
 				</parameter>
-				<parameter name="Size" id="3" flags="8606711824" default="48" value="180"/>
+				<parameter name="Size" id="3" flags="8606711824" default="48" value="240"/>
 				<parameter name="Spacing" id="81" flags="8589938704">
 					<parameter name="Tracking" id="79" flags="8606711824" default="0" value="0.02"/>
 				</parameter>
