@@ -6,7 +6,6 @@ from FCPX_XML import FCPX_XML
 
 # 메인함수 실행
 def main() -> int:
-
     # 파이널 컷 XML 파일을 읽어오고 파이널컷 예능자막 템플릿 정보 추출
     fcpx_xml = FCPX_XML(sys.argv[1])
     # XML의 자막 텍스트를 읽어와서 텍스트 정보 분석 후 수정
