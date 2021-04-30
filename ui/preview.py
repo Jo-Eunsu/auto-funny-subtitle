@@ -18,74 +18,99 @@ class Ui_Form(object):
         self.__width = width
         self.__height = height
 
+    # ui 형성 (가로:900, 세로:400)
     def setupUi(self, Form):
+        # 창 자체의 설정
         Form.setObjectName("Title Preview")
         Form.setFixedSize(self.__width, self.__height)
         font = QtGui.QFont()
         font.setFamily("Apple SD Gothic Neo")
         Form.setFont(font)
+
+        # TODO: 해당 UI는 영상에 들어간 자막 클립에 따라 가변적인 구조를 가지고 있음. 가변적인 구조의 창 필요
+        # TODO: GridLayout 여러 개를 하나의 verticalLayout에 집어넣은 다음 scroolArea로 영역 제한을 할 필요가 있음
+
+        # 각 자막 단위별로 정보를 표시하기 위해 레이아웃 설정
         self.horizontalLayoutWidget = QtWidgets.QWidget(Form)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(60, 70, 781, 71))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(60, 60, self.__width-120, 70))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
+
+        # 시작과 끝 시각, 자막 템플릿 선택, 자막 텍스트 입력을 위한 레이아웃 설정
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.label_3 = QtWidgets.QLabel(self.horizontalLayoutWidget)
+
+        # "시작" 라벨을 만들고 Grid에 집어넣음
+        self.startLabel = QtWidgets.QLabel(self.horizontalLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Apple SD Gothic Neo")
-        self.label_3.setFont(font)
-        self.label_3.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_3.setObjectName("label_3")
-        self.horizontalLayout_2.addWidget(self.label_3)
-        self.gridLayout.addLayout(self.horizontalLayout_2, 2, 1, 1, 1)
+        self.startLabel.setFont(font)
+        self.startLabel.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.startLabel.setObjectName("startLabel")
+        self.gridLayout.addWidget(self.startLabel, 1, 1, 1, 1)        
+
+        # 자막 클립의 시작시각을 텍스트박스로 띄우도록 하고 Grid에 배치
+        # TODO: 각 자막별로 클립의 시작 시각을 텍스트로 띄우기
+        self.startTimeText = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
+        self.startTimeText.setObjectName("startTimeText")
+        self.gridLayout.addWidget(self.startTimeText, 1, 2, 1, 1)
+
+        # "끝" 라벨을 만들고 Grid에 집어넣음
+        self.endLabel = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Apple SD Gothic Neo")
+        self.endLabel.setFont(font)
+        self.endLabel.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.endLabel.setObjectName("endLabel")
+        self.gridLayout.addWidget(self.endLabel, 2, 1, 1, 1)
+
+        # 자막 클립의 끝 시각을 텍스트박스로 띄우도록 하고 Grid에 배치
+        # TODO: 각 자막별로 클립의 끝 시각을 텍스트로 띄우기
+        self.endTimeText = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
+        self.endTimeText.setObjectName("endTimeText")
+        self.gridLayout.addWidget(self.endTimeText, 2, 2, 1, 1)
+
+        # "자막 템플릿" 라벨을 만들고 Grid에 배치
+        self.titletemplateLabel = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Apple SD Gothic Neo")
+        self.titletemplateLabel.setFont(font)
+        self.titletemplateLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.titletemplateLabel.setObjectName("titletemplateLabel")
+        self.gridLayout.addWidget(self.titletemplateLabel, 1, 4, 1, 1)
+
+        # 자막 템플릿을 수동으로 선택할 수 있는 콤보박스를 제작하고 오른쪽으로 간격을 띄운 뒤 Grid에 배치
+        # (templateLayout, templateSelectorComboBox)
+        # TODO: 현재 프로그램에 내장되어 있는 자막 템플릿의 리스트를 표시하고 선택 시 바로 오른쪽 이미지에 반영되도록 제작
+        self.templateLayout = QtWidgets.QHBoxLayout()
+        self.templateLayout.setObjectName("templateLayout")
+        self.templateSelectorComboBox = QtWidgets.QComboBox(self.horizontalLayoutWidget)
+        self.templateSelectorComboBox.setObjectName("templateSelectorComboBox")
+        self.templateLayout.addWidget(self.templateSelectorComboBox)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.templateLayout.addItem(spacerItem)
+        self.gridLayout.addLayout(self.templateLayout, 1, 5, 1, 1)
+
+        # "자막 텍스트" 라벨을 만들고 Grid에 배치
+        self.titleTextLabel = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("Apple SD Gothic Neo")
+        self.titleTextLabel.setFont(font)
+        self.titleTextLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.titleTextLabel.setObjectName("titleTextLabel")
+        self.gridLayout.addWidget(self.titleTextLabel, 2, 4, 1, 1)
+
+        # 자막 텍스트를 수동으로 수정할 수 있는 텍스트박스를 제작하고 Grid에 배치
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.titleText = QtWidgets.QPlainTextEdit(self.horizontalLayoutWidget)
         self.titleText.setObjectName("titleText")
         self.horizontalLayout_4.addWidget(self.titleText)
         self.gridLayout.addLayout(self.horizontalLayout_4, 2, 5, 1, 1)
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.label_2 = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Apple SD Gothic Neo")
-        self.label_2.setFont(font)
-        self.label_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_3.addWidget(self.label_2)
-        self.gridLayout.addLayout(self.horizontalLayout_3, 1, 1, 1, 1)
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.templateSelector = QtWidgets.QComboBox(self.horizontalLayoutWidget)
-        self.templateSelector.setObjectName("templateSelector")
-        self.horizontalLayout_6.addWidget(self.templateSelector)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem)
-        self.gridLayout.addLayout(self.horizontalLayout_6, 1, 5, 1, 1)
-        self.label_5 = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Apple SD Gothic Neo")
-        self.label_5.setFont(font)
-        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_5.setObjectName("label_5")
-        self.gridLayout.addWidget(self.label_5, 1, 4, 1, 1)
-        self.label_4 = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        font = QtGui.QFont()
-        font.setFamily("Apple SD Gothic Neo")
-        self.label_4.setFont(font)
-        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_4.setObjectName("label_4")
-        self.gridLayout.addWidget(self.label_4, 2, 4, 1, 1)
-        self.startTimeText = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
-        self.startTimeText.setObjectName("startTimeText")
-        self.gridLayout.addWidget(self.startTimeText, 1, 2, 1, 1)
-        self.endTimeText = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
-        self.endTimeText.setObjectName("endTimeText")
-        self.gridLayout.addWidget(self.endTimeText, 2, 2, 1, 1)
+
+        # 여백 배치
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 1, 3, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -93,20 +118,24 @@ class Ui_Form(object):
         self.horizontalLayout.addLayout(self.gridLayout)
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem3)
+
+        # 프리뷰 이미지를 화면 오른쪽에 배치
+        # TODO: 프리뷰 이미지는 QT 내장 그리기 함수 또는 OpenCL 등을 이용해 그려야 함
         self.previewImageLabel = QtWidgets.QLabel(self.horizontalLayoutWidget)
         self.previewImageLabel.setObjectName("previewImageLabel")
         self.horizontalLayout.addWidget(self.previewImageLabel)
 
+        # 버튼 이름 지정 및 마무리
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Title Preview"))
-        self.label_3.setText(_translate("Form", "끝"))
-        self.label_2.setText(_translate("Form", "시작"))
-        self.label_5.setText(_translate("Form", "자막 템플릿"))
-        self.label_4.setText(_translate("Form", "자막 텍스트"))
+        self.endLabel.setText(_translate("Form", "끝"))
+        self.startLabel.setText(_translate("Form", "시작"))
+        self.titletemplateLabel.setText(_translate("Form", "자막 템플릿"))
+        self.titleTextLabel.setText(_translate("Form", "자막 텍스트"))
         self.previewImageLabel.setText(_translate("Form", "Preview Image (Alternative Text)"))
 
 
