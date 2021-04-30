@@ -1,8 +1,187 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'ui/preview.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Apple SD Gothic Neo</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>70</y>
+     <width>781</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <family>Apple SD Gothic Neo</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>끝</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="5">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPlainTextEdit" name="titleText"/>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <family>Apple SD Gothic Neo</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>시작</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="5">
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QComboBox" name="templateSelector"/>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Apple SD Gothic Neo</family>
+         </font>
+        </property>
+        <property name="text">
+         <string>자막 템플릿</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Apple SD Gothic Neo</family>
+         </font>
+        </property>
+        <property name="text">
+         <string>자막 텍스트</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLineEdit" name="startTimeText"/>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLineEdit" name="endTimeText"/>
+      </item>
+      <item row="1" column="3">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="3">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Preview Image (Alternative Text)</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
