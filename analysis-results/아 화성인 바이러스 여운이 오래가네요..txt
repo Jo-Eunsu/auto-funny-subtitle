@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.27; neutral=0.64; negative=0.09 
-
-Sentence: 아 화성인 바이러스 여운이 오래가네요.
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.27
-Neutral=0.64
-Negative=0.09

@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.03; neutral=0.49; negative=0.48 
-
-Sentence: 아 이건 말로 표현 못해요......
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.03
-Neutral=0.49
-Negative=0.48

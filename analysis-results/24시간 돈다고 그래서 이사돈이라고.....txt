@@ -1,9 +1,0 @@
-Document Sentiment: negative
-Overall scores: positive=0.01; neutral=0.29; negative=0.70 
-
-Sentence: 24시간 돈다고 그래서 이사돈이라고....
-Sentence 1 sentiment: negative
-Sentence score:
-Positive=0.01
-Neutral=0.29
-Negative=0.70

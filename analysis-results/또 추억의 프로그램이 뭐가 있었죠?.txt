@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.43; neutral=0.54; negative=0.03 
-
-Sentence: 또 추억의 프로그램이 뭐가 있었죠?
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.43
-Neutral=0.54
-Negative=0.03

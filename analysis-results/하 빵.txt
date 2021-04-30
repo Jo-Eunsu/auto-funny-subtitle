@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.01; neutral=0.97; negative=0.02 
-
-Sentence: 하 빵
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.01
-Neutral=0.97
-Negative=0.02
