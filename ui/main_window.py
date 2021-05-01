@@ -8,8 +8,9 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ui.preview import Preview_UI
 
-class Ui_MainWindow(object):
+class MainWindow_UI(object):
 
     # 창 크기 초기화(가로: 800, 세로: 300)
     def __init__(self, width, height):
@@ -21,20 +22,17 @@ class Ui_MainWindow(object):
         # 창 생성 
         MainWindow.setObjectName("MainWindow")
         MainWindow.setFixedSize(self.__width, self.__height)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
-        MainWindow.setSizePolicy(sizePolicy)
+
         font = QtGui.QFont()
         font.setFamily("Apple SD Gothic Neo")
         MainWindow.setFont(font)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
+
         # xml 관련 부분을 처리하는 영역의 레이아웃 생성
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(90, 60, 611, 41))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(90, 60, self.__width-180, 41))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.xmlLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.xmlLayout.setContentsMargins(1, 2, 3, 4)
@@ -58,6 +56,7 @@ class Ui_MainWindow(object):
         self.locateButton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.locateButton.setObjectName("locateButton")
         self.xmlLayout.addWidget(self.locateButton)
+
 
         # 버튼 영역의 레이아웃 생성
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
@@ -119,7 +118,7 @@ class Ui_MainWindow(object):
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    mainwindow_ui = Ui_MainWindow(800, 300)
+    mainwindow_ui = MainWindow_UI(800, 300)
     mainwindow_ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

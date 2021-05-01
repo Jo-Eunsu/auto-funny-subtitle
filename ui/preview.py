@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 
-class Ui_Form(object):
+class Preview_UI(object):
 
     # 초기화: 해당 창의 크기(가로, 세로) 설정
     def __init__(self, width, height):
@@ -129,6 +129,7 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
+    # 각 항목 안에 들어갈 텍스트 지정
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Title Preview"))
@@ -139,11 +140,13 @@ class Ui_Form(object):
         self.previewImageLabel.setText(_translate("Form", "Preview Image (Alternative Text)"))
 
 
+
+
 # 메인함수 실행
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QMainWindow()
-    preview_ui = Ui_Form(900, 400)
+    preview_ui = Preview_UI(900, 400)
     preview_ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
