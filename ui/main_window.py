@@ -56,6 +56,8 @@ class MainWindow_UI(object):
         self.locateButton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.locateButton.setObjectName("locateButton")
         self.xmlLayout.addWidget(self.locateButton)
+        self.locateButton.clicked.connect(self.fileopen)
+
 
 
         # 버튼 영역의 레이아웃 생성
@@ -113,6 +115,9 @@ class MainWindow_UI(object):
         self.previewButton.setText(_translate("MainWindow", "프리뷰..."))
         self.saveButton.setText(_translate("MainWindow", "저장..."))
         self.quitButton.setText(_translate("MainWindow", "종료"))
+
+    def fileopen(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName(self, '파일 열기')
 
 # 메인함수 실행
 def main() -> int:
