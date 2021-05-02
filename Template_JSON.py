@@ -28,8 +28,8 @@ class Template_JSON:
     # json 파일을 열어서 딕셔너리 자료형으로 리턴하는 함수
     def __open_json(self, json_file_path: str) -> dict:
         try:
-            with open(json_file_path) as json_file:
-                template_json_dict = json.load(json_file)
+            with open(json_file_path, encoding='UTF-8') as json_file:
+                template_json_dict = json.load(json_file, )
                 return template_json_dict
         except FileNotFoundError as fe:
             print(json_file_path + ": json 파일을 찾지 못했습니다.")

@@ -3,7 +3,7 @@ import sys
 
 # 파이널 컷 프로(FCPX)의 XML 파일을 읽는 클래스인 FCPX_XML 불러오기
 from FCPX_XML import FCPX_XML
-from ui.main_window import MainWindow_UI
+from main_window import MainWindow_UI
 from PyQt5 import QtWidgets
 
 

@@ -8,7 +8,8 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ui.preview import Preview_UI
+from FCPX_XML import FCPX_XML
+from preview import Preview_UI
 
 class MainWindow_UI(object):
 
@@ -45,8 +46,7 @@ class MainWindow_UI(object):
 
         # xml 파일을 불러오면 텍스트박스에 경로 표시
         # TODO: 오른쪽 버튼을 눌러 파일을 불러오면 경로 표시
-        self.xmlPathText = QtWidgets.QPlainTextEdit(self.horizontalLayoutWidget)
-        self.xmlPathText.setUndoRedoEnabled(False)
+        self.xmlPathText = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
         self.xmlPathText.setReadOnly(True)
         self.xmlPathText.setObjectName("xmlPathText")
         self.xmlLayout.addWidget(self.xmlPathText)
@@ -74,7 +74,10 @@ class MainWindow_UI(object):
         self.xmlConversionButton.setObjectName("xmlConversionButton")
         self.buttonLayout.addWidget(self.xmlConversionButton)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.xmlConversionButton.clicked.connect(self.xmlConversion)
+        # 위 버튼을 누르면 XML 변환이 시작된다.
         self.buttonLayout.addItem(spacerItem)
+
 
         # 프리뷰 창 띄우는 버튼
         # TODO: 버튼을 누르면 새로운 창이 뜨도록 지정
@@ -115,9 +118,41 @@ class MainWindow_UI(object):
         self.previewButton.setText(_translate("MainWindow", "프리뷰..."))
         self.saveButton.setText(_translate("MainWindow", "저장..."))
         self.quitButton.setText(_translate("MainWindow", "종료"))
+        
 
+    # "경로지정" 버튼을 누르면 XML 파일을 지정하는 함수 - XML 파일만 불러오도록 지정
     def fileopen(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName()
+        try:
+            #파일 불러오기 창을 띄워서 XML 파일 불러오기
+            self.filename = QtWidgets.QFileDialog.getOpenFileName()
+            # 파일을 사용자가 직접 선택했을 경우 수행 (선택하지 않고 취소하면 코드 실행 안함)
+            if self.filename[0] != '':
+                # XML 파일이 아니면 XML 파일을 선택하라는 메시지박스 띄우기 
+                if not self.filename[0].endswith('.fcpxml') and not (self.filename[0].endswith('.xml')):
+                    xmlConfirmMessage = QtWidgets.QMessageBox()
+                    xmlConfirmMessage.setIcon(QtWidgets.QMessageBox.Warning)
+                    xmlConfirmMessage.setWindowTitle('XML 불러오기 오류')
+                    xmlConfirmMessage.setText('XML 파일이 아닙니다. 파일을 다시 선택하세요.')
+                    xmlConfirmMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                    xmlConfirmMessage.exec()
+                else:    
+                    self.xmlPathText.setText(self.filename[0])
+        # 파일 불러오는 과정에서 오류가 발생하면 파일 불러오기 오류 메시지 박스 띄우기 
+        except Exception:
+            fileErrorMessage = QtWidgets.QMessageBox()
+            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
+            fileErrorMessage.setWindowTitle('파일 불러오기 오류')
+            fileErrorMessage.setText('파일을 불러오는 데 오류가 발생했습니다.')
+            fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            fileErrorMessage.exec()
+
+    # "XML 버튼"을 누르면 XML 안의 자막을 감정분석해서 바꾸는 함수           
+    def xmlConversion(self):
+        fcpx_xml = FCPX_XML(self.filename[0])
+        fcpx_xml.xml_text_analysis()
+        pass 
+        
+
 
 # 메인함수 실행
 def main() -> int:
