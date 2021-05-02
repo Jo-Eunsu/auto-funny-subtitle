@@ -117,7 +117,7 @@ class MainWindow_UI(object):
         self.quitButton.setText(_translate("MainWindow", "종료"))
 
     def fileopen(self):
-        filename = QtWidgets.QFileDialog.getOpenFileName(self, '파일 열기')
+        filename = QtWidgets.QFileDialog.getOpenFileName()
 
 # 메인함수 실행
 def main() -> int:
