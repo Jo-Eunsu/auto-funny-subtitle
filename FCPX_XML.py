@@ -29,6 +29,9 @@ class FCPX_XML:
         self.__output_xml_dest = input_xml_dest.replace(".fcpxml", "") + "-edit.fcpxml"
         # 템플릿 정보 파일(JSON)을 처리하는 객체 생성
         self.__funny_title_text_templates = Template_JSON()
+        
+        # xml이 감정분석으로 바뀌었는지 확인하는 플래그 변수
+        self.__xml__modified = False
 
         # 등록한 모든 템플릿에 대해 effect 태그 재작성
         self.__effect_xml_modifiction()
@@ -129,6 +132,8 @@ class FCPX_XML:
                         # 기존 자막 템플릿 삭제
                         for existing_title in existing_titles:
                             asset_clip.remove(existing_title)
+            #XML 분석이 다 끝나면 modified 플래그를 True로 설정 
+            self.__xml__modified = True
         except KeyboardInterrupt:
             print("\n\n사용자에 의한 강제 취소\n")
 
@@ -181,7 +186,10 @@ class FCPX_XML:
     def title_video_tag(self) -> Element:
         pass
 
-    # 새로운 XML 파일을 작성하는 메소드
-    def write_xml(self):
-        # 수정된 트리(__xml_tree)를 새로운 파일 경로(__output_xml_dest)에 fcpxml 파일로 작성
-        self.__xml_tree.write(self.__output_xml_dest, encoding="utf8", xml_declaration=True)
+    # 새로운 XML 파일을 작성하는 메소드 (리턴값은 xml 구조를 가지는 ElementTree)
+    def write_xml(self) -> ElementTree:
+        if self.__xml__modified == False: 
+            return None
+        else:
+            return self.__xml_tree
+        # self.__xml__tree.write(self.__output_xml_dest, encoding="utf8", xml_declaration=True)
