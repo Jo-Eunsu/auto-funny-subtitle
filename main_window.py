@@ -18,6 +18,7 @@ class MainWindow_UI(object):
         self.__width = width
         self.__height = height
         self.xmlFilename = ''
+        self.__xml_saved = True
 
     # UI의 각 요소 초기화
     def setupUi(self, MainWindow):
@@ -125,34 +126,56 @@ class MainWindow_UI(object):
     # "경로지정" 버튼을 누르면 XML 파일을 지정하는 함수 - XML 파일만 불러오도록 지정
     def fileopen(self):
         try:
-            #파일 불러오기 창을 띄워서 XML 파일 불러오기
-            self.xmlFilename = QtWidgets.QFileDialog.getOpenFileName(None, "파일 열기...", filter="FCPX XML File (*.fcpxml)")
-            # 파일을 사용자가 직접 선택했을 경우 수행 (선택하지 않고 취소하면 코드 실행 안함)
-            if self.xmlFilename[0] != '':
-                # XML 파일이 아니면 XML 파일을 선택하라는 메시지박스 띄우기 
-                if not self.xmlFilename[0].endswith('.fcpxml') and not (self.xmlFilename[0].endswith('.xml')):
-                    xmlConfirmMessage = QtWidgets.QMessageBox()
-                    xmlConfirmMessage.setIcon(QtWidgets.QMessageBox.Warning)
-                    xmlConfirmMessage.setWindowTitle('XML 불러오기 오류')
-                    xmlConfirmMessage.setText('XML 파일이 아닙니다. 파일을 다시 선택하세요.')
-                    xmlConfirmMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
-                    xmlConfirmMessage.exec()
-                else:    
-                    self.xmlPathText.setText(self.xmlFilename[0])
+            if (self.__xml_saved == False):
+                xmlSaveMessage = QtWidgets.QMessageBox()
+                xmlSaveMessage.setIcon(QtWidgets.QMessageBox.Question)
+                xmlSaveMessage.setWindowTitle('XML 파일 저장')
+                xmlSaveMessage.setText('''변환된 XML 파일이 저장되지 않았습니다.
+                    저장하시려면 저장을, 저장하지 않고 파일을 불러오시려면 ?를 눌러주세요.
+                    불러오기를 취소하려면 취소를 눌러주세요.
+                    ''')
+                xmlSaveMessage.setStandardButtons(QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.Discard, QtWidgets.QMessageBox.Save)
+                xmlSaveMessage.setDefaultButton(QtWidgets.QMessageBox.Save)
+                xmlSaveMessage.exec()
+            else:
+                #파일 불러오기 창을 띄워서 XML 파일 불러오기
+                self.xmlFilename = QtWidgets.QFileDialog.getOpenFileName(None, "파일 열기...", filter="FCPX XML File (*.fcpxml)")
+                # 파일을 사용자가 직접 선택했을 경우 수행 (선택하지 않고 취소하면 코드 실행 안함)
+                if self.xmlFilename[0] != '':
+                    # XML 파일이 아니면 XML 파일을 선택하라는 메시지박스 띄우기 
+                    if not self.xmlFilename[0].endswith('.fcpxml') and not (self.xmlFilename[0].endswith('.xml')):
+                        xmlConfirmMessage = QtWidgets.QMessageBox()
+                        xmlConfirmMessage.setIcon(QtWidgets.QMessageBox.Warning)
+                        xmlConfirmMessage.setWindowTitle('XML 불러오기 오류')
+                        xmlConfirmMessage.setText('XML 파일이 아닙니다. 파일을 다시 선택하세요.')
+                        xmlConfirmMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                        xmlConfirmMessage.exec()
+                    else:    
+                        self.xmlPathText.setText(self.xmlFilename[0])
+                        self.fcpx_xml = FCPX_XML(self.xmlFilename[0])
+                
         # 파일 불러오는 과정에서 오류가 발생하면 파일 불러오기 오류 메시지 박스 띄우기 
         except Exception:
-            fileErrorMessage = QtWidgets.QMessageBox()
-            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
-            fileErrorMessage.setWindowTitle('파일 불러오기 오류')
-            fileErrorMessage.setText('파일을 불러오는 데 오류가 발생했습니다.')
-            fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            fileErrorMessage.exec()
+            # fileErrorMessage = QtWidgets.QMessageBox()
+            # fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
+            # fileErrorMessage.setWindowTitle('파일 불러오기 오류')
+            # fileErrorMessage.setText('파일을 불러오는 데 오류가 발생했습니다.')
+            # fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            # fileErrorMessage.exec()
+            pass
 
     # "XML 버튼"을 누르면 XML 안의 자막을 감정분석해서 바꾸는 함수           
     def xmlConversion(self):
         try:
-            self.fcpx_xml = FCPX_XML(self.xmlFilename[0])
+            # xml 파일이 안 불러와진 상태에서 XML 변환 버튼을 누르면 파일 없음 메시지박스 띄우기
+            if self.xmlFilename == '':
+                raise FileNotFoundError
+
             self.fcpx_xml.xml_text_analysis()
+
+            # 변환된 xml 저장상태를 저장 안 됨(False)으로 변경
+            self.__xml_saved = False
+
             # XML 변환완료 메시지박스
             xmlCompleteMessageBox = QtWidgets.QMessageBox()
             xmlCompleteMessageBox.setIcon(QtWidgets.QMessageBox.Information)
@@ -161,6 +184,14 @@ class MainWindow_UI(object):
             xmlCompleteMessageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             xmlCompleteMessageBox.exec()
 
+        # XML 파일을 불러오지 않았을 경우 메시지박스
+        except FileNotFoundError:
+            xmlConversionError = QtWidgets.QMessageBox()
+            xmlConversionError.setIcon(QtWidgets.QMessageBox.Warning)
+            xmlConversionError.setWindowTitle('XML 파일 불러오기 오류')
+            xmlConversionError.setText('XML 파일을 찾지 못했습니다.\nXML 파일을 불러온 다음 다시 시도하세요.')
+            xmlConversionError.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            xmlConversionError.exec()
 
         # XML 변동 오류가 발생했을 경우 오류 발생 메시지박스 띄우기
         except Exception:
@@ -183,23 +214,40 @@ class MainWindow_UI(object):
 
             # XML 파일 분석이 되지 않는 경우 
             if xml_tree == None:
-                raise ValueError
+                raise AttributeError
 
             #파일 불러오기 창을 띄워서 XML 파일 불러오기
             filename = QtWidgets.QFileDialog.getSaveFileName(None, "파일 저장...", filter="FCPX XML File (*.fcpxml)")
-            # 파일 이름이 .fcpxml로 안 끝나면 뒤에 '.fcpxml' 붙여줌
-            if not filename[0].endswith('.fcpxml') : 
-                filename = filename[0] + '.fcpxml'
-            else:
-                filename = filename[0]
-            # xml 파일 저장 
-            xml_tree.write(filename, encoding="utf8", xml_declaration=True)
 
+            # 취소를 눌러서 저장을 취소하지 않았으면 파일을 정상적으로 저장
+            if filename[0] != '':
+                # 파일 이름이 .fcpxml로 안 끝나면 뒤에 '.fcpxml' 붙여줌
+                if not filename[0].endswith('.fcpxml') : 
+                    filename = filename[0] + '.fcpxml'
+                else:
+                    filename = filename[0]
+                # xml 파일 저장 
+                xml_tree.write(filename, encoding="utf8", xml_declaration=True)
+
+                # xml 저장 상태를 저장됨(True)으로 변경
+                self.__xml_saved = True
+
+        # XML 파일이 분석이 안 된 경우 메시지박스
+        # 파일을 불러온 상태에서 바로 저장 버튼을 누르면 AttributeError가 뜸
+        except AttributeError:
+            fileErrorMessage = QtWidgets.QMessageBox()
+            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Warning)
+            fileErrorMessage.setWindowTitle('XML 분석이 완료되지 않음')
+            fileErrorMessage.setText('XML 파일이 분석되지 않았습니다.\n다시 한 번 시도해보세요.')
+            fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            fileErrorMessage.exec()
+
+        # 파일을 안 불러왔을 때 메시지박스
         except FileNotFoundError:
             fileErrorMessage = QtWidgets.QMessageBox()
-            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
+            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Warning)
             fileErrorMessage.setWindowTitle('파일 저장 오류')
-            fileErrorMessage.setText('XML 파일을 찾을 수 없습니다.')
+            fileErrorMessage.setText('XML 파일을 찾을 수 없습니다.\nXML 파일을 불러오고 변환 버튼을 누른 다음 다시 시도해보세요.')
             fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
             fileErrorMessage.exec()
 
@@ -212,13 +260,13 @@ class MainWindow_UI(object):
             fileErrorMessage.exec()
             
         # 파일 저장하는 과정에서 오류가 발생하면 오류 메시지 박스 띄우기 
-        except Exception:
-            fileErrorMessage = QtWidgets.QMessageBox()
-            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
-            fileErrorMessage.setWindowTitle('파일 저장 오류')
-            fileErrorMessage.setText('파일을 저장하는 데 오류가 발생했습니다.')
-            fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            fileErrorMessage.exec()
+        # except Exception:
+        #     fileErrorMessage = QtWidgets.QMessageBox()
+        #     fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
+        #     fileErrorMessage.setWindowTitle('파일 저장 오류')
+        #     fileErrorMessage.setText('파일을 저장하는 데 오류가 발생했습니다.')
+        #     fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        #     fileErrorMessage.exec()
         
 
 
