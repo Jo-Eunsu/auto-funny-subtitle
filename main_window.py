@@ -128,14 +128,15 @@ class MainWindow_UI(object):
         try:
             if (self.__xml_saved == False):
                 xmlSaveMessage = QtWidgets.QMessageBox()
-                xmlSaveMessage.setIcon(QtWidgets.QMessageBox.Question)
-                xmlSaveMessage.setWindowTitle('XML 파일 저장')
+                xmlSaveMessage.setIcon(QtWidgets.QMessageBox.Warning)
+                xmlSaveMessage.setWindowTitle('XML vkdlf wjwkd')
                 xmlSaveMessage.setText('''변환된 XML 파일이 저장되지 않았습니다.
                     저장하시려면 저장을, 저장하지 않고 파일을 불러오시려면 ?를 눌러주세요.
-                    불러오기를 취소하려면 취소를 눌러주세요.
+                    불러오기를 취소하려면 취소를 눌러주세요
                     ''')
                 xmlSaveMessage.setStandardButtons(QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.Discard, QtWidgets.QMessageBox.Save)
                 xmlSaveMessage.setDefaultButton(QtWidgets.QMessageBox.Save)
+
                 xmlSaveMessage.exec()
             else:
                 #파일 불러오기 창을 띄워서 XML 파일 불러오기
@@ -153,7 +154,8 @@ class MainWindow_UI(object):
                     else:    
                         self.xmlPathText.setText(self.xmlFilename[0])
                         self.fcpx_xml = FCPX_XML(self.xmlFilename[0])
-                
+                     
+            
         # 파일 불러오는 과정에서 오류가 발생하면 파일 불러오기 오류 메시지 박스 띄우기 
         except Exception:
             # fileErrorMessage = QtWidgets.QMessageBox()
@@ -167,15 +169,13 @@ class MainWindow_UI(object):
     # "XML 버튼"을 누르면 XML 안의 자막을 감정분석해서 바꾸는 함수           
     def xmlConversion(self):
         try:
-            # xml 파일이 안 불러와진 상태에서 XML 변환 버튼을 누르면 파일 없음 메시지박스 띄우기
+            # XMl 파일이 안 불러와진 상태에서 XML 변환 버튼을 누르면 파일 없음 메시지 박스 띄위기 
             if self.xmlFilename == '':
                 raise FileNotFoundError
 
             self.fcpx_xml.xml_text_analysis()
-
-            # 변환된 xml 저장상태를 저장 안 됨(False)으로 변경
+            # 변환된 xml 저장상태를 저장 안됨(False)로 변경
             self.__xml_saved = False
-
             # XML 변환완료 메시지박스
             xmlCompleteMessageBox = QtWidgets.QMessageBox()
             xmlCompleteMessageBox.setIcon(QtWidgets.QMessageBox.Information)
@@ -184,14 +184,15 @@ class MainWindow_UI(object):
             xmlCompleteMessageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             xmlCompleteMessageBox.exec()
 
-        # XML 파일을 불러오지 않았을 경우 메시지박스
+        # XML 파일을 불러오지 않았을 경우 메시지 박스 
         except FileNotFoundError:
             xmlConversionError = QtWidgets.QMessageBox()
             xmlConversionError.setIcon(QtWidgets.QMessageBox.Warning)
             xmlConversionError.setWindowTitle('XML 파일 불러오기 오류')
-            xmlConversionError.setText('XML 파일을 찾지 못했습니다.\nXML 파일을 불러온 다음 다시 시도하세요.')
+            xmlConversionError.setText('XML 파일을 찾지 못했습니다. \nXML 파일을 불러온 다음 다시 시도하세요.')
             xmlConversionError.setStandardButtons(QtWidgets.QMessageBox.Ok)
             xmlConversionError.exec()
+
 
         # XML 변동 오류가 발생했을 경우 오류 발생 메시지박스 띄우기
         except Exception:
@@ -247,15 +248,17 @@ class MainWindow_UI(object):
             fileErrorMessage = QtWidgets.QMessageBox()
             fileErrorMessage.setIcon(QtWidgets.QMessageBox.Warning)
             fileErrorMessage.setWindowTitle('파일 저장 오류')
-            fileErrorMessage.setText('XML 파일을 찾을 수 없습니다.\nXML 파일을 불러오고 변환 버튼을 누른 다음 다시 시도해보세요.')
+            fileErrorMessage.setText('XML 파일을 찾을 수 없습니다. \nXML 파일을 불러오고 변환 버튼을 누른 다음 다시 시도해보세요')
             fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
             fileErrorMessage.exec()
 
-        except ValueError:
+        # XML 파일이 분석이 안 된 경우 메시지박스 
+        # 왜 Attribute를 했어요? A: 파일을 불러온 상태에서 바로 저장 버튼을 누르면 AttributeError가 뜸 
+        except AttributeError:
             fileErrorMessage = QtWidgets.QMessageBox()
-            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
-            fileErrorMessage.setWindowTitle('XML 파일 미수정')
-            fileErrorMessage.setText('XML 파일이 완전히 수정되지 않았습니다.\nXML 변환 버튼을 눌러 다시 실행해보세요.')
+            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Warning)
+            fileErrorMessage.setWindowTitle('XML 분석이 완료되지 않음')
+            fileErrorMessage.setText('XML 파일이 분석되지 않았습니다..\n다시 한번 시도해주세요')
             fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
             fileErrorMessage.exec()
             
