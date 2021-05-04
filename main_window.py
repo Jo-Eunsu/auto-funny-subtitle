@@ -141,7 +141,6 @@ class MainWindow_UI(object):
                     self.filesave()
                 elif buttonSelected == QtWidgets.QMessageBox.Discard:
                     self.__xml_saved = True
-                    self.xmlPathText.setText('')
                     self.fileopen()
                     return
             else:
