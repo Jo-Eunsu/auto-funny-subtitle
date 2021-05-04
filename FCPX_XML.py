@@ -51,6 +51,7 @@ class FCPX_XML:
         result_emotions = []
         result_emotion_nums = []
         for i, response in enumerate(responses):
+            positive_score = neutral_score = negative_score = 0.0
             # 감정을 분석해서 결과값에 감정 문자열과 자막 번호 지정하는 코드
             # 1. 특수 함수 - 필터링을 통해 감정 설정
             if documents[i].find("ㅋㅋ") is not EMPTY:
@@ -81,6 +82,10 @@ class FCPX_XML:
             # 테스트용: 각 텍스트에 대해 결과 감정을 출력
             print("Input Text:", documents[i])
             print("Result Emotion:", result_emotions[i])
+            print("positive score:", positive_score)
+            print("neutral score:", neutral_score)
+            print("negative score:", negative_score)
+            print("")
         
         return result_emotions, result_emotion_nums
 
