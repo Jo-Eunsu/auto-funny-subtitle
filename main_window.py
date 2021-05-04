@@ -18,6 +18,7 @@ class MainWindow_UI(object):
         self.__width = width
         self.__height = height
         self.xmlFilename = ''
+        self.fcpx_xml = None
         self.__xml_saved = True
 
     # UI의 각 요소 초기화
@@ -125,19 +126,24 @@ class MainWindow_UI(object):
 
     # "경로지정" 버튼을 누르면 XML 파일을 지정하는 함수 - XML 파일만 불러오도록 지정
     def fileopen(self):
-        try:
+        # try:
             if (self.__xml_saved == False):
                 xmlSaveMessage = QtWidgets.QMessageBox()
                 xmlSaveMessage.setIcon(QtWidgets.QMessageBox.Warning)
-                xmlSaveMessage.setWindowTitle('XML vkdlf wjwkd')
-                xmlSaveMessage.setText('''변환된 XML 파일이 저장되지 않았습니다.
-                    저장하시려면 저장을, 저장하지 않고 파일을 불러오시려면 ?를 눌러주세요.
-                    불러오기를 취소하려면 취소를 눌러주세요
-                    ''')
-                xmlSaveMessage.setStandardButtons(QtWidgets.QMessageBox.Cancel | QtWidgets.QMessageBox.Discard, QtWidgets.QMessageBox.Save)
+                xmlSaveMessage.setWindowTitle('XML 저장 확인')
+                xmlSaveMessage.setText('변환된 XML 파일이 저장되지 않았습니다.\n저장하시려면 Save를, 저장하지 않고 파일을 불러오시려면 Discard를 눌러주세요.\n불러오기를 취소하려면 Cancel을 눌러주세요.')
+                xmlSaveMessage.setStandardButtons(QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Discard | QtWidgets.QMessageBox.Cancel)
                 xmlSaveMessage.setDefaultButton(QtWidgets.QMessageBox.Save)
-
-                xmlSaveMessage.exec()
+                
+                buttonSelected = xmlSaveMessage.exec()
+                # 사용자가 누른 버튼에 따라 동작을 다르게 지정
+                if buttonSelected == QtWidgets.QMessageBox.Save:
+                    self.filesave()
+                elif buttonSelected == QtWidgets.QMessageBox.Discard:
+                    self.__xml_saved == True
+                    del self.fcpx_xml
+                    self.fileopen()
+                    return
             else:
                 #파일 불러오기 창을 띄워서 XML 파일 불러오기
                 self.xmlFilename = QtWidgets.QFileDialog.getOpenFileName(None, "파일 열기...", filter="FCPX XML File (*.fcpxml)")
@@ -153,18 +159,19 @@ class MainWindow_UI(object):
                         xmlConfirmMessage.exec()
                     else:    
                         self.xmlPathText.setText(self.xmlFilename[0])
+                        if self.fcpx_xml != None: del self.fcpx_xml
                         self.fcpx_xml = FCPX_XML(self.xmlFilename[0])
                      
             
         # 파일 불러오는 과정에서 오류가 발생하면 파일 불러오기 오류 메시지 박스 띄우기 
-        except Exception:
-            # fileErrorMessage = QtWidgets.QMessageBox()
-            # fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
-            # fileErrorMessage.setWindowTitle('파일 불러오기 오류')
-            # fileErrorMessage.setText('파일을 불러오는 데 오류가 발생했습니다.')
-            # fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            # fileErrorMessage.exec()
-            pass
+        # except Exception:
+        #     fileErrorMessage = QtWidgets.QMessageBox()
+        #     fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
+        #     fileErrorMessage.setWindowTitle('파일 불러오기 오류')
+        #     fileErrorMessage.setText('파일을 불러오는 데 오류가 발생했습니다.')
+        #     fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        #     fileErrorMessage.exec()
+        #     pass
 
     # "XML 버튼"을 누르면 XML 안의 자막을 감정분석해서 바꾸는 함수           
     def xmlConversion(self):

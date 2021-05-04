@@ -12,8 +12,6 @@ class FCPX_XML:
     __xml_tree = None
     # 위 객체의 루트
     __xml_root = None
-    # 새로 만들어진 XML 파일이 저장될 경로
-    __output_xml_dest = ""
     # 템플릿 JSON 파일 자체를 담는 객체
     __funny_title_text_templates = None
 
@@ -26,16 +24,20 @@ class FCPX_XML:
         # Azure Text Analytics 서비스의 클라이언트 객체 얻기
         self.__api_client = AzureAnalytics().get_client()
         # 수정된 XML 파일의 이름을 따로 지정
-        self.__output_xml_dest = input_xml_dest.replace(".fcpxml", "") + "-edit.fcpxml"
+        self.__input_xml_dest = input_xml_dest
         # 템플릿 정보 파일(JSON)을 처리하는 객체 생성
         self.__funny_title_text_templates = Template_JSON()
         
         # xml이 감정분석으로 바뀌었는지 확인하는 플래그 변수
         self.__xml__modified = False
 
+        print("XML 처리 객체", self.__input_xml_dest, "생성됨\n")
+
         # 등록한 모든 템플릿에 대해 effect 태그 재작성
         self.__effect_xml_modifiction()
-        
+    
+    def __del__(self):
+        print("XML 처리 객체", self.__input_xml_dest, "삭제됨\n")
 
     # Azure AI Text Analytics 서비스(client)를 이용해 텍스트(documents)의 감정(긍정, 중립, 부정) 분석
     def __sentiment_analysis(self, documents: list):
