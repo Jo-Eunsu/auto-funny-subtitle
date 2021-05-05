@@ -162,7 +162,7 @@ class MainWindow_UI(object):
 
     # "경로지정" 버튼을 누르면 XML 파일을 지정하는 함수 - XML 파일만 불러오도록 지정
     def fileopen(self):
-        try:
+        # try:
             if (self.__xml_saved == False):
                 xmlSaveMessage = QtWidgets.QMessageBox()
                 xmlSaveMessage.setIcon(QtWidgets.QMessageBox.Warning)
@@ -214,14 +214,14 @@ class MainWindow_UI(object):
                     
             
         # 파일 불러오는 과정에서 오류가 발생하면 파일 불러오기 오류 메시지 박스 띄우기 
-        except Exception:
-            fileErrorMessage = QtWidgets.QMessageBox()
-            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
-            fileErrorMessage.setWindowTitle('파일 불러오기 오류')
-            fileErrorMessage.setText('파일을 불러오는 데 오류가 발생했습니다.')
-            fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            fileErrorMessage.exec_()
-            pass
+        # except Exception:
+        #     fileErrorMessage = QtWidgets.QMessageBox()
+        #     fileErrorMessage.setIcon(QtWidgets.QMessageBox.Critical)
+        #     fileErrorMessage.setWindowTitle('파일 불러오기 오류')
+        #     fileErrorMessage.setText('파일을 불러오는 데 오류가 발생했습니다.')
+        #     fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        #     fileErrorMessage.exec_()
+        #     pass
 
     # "XML 버튼"을 누르면 XML 안의 자막을 감정분석해서 바꾸는 함수           
     def xmlConversion(self):
@@ -355,8 +355,18 @@ class MainWindow_UI(object):
         # TODO: 모든 자막 태그 트리(element)를 리스트로 저장. 
         # TODO: 리스트의 길이를 지정 후 지정이 완료될 때마다 프로그래스바 길이 늘리기
         # TODO: 상태 메시지에 자막 분석 상태 설정
-        title_count, title_elements = 
-        self.fcpx_xml.xml_text_analysis()
+        title_elements = self.fcpx_xml.loadAllElements()
+        title_count = len(title_elements)
+        for i, title_element in enumerate(title_elements):
+            asset_clip_element: Element = title_element["parent"]
+            title_element: Element = title_element["node"]
+            title_text = title_element.find("text").findtext("text-style")
+            self.fcpx_xml.xml_text_analysis(title_element, asset_clip_element)
+            self.progressbar.setValue((int)(100 * i / title_count))
+            self.progressMessage.setText("자막 '" + title_text + "' 처리 완료")
+
+        #XML 분석이 다 끝나면 modified 플래그를 True로 설정 
+        self.fcpx_xml.__xml__modified = True
         
         
 
