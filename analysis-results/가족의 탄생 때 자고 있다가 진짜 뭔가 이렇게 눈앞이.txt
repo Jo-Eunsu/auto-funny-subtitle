@@ -1,9 +1,0 @@
-Document Sentiment: positive
-Overall scores: positive=0.61; neutral=0.33; negative=0.06 
-
-Sentence: 가족의 탄생 때 자고 있다가 진짜 뭔가 이렇게 눈앞이
-Sentence 1 sentiment: positive
-Sentence score:
-Positive=0.61
-Neutral=0.33
-Negative=0.06

@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.19; neutral=0.48; negative=0.33 
-
-Sentence: 내 어릴 때 친구들을 기억을 못 할까 하고 생각해봤거든요?
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.19
-Neutral=0.48
-Negative=0.33

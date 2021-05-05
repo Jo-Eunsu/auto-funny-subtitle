@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.09; neutral=0.88; negative=0.03 
-
-Sentence: 되게 특이한 프로그램이었어요.
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.09
-Neutral=0.88
-Negative=0.03

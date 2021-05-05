@@ -6,9 +6,8 @@ from azure.core.credentials import AzureKeyCredential
 # Azure API에 관한 클래스
 class AzureAnalytics:
     # Azure AI Text Analytics 서비스에 연결
-    __key = "2260af3f04d142f58f4597d6db740ac7"
-    __endpoint = "https://chosun-capstone-cognitive.cognitiveservices.azure.com/"
-    __client = None
+    __key = "adb408a2b6d74ad99e17fef3f4e42a55"
+    __endpoint = "https://auto-funny-subtitle.cognitiveservices.azure.com/"
 
     # API 객체가 중복 생성되면 안 되므로 싱글톤 클래스로 지정
     def __new__(cls):

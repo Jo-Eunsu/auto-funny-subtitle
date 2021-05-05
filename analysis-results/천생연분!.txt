@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.35; neutral=0.55; negative=0.10 
-
-Sentence: 천생연분!
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.35
-Neutral=0.55
-Negative=0.10

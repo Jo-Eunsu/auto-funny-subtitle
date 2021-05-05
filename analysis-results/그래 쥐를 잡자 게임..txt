@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.04; neutral=0.82; negative=0.14 
-
-Sentence: 그래 쥐를 잡자 게임.
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.04
-Neutral=0.82
-Negative=0.14

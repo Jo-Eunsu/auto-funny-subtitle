@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.11; neutral=0.83; negative=0.06 
-
-Sentence: 근데 이게 이때 보면 선배님들이
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.11
-Neutral=0.83
-Negative=0.06

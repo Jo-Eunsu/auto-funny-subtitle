@@ -8,8 +8,7 @@
             "type": "shell",
             "command": "python3",
             "args": [
-                "${file}",
-                "./히밥님...재료가 다 떨어졌어요...fcpxml"
+                "${file}"
             ],
             "options": {
                 "env": {
@@ -18,8 +17,9 @@
             },
             "group": {
                 "kind": "build",
-                "isDefault": true               
-            }
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }

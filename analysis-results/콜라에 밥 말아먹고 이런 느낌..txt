@@ -1,9 +1,0 @@
-Document Sentiment: neutral
-Overall scores: positive=0.13; neutral=0.82; negative=0.05 
-
-Sentence: 콜라에 밥 말아먹고 이런 느낌.
-Sentence 1 sentiment: neutral
-Sentence score:
-Positive=0.13
-Neutral=0.82
-Negative=0.05
