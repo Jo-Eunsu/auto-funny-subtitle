@@ -39,15 +39,26 @@ class FCPX_XML:
     def __del__(self):
         print("XML 처리 객체", self.__input_xml_dest, "삭제됨\n")
 
+    # XML의 모든 자막 태그 엘리먼트(Element)를 불러오는 함수
+    def loadAllElements(self) -> list:
+        # 모든 자막 태그 엘리먼트를 담는 리스트
+        title_elements = []
+
+        # asset-clip 태그를 찾기
+        # asset-clip 태그는 파이널컷에서 메인 스토리라인에 들어가는 각 동영상 클립의 정보
+        for asset_clip in self.__xml_root.iter("asset-clip"):
+            for title in asset_clip.iter("title"):
+                # 자막 텍스트 추출
+                nodeDict = {"node": title, "parent": asset_clip}
+                title_elements.append(nodeDict)
+        return title_elements
+
     # Azure AI Text Analytics 서비스(client)를 이용해 텍스트(documents)의 감정(긍정, 중립, 부정) 분석
-    def __sentiment_analysis(self, documents: list):
+    def __sentiment_analysis(self, document: str):
         # API를 사용하여 입력받은 텍스트의 감정을 분석하고, 분석 결과를 response에 저장
         responses = []
-        for document in documents:
-            if document is None or document is "":
-                return None, None
-            else:
-                responses.append(self.__api_client.analyze_sentiment([document], language="ko")[0])
+
+        responses.append(self.__api_client.analyze_sentiment([document], language="ko")[0])
 
         # 텍스트별 최종 감정을 저장하는 리스트, 감정별 자막 번호를 지정하는 리스트 작성
         result_emotions = []
@@ -109,25 +120,14 @@ class FCPX_XML:
 
 
     # 각 자막 텍스트에 대해 감정분석
-    def xml_text_analysis(self) -> None:
+    def xml_text_analysis(self, title: Element, parent: Element) -> None:
         # XML에서 자막에 해당되는 클립 정보를 읽기
-        try:
-            # asset-clip 태그를 찾기
-            # asset-clip 태그는 파이널컷에서 메인 스토리라인에 들어가는 각 동영상 클립의 정보
-            for asset_clip in self.__xml_root.iter("asset-clip"):
-                # title 태그를 video 태그로 바꾸는 데 필요한 변수 준비물 초기화 - 메인 스토리라인(asset-clip 태그)의 한 클립에 붙은 자막 프로파일 설정을 위해
-                title_text = []
-                results = []
-                template_number = []
-                
-                for title in asset_clip.iter("title"):
-                    # 자막 텍스트 추출
-                    title_text.append(title.find("text").findtext("text-style"))
 
-                # 읽어들인 자막 텍스트를 바탕으로 문장 감정을 분석해 예능자막을 지정하고 XML에 적용
-                if asset_clip.find("title") is not None:
-                    # 자막 분석 결과(감정 텍스트)와 각 감정별 템플릿의 번호를 추출
-                    results, template_number = self.__sentiment_analysis(title_text)
+        # 자막에서 텍스트 추출
+        title_text = title.find("text").findtext("text-style")
+
+        # 자막 분석 결과(감정 텍스트)와 각 감정별 템플릿의 번호를 추출
+        result, template_number = self.__sentiment_analysis(title_text)
                     # 태그 내 자막 텍스트가 있으면 다음을 수행
                     if results is not None:
                         # 기존에 있던 자막 템플릿 불러오기

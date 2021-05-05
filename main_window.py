@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 import sys
+from xml.etree.ElementTree import Element
 from PyQt5 import QtCore, QtGui, QtWidgets
 from FCPX_XML import FCPX_XML
 from preview import Preview_UI
@@ -230,10 +231,7 @@ class MainWindow_UI(object):
                 raise FileNotFoundError
 
             # 자막 텍스트 분석 후 변환작업 수행
-            # TODO: 모든 자막 태그 트리(element)를 리스트로 저장. 
-            # TODO: 리스트의 길이를 지정 후 지정이 완료될 때마다 프로그래스바 길이 늘리기
-            # TODO: 상태 메시지에 자막 분석 상태 설정
-            self.fcpx_xml.xml_text_analysis()
+            self.xmlProcess()
 
             # 변환된 xml 저장상태를 저장 안됨(False)로 변경하고, xml 변환 상태를 반환됨(True)로 변경
             self.__xml_saved = False
@@ -305,7 +303,7 @@ class MainWindow_UI(object):
             if xml_tree == None:
                 raise AttributeError
 
-            #파일 불러오기 창을 띄워서 XML 파일 불러오기
+            # 파일을 저장하는 창을 띄워서 XML 파일 저장하기
             filename = QtWidgets.QFileDialog.getSaveFileName(None, "파일 저장...", filter="FCPX XML File (*.fcpxml)")
 
             # 취소를 눌러서 저장을 취소하지 않았으면 파일을 정상적으로 저장
@@ -321,15 +319,8 @@ class MainWindow_UI(object):
                 # xml 저장 상태를 저장됨(True)으로 변경
                 self.__xml_saved = True
 
-        # XML 파일이 분석이 안 된 경우 메시지박스
-        # 파일을 불러온 상태에서 바로 저장 버튼을 누르면 AttributeError가 뜸
-        except AttributeError:
-            fileErrorMessage = QtWidgets.QMessageBox()
-            fileErrorMessage.setIcon(QtWidgets.QMessageBox.Warning)
-            fileErrorMessage.setWindowTitle('XML 분석이 완료되지 않음')
-            fileErrorMessage.setText('XML 파일이 분석되지 않았습니다.\n다시 한 번 시도해보세요.')
-            fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            fileErrorMessage.exec_()
+                # XML 변환완료 프롬프트 띄우기
+                self.progressMessage.setText("변환된 XML 파일 저장 완료")
 
         # 파일을 안 불러왔을 때 메시지박스
         except FileNotFoundError:
@@ -358,6 +349,15 @@ class MainWindow_UI(object):
             fileErrorMessage.setText('파일을 저장하는 데 오류가 발생했습니다.')
             fileErrorMessage.setStandardButtons(QtWidgets.QMessageBox.Ok)
             fileErrorMessage.exec_()
+    
+    # XML을 처리하는 함수
+    def xmlProcess(self):
+        # TODO: 모든 자막 태그 트리(element)를 리스트로 저장. 
+        # TODO: 리스트의 길이를 지정 후 지정이 완료될 때마다 프로그래스바 길이 늘리기
+        # TODO: 상태 메시지에 자막 분석 상태 설정
+        title_count, title_elements = 
+        self.fcpx_xml.xml_text_analysis()
+        
         
 
 
