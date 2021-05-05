@@ -25,7 +25,7 @@ class Preview_UI(object):
     # ui 형성 (가로:900, 세로:400)
     def setupUi(self, Form: QtWidgets.QDialog):
         # 창 자체의 설정
-        Form.setObjectName("Title Preview")
+        Form.setObjectName("XML 프리뷰")
         Form.setFixedSize(self.__width, self.__height)
 
         font = QtGui.QFont()
@@ -137,7 +137,7 @@ class Preview_UI(object):
     # 각 항목 안에 들어갈 텍스트 지정
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Title Preview"))
+        Form.setWindowTitle(_translate("Form", "XML 프리뷰"))
         self.endLabel.setText(_translate("Form", "끝"))
         self.startLabel.setText(_translate("Form", "시작"))
         self.titletemplateLabel.setText(_translate("Form", "자막 템플릿"))

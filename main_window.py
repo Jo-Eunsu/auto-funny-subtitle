@@ -13,7 +13,7 @@ from preview import Preview_UI
 
 class MainWindow_UI(object):
 
-    # 창 크기 초기화(가로: 800, 세로: 300)
+    # 창 크기 초기화(가로: 700, 세로: 300)
     def __init__(self, width, height):
         self.__width = width
         self.__height = height
@@ -37,12 +37,13 @@ class MainWindow_UI(object):
         self.centralwidget.setObjectName("centralwidget")
 
 
-        # xml 관련 부분을 처리하는 영역의 레이아웃 생성
+        # xml 관련 부분을 처리하는 영역의 레이아웃 생성 (가로 레이아웃)
+        xmlHMargin = 60
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(90, 60, self.__width-180, 41))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(xmlHMargin, 60, self.__width-(xmlHMargin*2), 41))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.xmlLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
-        self.xmlLayout.setContentsMargins(1, 2, 3, 4)
+        self.xmlLayout.setContentsMargins(0, 0, 0, 0)
         self.xmlLayout.setObjectName("xmlLayout")
 
         # "xml 경로" 라벨
@@ -51,14 +52,12 @@ class MainWindow_UI(object):
         self.xmlLayout.addWidget(self.xmlLabel)
 
         # xml 파일을 불러오면 텍스트박스에 경로 표시
-        # TODO: 오른쪽 버튼을 눌러 파일을 불러오면 경로 표시
         self.xmlPathText = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
         self.xmlPathText.setReadOnly(True)
         self.xmlPathText.setObjectName("xmlPathText")
         self.xmlLayout.addWidget(self.xmlPathText)
 
         # xml 파일을 여는 벼튼
-        # TODO: 버튼을 누르면 파일을 불러오는 기능 구현하며, xml이 아닌 경우 경고창 띄우고 불러오지 않기
         self.locateButton = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.locateButton.setObjectName("locateButton")
         self.xmlLayout.addWidget(self.locateButton)
@@ -66,9 +65,11 @@ class MainWindow_UI(object):
 
 
 
-        # 버튼 영역의 레이아웃 생성
+        # 버튼 영역의 레이아웃 생성 (가로 레이아웃)
+        buttonHMargin = 150
+        buttonHeight = 40
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(130, 140, self.__width-260, 32))
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(buttonHMargin, 120, self.__width-(buttonHMargin*2), buttonHeight))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.buttonLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.buttonLayout.setContentsMargins(0, 0, 0, 0)
@@ -83,7 +84,6 @@ class MainWindow_UI(object):
         self.xmlConversionButton.clicked.connect(self.xmlConversion)
         # 위 버튼을 누르면 XML 변환이 시작된다.
         self.buttonLayout.addItem(spacerItem)
-
 
         # 프리뷰 창 띄우는 버튼
         # TODO: 버튼을 누르면 새로운 창이 뜨도록 지정
@@ -113,7 +113,37 @@ class MainWindow_UI(object):
         MainWindow.setStatusBar(self.statusbar)
         self.quitButton.clicked.connect(MainWindow.close)
 
-        # 버튼에 이름 지정 등
+
+        # 상태바 및 프로그램 상태 라벨 영역의 레이아웃 생성 (세로 레이아웃)
+        progressHMargin = 200
+        progressHeight = 40
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(progressHMargin, 180, self.__width-(progressHMargin*2), progressHeight))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.progressLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.progressLayout.setContentsMargins(0, 0, 0, 0)
+        self.progressLayout.setObjectName("progressLayout")
+
+        # 상태바 구현
+        self.progressbar = QtWidgets.QProgressBar(self.verticalLayoutWidget)
+        self.progressbar.setObjectName("progressbar")
+        self.progressbar.setValue(0)
+        self.progressLayout.addWidget(self.progressbar)
+        QtWidgets.QApplication.processEvents()
+
+        # 상태 메시지 구현
+        self.progressMessage = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.progressMessage.setObjectName("progressMessage")
+        self.progressMessage.setAlignment(QtCore.Qt.AlignCenter)
+        self.progressLayout.addWidget(self.progressMessage)
+
+
+        # 버튼의 활성 상태 설정
+        self.xmlConversionButton.setEnabled(False)
+        self.previewButton.setEnabled(False)
+        self.saveButton.setEnabled(False)
+
+        # 버튼에 이름 지정, 모든 요소 연결
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -121,11 +151,12 @@ class MainWindow_UI(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", '자동 예능자막 생성 프로그램'))
         self.xmlLabel.setText(_translate("MainWindow", "XML 경로"))
-        self.locateButton.setText(_translate("MainWindow", "경로 지정..."))
+        self.locateButton.setText(_translate("MainWindow", "불러오기..."))
         self.xmlConversionButton.setText(_translate("MainWindow", "XML 변환"))
         self.previewButton.setText(_translate("MainWindow", "프리뷰..."))
         self.saveButton.setText(_translate("MainWindow", "저장..."))
         self.quitButton.setText(_translate("MainWindow", "종료"))
+        self.progressMessage.setText(_translate("MainWindow", "자동 예능자막 변환 프로그램 v0.1.0"))
         
 
     # "경로지정" 버튼을 누르면 XML 파일을 지정하는 함수 - XML 파일만 불러오도록 지정
@@ -169,6 +200,16 @@ class MainWindow_UI(object):
                         self.fcpx_xml = FCPX_XML(self.xmlFilename[0])
                         # xml 변환 상태를 반환되지 않음(False)으로 설정 
                         self.__xml_modified = False
+
+                        # 파일 불러오기가 완료되었다는 안내 프롬프트 띄우기. 새로 파일을 불러왔으므로 변환 상태를 0으로 지정
+                        self.progressbar.setValue(0)
+                        self.progressMessage.setText("파일 불러오기 완료")
+                        QtWidgets.QApplication.processEvents()
+
+                        # 버튼의 활성 상태 설정
+                        self.xmlConversionButton.setEnabled(True)
+                        self.previewButton.setEnabled(False)
+                        self.saveButton.setEnabled(False)
                     
             
         # 파일 불러오는 과정에서 오류가 발생하면 파일 불러오기 오류 메시지 박스 띄우기 
@@ -188,17 +229,25 @@ class MainWindow_UI(object):
             if self.xmlFilename == '':
                 raise FileNotFoundError
 
+            # 자막 텍스트 분석 후 변환작업 수행
+            # TODO: 모든 자막 태그 트리(element)를 리스트로 저장. 
+            # TODO: 리스트의 길이를 지정 후 지정이 완료될 때마다 프로그래스바 길이 늘리기
+            # TODO: 상태 메시지에 자막 분석 상태 설정
             self.fcpx_xml.xml_text_analysis()
+
             # 변환된 xml 저장상태를 저장 안됨(False)로 변경하고, xml 변환 상태를 반환됨(True)로 변경
             self.__xml_saved = False
             self.__xml_modified = True
-            # XML 변환완료 메시지박스
-            xmlCompleteMessageBox = QtWidgets.QMessageBox()
-            xmlCompleteMessageBox.setIcon(QtWidgets.QMessageBox.Information)
-            xmlCompleteMessageBox.setWindowTitle('XML 변화 완료')
-            xmlCompleteMessageBox.setText('자막의 감정을 분석하여 XML 파일 변환이 완료되었습니다')
-            xmlCompleteMessageBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            xmlCompleteMessageBox.exec_()
+
+            # XML 변환완료 프롬프트 띄우기
+            self.progressbar.setValue(100)
+            self.progressMessage.setText("모든 자막을 감정분석하여 XML을 변환하는 작업이 완료되었습니다.")
+            QtWidgets.QApplication.processEvents()
+
+            # 버튼의 활성 상태 설정
+            self.xmlConversionButton.setEnabled(True)
+            self.previewButton.setEnabled(True)
+            self.saveButton.setEnabled(True)
 
         # XML 파일을 불러오지 않았을 경우 메시지 박스 
         except FileNotFoundError:
@@ -228,7 +277,7 @@ class MainWindow_UI(object):
 
             # 프리뷰 창 생성 후 띄우기
             previewForm = QtWidgets.QDialog()
-            preview_ui = Preview_UI(900, 400, self.fcpx_xml)
+            preview_ui = Preview_UI(700, 400, self.fcpx_xml)
             preview_ui.setupUi(previewForm)
             previewForm.exec_()
 
