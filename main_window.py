@@ -355,7 +355,7 @@ class MainWindow_UI(object):
         # 모든 자막 태그 트리(element)를 리스트로 저장
         title_elements = self.fcpx_xml.loadAllElements()
         title_count = len(title_elements)
-        
+
         # 각 자막 태그에 대해 자막분석과 xml 수정 진행
         for i, title_element in enumerate(title_elements):
             asset_clip_element: Element = title_element["parent"]
@@ -369,7 +369,7 @@ class MainWindow_UI(object):
             QtWidgets.QApplication.processEvents()
 
         #XML 분석이 다 끝나면 modified 플래그를 True로 설정 
-        self.fcpx_xml.__xml__modified = True
+        self.fcpx_xml.xml_modified = True
         
         
 

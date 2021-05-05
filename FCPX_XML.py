@@ -30,7 +30,7 @@ class FCPX_XML:
         self.__funny_title_text_templates = Template_JSON()
         
         # xml이 감정분석으로 바뀌었는지 확인하는 플래그 변수
-        self.__xml__modified = False
+        self.xml_modified = False
 
         print("XML 처리 객체", self.__input_xml_dest, "생성됨\n")
 
@@ -177,7 +177,7 @@ class FCPX_XML:
 
     # 새로운 XML 파일을 작성하는 메소드 (리턴값은 xml 구조를 가지는 ElementTree)
     def write_xml(self) -> ElementTree:
-        if self.__xml__modified == False: 
+        if self.xml_modified == False: 
             return None
         else:
             return self.__xml_tree
