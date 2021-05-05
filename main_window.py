@@ -352,18 +352,21 @@ class MainWindow_UI(object):
     
     # XML을 처리하는 함수
     def xmlProcess(self):
-        # TODO: 모든 자막 태그 트리(element)를 리스트로 저장. 
-        # TODO: 리스트의 길이를 지정 후 지정이 완료될 때마다 프로그래스바 길이 늘리기
-        # TODO: 상태 메시지에 자막 분석 상태 설정
+        # 모든 자막 태그 트리(element)를 리스트로 저장
         title_elements = self.fcpx_xml.loadAllElements()
         title_count = len(title_elements)
+        
+        # 각 자막 태그에 대해 자막분석과 xml 수정 진행
         for i, title_element in enumerate(title_elements):
             asset_clip_element: Element = title_element["parent"]
             title_element: Element = title_element["node"]
             title_text = title_element.find("text").findtext("text-style")
             self.fcpx_xml.xml_text_analysis(title_element, asset_clip_element)
+            
+            # 프로그레스바와 상태메시지가 자막별로 작동하도록 지정
             self.progressbar.setValue((int)(100 * i / title_count))
             self.progressMessage.setText("자막 '" + title_text + "' 처리 완료")
+            QtWidgets.QApplication.processEvents()
 
         #XML 분석이 다 끝나면 modified 플래그를 True로 설정 
         self.fcpx_xml.__xml__modified = True

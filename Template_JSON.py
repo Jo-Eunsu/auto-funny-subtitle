@@ -25,8 +25,6 @@ class Template_JSON:
         self.__template_select["neutral"] = 0
         self.__template_select["negative"] = 0
 
-        self.__template_info["positive"][0]["attributes": "None"]
-
     # json 파일을 열어서 딕셔너리 자료형으로 리턴하는 함수
     def __open_json(self, json_file_path: str) -> dict:
         try:
