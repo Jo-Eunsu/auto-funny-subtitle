@@ -10,10 +10,7 @@ from PyQt5 import QtWidgets
 # 메인함수 실행
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
     mainwindow_ui = MainWindow_UI(800, 300)
-    mainwindow_ui.setupUi(MainWindow)
-    MainWindow.show()
     sys.exit(app.exec_())
 
     """

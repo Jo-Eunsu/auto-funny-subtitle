@@ -12,10 +12,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from FCPX_XML import FCPX_XML
 from preview import Preview_UI
 
-class MainWindow_UI(object):
+class MainWindow_UI(QtWidgets.QMainWindow):
 
     # 창 크기 초기화(가로: 700, 세로: 300)
     def __init__(self, width, height):
+        super().__init__()
         self.__width = width
         self.__height = height
         self.xmlFilename = ''
@@ -25,16 +26,20 @@ class MainWindow_UI(object):
         # xml 변환 상태 플래그 
         self.__xml_modified = False
 
+        # UI 각 요소 세팅 후 보여주기
+        self.setupUi()
+        self.show()
+
     # UI의 각 요소 초기화
-    def setupUi(self, MainWindow: QtWidgets.QMainWindow):
+    def setupUi(self):
         # 창 생성 
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.setFixedSize(self.__width, self.__height)
+        self.setObjectName("MainWindow")
+        self.setFixedSize(self.__width, self.__height)
 
         font = QtGui.QFont()
         font.setFamily("Apple SD Gothic Neo")
-        MainWindow.setFont(font)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.setFont(font)
+        self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
 
 
@@ -108,11 +113,11 @@ class MainWindow_UI(object):
         self.quitButton = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
         self.quitButton.setObjectName("quitButton")
         self.buttonLayout.addWidget(self.quitButton)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(self)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-        self.quitButton.clicked.connect(MainWindow.close)
+        self.setStatusBar(self.statusbar)
+        self.quitButton.clicked.connect(self.close)
 
 
         # 상태바 및 프로그램 상태 라벨 영역의 레이아웃 생성 (세로 레이아웃)
@@ -145,8 +150,8 @@ class MainWindow_UI(object):
         self.saveButton.setEnabled(False)
 
         # 버튼에 이름 지정, 모든 요소 연결
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(self)
+        QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -289,7 +294,7 @@ class MainWindow_UI(object):
 
 
     
-       # "저장" 버튼을 누르면 XML 파일을 저장하는 함수 - 새로 바뀐 XML 파일만 저장하도록 지정 
+    # "저장" 버튼을 누르면 XML 파일을 저장하는 함수 - 새로 바뀐 XML 파일만 저장하도록 지정 
     def filesave(self):
         try:
             # XML 파일이 없는 경우 처리
@@ -370,16 +375,29 @@ class MainWindow_UI(object):
 
         #XML 분석이 다 끝나면 modified 플래그를 True로 설정 
         self.fcpx_xml.xml_modified = True
+
+    # 창을 닫으려고 할 때 저장하지 않았으면 저장할 것인지 물음
+    def closeEvent(self, event):
+        if self.__xml_saved is True:
+            event.accept()
+        else:
+            buttonSelected = QtWidgets.QMessageBox.question(self, 'XML 파일이 저장되지 않음', '변환된 XML 파일이 저장되지 않았습니다.\n저장하고 종료하시려면 Save를, 저장하지 않고 종료하시려면 Discard를 눌러주세요.\n종료를 취소하려면 Cancel을 눌러주세요.', QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Discard | QtWidgets.QMessageBox.Cancel, QtWidgets.QMessageBox.Cancel)
+            if buttonSelected == QtWidgets.QMessageBox.Save: 
+                self.filesave()
+                event.accept()
+            elif buttonSelected == QtWidgets.QMessageBox.Discard:
+                event.accept()
+            else:
+                event.ignore()
+
+
         
 
 
 # 메인함수 실행
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
     mainwindow_ui = MainWindow_UI(800, 300)
-    mainwindow_ui.setupUi(MainWindow)
-    MainWindow.show()
     sys.exit(app.exec_())
 
     return 0
