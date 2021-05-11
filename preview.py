@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'preview.ui'
+# Dialog implementation generated from reading ui file 'preview.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -18,32 +18,38 @@ class Preview_UI(QtWidgets.QWidget):
     # 초기화: 해당 창의 크기(가로, 세로) 설정
     # 프리뷰 화면이 열릴때 XML 객체도 같이 가지고 올 수 있도록 설정 
     def __init__(self, xml: FCPX_XML, width=800, height=500):
+        super().__init__()
         self.__width = width
         self.__height = height
         self.fcpx_xml: FCPX_XML = xml
+        self.__xml_saved = True
+
+        # 창 설정 후 출력
+        self.setupUi()
+        self.show()
 
     # ui 형성 (가로:900, 세로:400)
-    def setupUi(self, Form: QtWidgets.QDialog):
+    def setupUi(self):
         # 창 자체의 설정
-        Form.setObjectName("XML 프리뷰")
-        Form.setFixedSize(self.__width, self.__height)
+        self.setObjectName("Dialog")
+        self.setFixedSize(self.__width, self.__height)
 
         # TODO: 해당 UI는 영상에 들어간 자막 클립에 따라 가변적인 구조를 가지고 있음. 가변적인 구조의 창 필요
         # TODO: GridLayout 여러 개를 하나의 verticalLayout에 집어넣은 다음 scroolArea로 영역 제한을 할 필요가 있음
 
         font = QtGui.QFont()
         font.setFamily("Apple SD Gothic Neo")
-        Form.setFont(font)
+        self.setFont(font)
 
         # 레이아웃이 창 안으로 들어감 (전체 레이아웃)
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(Form)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         
         # 스크롤 가능한 영역 삽입
-        self.scrollArea = QtWidgets.QScrollArea(Form)
+        self.scrollArea = QtWidgets.QScrollArea(self)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents = QtWidgets.QWidget(self)
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
 
         # 버튼영역과 자막들 들어갈 영역을 나누는 세로 배치 레이아웃 설정
@@ -404,62 +410,85 @@ class Preview_UI(QtWidgets.QWidget):
         self.verticalLayout_3.addWidget(self.scrollArea)
 
         # 버튼 2개가 들어갈 레이아웃 설정하고 안에다가 스페이서 3개, 버튼 2개 집어넣음
+
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+
         self.horizontalLayout_10.addItem(spacerItem)
         self.closeButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.closeButton.setObjectName("closeButton")
         self.horizontalLayout_10.addWidget(self.closeButton)
+        self.closeButton.setText('닫기')
+        self.closeButton.released.connect(QtCore.QCoreApplication.instance().quit)
+
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+
         self.horizontalLayout_10.addItem(spacerItem1)
         self.saveButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.saveButton.setObjectName("saveButton")
         self.horizontalLayout_10.addWidget(self.saveButton)
+        self.saveButton.setText('저장')
+
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+
         self.horizontalLayout_10.addItem(spacerItem2)
         self.verticalLayout_3.addLayout(self.horizontalLayout_10)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(self)
+        QtCore.QMetaObject.connectSlotsByName(self)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.label_34.setText(_translate("Form", "끝"))
-        self.label_35.setText(_translate("Form", "시작"))
-        self.label_36.setText(_translate("Form", "자막 템플릿"))
-        self.label_37.setText(_translate("Form", "자막 텍스트"))
-        self.label_38.setText(_translate("Form", "Preview Image (Alternative Text)"))
-        self.label_3.setText(_translate("Form", "끝"))
-        self.label_2.setText(_translate("Form", "시작"))
-        self.label_5.setText(_translate("Form", "자막 템플릿"))
-        self.label_4.setText(_translate("Form", "자막 텍스트"))
-        self.label.setText(_translate("Form", "Preview Image (Alternative Text)"))
-        self.label_14.setText(_translate("Form", "끝"))
-        self.label_15.setText(_translate("Form", "시작"))
-        self.label_16.setText(_translate("Form", "자막 템플릿"))
-        self.label_17.setText(_translate("Form", "자막 텍스트"))
-        self.label_18.setText(_translate("Form", "Preview Image (Alternative Text)"))
-        self.label_19.setText(_translate("Form", "끝"))
-        self.label_20.setText(_translate("Form", "시작"))
-        self.label_21.setText(_translate("Form", "자막 템플릿"))
-        self.label_22.setText(_translate("Form", "자막 텍스트"))
-        self.label_23.setText(_translate("Form", "Preview Image (Alternative Text)"))
-        self.label_24.setText(_translate("Form", "끝"))
-        self.label_25.setText(_translate("Form", "시작"))
-        self.label_26.setText(_translate("Form", "자막 템플릿"))
-        self.label_27.setText(_translate("Form", "자막 텍스트"))
-        self.label_28.setText(_translate("Form", "Preview Image (Alternative Text)"))
+        Dialog.setWindowTitle(_translate("Dialog", "XML 프리뷰"))
+        self.label_34.setText(_translate("Dialog", "끝"))
+        self.label_35.setText(_translate("Dialog", "시작"))
+        self.label_36.setText(_translate("Dialog", "자막 템플릿"))
+        self.label_37.setText(_translate("Dialog", "자막 텍스트"))
+        self.label_38.setText(_translate("Dialog", "Preview Image (Alternative Text)"))
+        self.label_3.setText(_translate("Dialog", "끝"))
+        self.label_2.setText(_translate("Dialog", "시작"))
+        self.label_5.setText(_translate("Dialog", "자막 템플릿"))
+        self.label_4.setText(_translate("Dialog", "자막 텍스트"))
+        self.label.setText(_translate("Dialog", "Preview Image (Alternative Text)"))
+        self.label_14.setText(_translate("Dialog", "끝"))
+        self.label_15.setText(_translate("Dialog", "시작"))
+        self.label_16.setText(_translate("Dialog", "자막 템플릿"))
+        self.label_17.setText(_translate("Dialog", "자막 텍스트"))
+        self.label_18.setText(_translate("Dialog", "Preview Image (Alternative Text)"))
+        self.label_19.setText(_translate("Dialog", "끝"))
+        self.label_20.setText(_translate("Dialog", "시작"))
+        self.label_21.setText(_translate("Dialog", "자막 템플릿"))
+        self.label_22.setText(_translate("Dialog", "자막 텍스트"))
+        self.label_23.setText(_translate("Dialog", "Preview Image (Alternative Text)"))
+        self.label_24.setText(_translate("Dialog", "끝"))
+        self.label_25.setText(_translate("Dialog", "시작"))
+        self.label_26.setText(_translate("Dialog", "자막 템플릿"))
+        self.label_27.setText(_translate("Dialog", "자막 텍스트"))
+        self.label_28.setText(_translate("Dialog", "Preview Image (Alternative Text)"))
+
+    # 창을 닫으려 할 때 저장하지 않았으면 저장할 것인지 물음
+    def closeEvent(self, event):
+        # 테스트용
+        self.__xml_saved = False
+        if self.__xml_saved is True:
+            event.accept()
+        else:
+            buttonSelected = QtWidgets.QMessageBox.question(self, '수정된 자막이 저장되지 않음', '수정된 자막 파일이 저장되지 않았습니다.\n저장하고 종료하시려면 Save를, 저장하지 않고 종료하시려면 Discard를 눌러주세요.\n종료를 취소하려면 Cancel을 눌러주세요.', QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Discard | QtWidgets.QMessageBox.Cancel, QtWidgets.QMessageBox.Cancel)
+            if buttonSelected == QtWidgets.QMessageBox.Save: 
+                #self.filesave()
+                event.accept()
+            elif buttonSelected == QtWidgets.QMessageBox.Discard:
+                event.accept()
+            else:
+                event.ignore()
+
 
 # 메인함수 실행
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
-    previewForm = QtWidgets.QDialog()
-    fcpx_xml = FCPX_XML("contest_woowakgood.fcpxml")
-    ui = Preview_UI(fcpx_xml)
-    ui.setupUi(previewForm)
-    previewForm.exec_()
+    preview_ui = Preview_UI("contest_woowakgood.fcpxml", 800, 500)
     sys.exit(app.exec_())
 
     return 0
