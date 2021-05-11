@@ -17,7 +17,7 @@ class Preview_UI(QtWidgets.QWidget):
 
     # 초기화: 해당 창의 크기(가로, 세로) 설정
     # 프리뷰 화면이 열릴때 XML 객체도 같이 가지고 올 수 있도록 설정 
-    def __init__(self, xml: FCPX_XML, width: int = 800, height: int = 500):
+    def __init__(self, xml: FCPX_XML, width=800, height=500):
         self.__width = width
         self.__height = height
         self.fcpx_xml: FCPX_XML = xml
@@ -44,31 +44,12 @@ class Preview_UI(QtWidgets.QWidget):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 874, 711))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
 
         # 버튼영역과 자막들 들어갈 영역을 나누는 세로 배치 레이아웃 설정
         self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName("verticalLayout")
 
-        # 버튼 2개가 들어갈 레이아웃 설정하고 안에다가 스페이서 3개, 버튼 2개 집어넣음
-        self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_10.addItem(spacerItem)
-        self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_10.addWidget(self.pushButton)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_10.addItem(spacerItem1)
-        self.pushButton_2 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_10.addWidget(self.pushButton_2)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_10.addItem(spacerItem2)
-        self.verticalLayout.addLayout(self.horizontalLayout_10)
-
-        
         self.horizontalLayout_34 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_34.setObjectName("horizontalLayout_34")
         self.gridLayout_8 = QtWidgets.QGridLayout()
@@ -422,14 +403,29 @@ class Preview_UI(QtWidgets.QWidget):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_3.addWidget(self.scrollArea)
 
+        # 버튼 2개가 들어갈 레이아웃 설정하고 안에다가 스페이서 3개, 버튼 2개 집어넣음
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_10.addItem(spacerItem)
+        self.closeButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.closeButton.setObjectName("closeButton")
+        self.horizontalLayout_10.addWidget(self.closeButton)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_10.addItem(spacerItem1)
+        self.saveButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.saveButton.setObjectName("saveButton")
+        self.horizontalLayout_10.addWidget(self.saveButton)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_10.addItem(spacerItem2)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_10)
+
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton.setText(_translate("Form", "PushButton"))
-        self.pushButton_2.setText(_translate("Form", "PushButton"))
         self.label_34.setText(_translate("Form", "끝"))
         self.label_35.setText(_translate("Form", "시작"))
         self.label_36.setText(_translate("Form", "자막 템플릿"))
@@ -459,10 +455,11 @@ class Preview_UI(QtWidgets.QWidget):
 # 메인함수 실행
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QMainWindow()
-    preview_ui = Preview_UI(900, 400)
-    preview_ui.setupUi(Form)
-    Form.show()
+    previewForm = QtWidgets.QDialog()
+    fcpx_xml = FCPX_XML("contest_woowakgood.fcpxml")
+    ui = Preview_UI(fcpx_xml)
+    ui.setupUi(previewForm)
+    previewForm.exec_()
     sys.exit(app.exec_())
 
     return 0
