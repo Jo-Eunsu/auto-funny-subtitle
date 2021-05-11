@@ -42,7 +42,6 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
 
-
         # xml 관련 부분을 처리하는 영역의 레이아웃 생성 (가로 레이아웃)
         xmlHMargin = 60
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -263,13 +262,13 @@ class MainWindow_UI(QtWidgets.QMainWindow):
 
 
         # XML 변동 오류가 발생했을 경우 오류 발생 메시지박스 띄우기
-        except Exception:
-            xmlConversionError = QtWidgets.QMessageBox()
-            xmlConversionError.setIcon(QtWidgets.QMessageBox.Critical)
-            xmlConversionError.setWindowTitle('XML 변환 오류')
-            xmlConversionError.setText('XML로 변환하는 데 오류가 발생했습니다')
-            xmlConversionError.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            xmlConversionError.exec_()
+        # except Exception:
+        #     xmlConversionError = QtWidgets.QMessageBox()
+        #     xmlConversionError.setIcon(QtWidgets.QMessageBox.Critical)
+        #     xmlConversionError.setWindowTitle('XML 변환 오류')
+        #     xmlConversionError.setText('XML로 변환하는 데 오류가 발생했습니다')
+        #     xmlConversionError.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        #     xmlConversionError.exec_()
 
     # "프리뷰" 버튼을 누르면 프리뷰 창이 뜨는 함수 
     def openPreviewWindow(self):
@@ -278,11 +277,17 @@ class MainWindow_UI(QtWidgets.QMainWindow):
             if self.__xml_modified == False:
                 raise ValueError
 
-            # 프리뷰 창 생성 후 띄우기
             previewForm = QtWidgets.QDialog()
-            preview_ui = Preview_UI(700, 400, self.fcpx_xml)
-            preview_ui.setupUi(previewForm)
+            ui = Preview_UI(self.fcpx_xml)
+            ui.setupUi(previewForm)
             previewForm.exec_()
+            
+
+            # 프리뷰 창 생성 후 띄우기
+            # previewForm = QtWidgets.QDialog()
+            # preview_ui = Preview_UI(700, 500, self.fcpx_xml)
+            # preview_ui.setupUi(previewForm)
+            # previewForm.exec_()
 
         except ValueError:
             xmlNotModifiedMessage = QtWidgets.QMessageBox()
