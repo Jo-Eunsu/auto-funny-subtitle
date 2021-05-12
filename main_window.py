@@ -277,7 +277,7 @@ class MainWindow_UI(QtWidgets.QMainWindow):
             if self.__xml_modified == False:
                 raise ValueError
             
-            preview_ui = Preview_UI(600, 500)
+            preview_ui = Preview_UI(self.fcpx_xml, 800, 500)
 
             # 프리뷰 창 생성 후 띄우기
             # previewForm = QtWidgets.QDialog()
