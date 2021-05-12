@@ -21,6 +21,8 @@ class Preview_UI(QtWidgets.QWidget):
         self.__width = width
         self.__height = height
         self.fcpx_xml: FCPX_XML = xml
+        self.__xml_saved = True
+        
 
     # ui 형성 (가로:900, 세로:400)
     def setupUi(self, Form: QtWidgets.QDialog):
@@ -50,11 +52,13 @@ class Preview_UI(QtWidgets.QWidget):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName("verticalLayout")
 
+        # 각 예능자막 텍스트 태그를 불러오고, 요소를 불러와 UI에 적용하는 과정(Initialize)
+        self.videoElements = self.startTexts = self.endTexts = self.templateSelectors = self.titleTexts = self.previewImages = []
+        self.initializeTitles()
         self.horizontalLayout_34 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_34.setObjectName("horizontalLayout_34")
         self.gridLayout_8 = QtWidgets.QGridLayout()
         self.gridLayout_8.setObjectName("gridLayout_8")
-
         self.horizontalLayout_35 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_35.setObjectName("horizontalLayout_35")
         self.label_34 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -406,19 +410,26 @@ class Preview_UI(QtWidgets.QWidget):
         # 버튼 2개가 들어갈 레이아웃 설정하고 안에다가 스페이서 3개, 버튼 2개 집어넣음
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem)
+
         self.closeButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.closeButton.setObjectName("closeButton")
         self.horizontalLayout_10.addWidget(self.closeButton)
+
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem1)
+
         self.saveButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.saveButton.setObjectName("saveButton")
         self.horizontalLayout_10.addWidget(self.saveButton)
+
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem2)
+
         self.verticalLayout_3.addLayout(self.horizontalLayout_10)
+        self.saveButton.setText("sdkfj;alskdjfpqoiewjfd")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -452,15 +463,95 @@ class Preview_UI(QtWidgets.QWidget):
         self.label_27.setText(_translate("Form", "자막 텍스트"))
         self.label_28.setText(_translate("Form", "Preview Image (Alternative Text)"))
 
+    # 예능자막 태그를 전부 불러와서 UI에 적용시키는 함수
+    def initializeTitles(self):
+        # 모든 변환된 예능자막 템플릿 태그(<video> 태그)를 불러오기
+        
+        self.titleWholeLayout = QtWidgets.QHBoxLayout()
+        self.titleWholeLayout.setObjectName("titleWholeLayout")
+
+        self.titleGridLayout = QtWidgets.QGridLayout()
+        self.titleGridLayout.setObjectName("titleGridLayout")
+
+        self.startHLayout = QtWidgets.QHBoxLayout()
+        self.startHLayout.setObjectName("startHLayout")
+
+        self.startLabel = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        font = QtGui.QFont()
+        font.setFamily("Apple SD Gothic Neo")
+        self.startLabel.setFont(font)
+        self.startLabel.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.startLabel.setObjectName("startLabel")
+        self.startLabel.setText("시작")
+        self.startHLayout.addWidget(self.startLabel)
+
+        self.startLineEdit = QtWidgets.QLineEdit(self.scrollAreaWidgetContents)
+        self.startLineEdit.setObjectName("startLineEdit")
+        self.titleGridLayout.addWidget(self.startLineEdit, 1, 2, 1, 1)
+        self.endTimeText_8 = QtWidgets.QLineEdit(self.scrollAreaWidgetContents)
+
+        self.titleGridLayout.addLayout(self.startHLayout, 1, 1, 1, 1)
+        self.horizontalLayout_36 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_36.setObjectName("horizontalLayout_36")
+        self.titleText_8 = QtWidgets.QPlainTextEdit(self.scrollAreaWidgetContents)
+        self.titleText_8.setObjectName("titleText_8")
+        self.horizontalLayout_36.addWidget(self.titleText_8)
+        self.titleGridLayout.addLayout(self.horizontalLayout_36, 2, 5, 1, 1)
+        self.horizontalLayout_37 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_37.setObjectName("horizontalLayout_37")
+        self.label_35 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        font = QtGui.QFont()
+        font.setFamily("Apple SD Gothic Neo")
+        self.label_35.setFont(font)
+        self.label_35.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_35.setObjectName("label_35")
+        self.horizontalLayout_37.addWidget(self.label_35)
+        self.titleGridLayout.addLayout(self.horizontalLayout_37, 2, 1, 1, 1)
+        self.horizontalLayout_38 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_38.setObjectName("horizontalLayout_38")
+        self.templateSelector_8 = QtWidgets.QComboBox(self.scrollAreaWidgetContents)
+        self.templateSelector_8.setObjectName("templateSelector_8")
+        self.horizontalLayout_38.addWidget(self.templateSelector_8)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_38.addItem(spacerItem3)
+        self.titleGridLayout.addLayout(self.horizontalLayout_38, 1, 5, 1, 1)
+        self.label_36 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        font = QtGui.QFont()
+        font.setFamily("Apple SD Gothic Neo")
+        self.label_36.setFont(font)
+        self.label_36.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_36.setObjectName("label_36")
+        self.titleGridLayout.addWidget(self.label_36, 1, 4, 1, 1)
+        self.label_37 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        font = QtGui.QFont()
+        font.setFamily("Apple SD Gothic Neo")
+        self.label_37.setFont(font)
+        self.label_37.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_37.setObjectName("label_37")
+        self.titleGridLayout.addWidget(self.label_37, 2, 4, 1, 1)
+        self.endTimeText_8.setObjectName("endTimeText_8")
+        self.titleGridLayout.addWidget(self.endTimeText_8, 2, 2, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.titleGridLayout.addItem(spacerItem4, 1, 3, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.titleGridLayout.addItem(spacerItem5, 2, 3, 1, 1)
+        self.titleWholeLayout.addLayout(self.titleGridLayout)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.titleWholeLayout.addItem(spacerItem6)
+        self.label_38 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.label_38.setObjectName("label_38")
+        self.titleWholeLayout.addWidget(self.label_38)
+        self.verticalLayout.addLayout(self.titleWholeLayout)
+
 # 메인함수 실행
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
     previewForm = QtWidgets.QDialog()
-    fcpx_xml = FCPX_XML("contest_woowakgood.fcpxml")
+    fcpx_xml = FCPX_XML("히밥님12.fcpxml")
     ui = Preview_UI(fcpx_xml)
     ui.setupUi(previewForm)
-    previewForm.exec_()
-    sys.exit(app.exec_())
+    
+    sys.exit(previewForm.exec_())
 
     return 0
 
