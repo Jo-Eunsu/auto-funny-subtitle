@@ -8,33 +8,23 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Preview_UI(object):
+class Ui_Form(object):
     def setupUi(self, Form):
-        
-        # 창 자체 설정
         Form.setObjectName("Form")
         Form.resize(900, 400)
         font = QtGui.QFont()
         font.setFamily("Apple SD Gothic Neo")
         Form.setFont(font)
-
-        # 레이아웃이 창 안으로 들어감 (전체 레이아웃)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        
-        # 스크롤 가능한 영역 삽입
         self.scrollArea = QtWidgets.QScrollArea(Form)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 874, 711))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-
-        # 버튼영역과 자막들 들어갈 영역을 나누는 세로 배치 레이아웃 설정
         self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName("verticalLayout")
-
-        # 버튼 2개가 들어갈 레이아웃 설정하고 안에다가 스페이서 3개, 버튼 2개 집어넣음
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -50,13 +40,10 @@ class Preview_UI(object):
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem2)
         self.verticalLayout.addLayout(self.horizontalLayout_10)
-
-        
         self.horizontalLayout_34 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_34.setObjectName("horizontalLayout_34")
         self.gridLayout_8 = QtWidgets.QGridLayout()
         self.gridLayout_8.setObjectName("gridLayout_8")
-
         self.horizontalLayout_35 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_35.setObjectName("horizontalLayout_35")
         self.label_34 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -122,7 +109,6 @@ class Preview_UI(object):
         self.label_38.setObjectName("label_38")
         self.horizontalLayout_34.addWidget(self.label_38)
         self.verticalLayout.addLayout(self.horizontalLayout_34)
-
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.gridLayout = QtWidgets.QGridLayout()
@@ -192,7 +178,6 @@ class Preview_UI(object):
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.verticalLayout.addLayout(self.horizontalLayout)
-
         self.horizontalLayout_14 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_14.setObjectName("horizontalLayout_14")
         self.gridLayout_4 = QtWidgets.QGridLayout()
@@ -262,7 +247,6 @@ class Preview_UI(object):
         self.label_18.setObjectName("label_18")
         self.horizontalLayout_14.addWidget(self.label_18)
         self.verticalLayout.addLayout(self.horizontalLayout_14)
-
         self.horizontalLayout_19 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_19.setObjectName("horizontalLayout_19")
         self.gridLayout_5 = QtWidgets.QGridLayout()
@@ -332,7 +316,6 @@ class Preview_UI(object):
         self.label_23.setObjectName("label_23")
         self.horizontalLayout_19.addWidget(self.label_23)
         self.verticalLayout.addLayout(self.horizontalLayout_19)
-        
         self.horizontalLayout_24 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_24.setObjectName("horizontalLayout_24")
         self.gridLayout_6 = QtWidgets.QGridLayout()
@@ -444,7 +427,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Preview_UI(Form)
+    ui = Ui_Form()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

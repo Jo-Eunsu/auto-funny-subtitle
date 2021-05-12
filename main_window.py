@@ -276,12 +276,8 @@ class MainWindow_UI(QtWidgets.QMainWindow):
             # XML이 변형되지 않았으면 오류를 적용
             if self.__xml_modified == False:
                 raise ValueError
-
-            previewForm = QtWidgets.QDialog()
-            ui = Preview_UI(self.fcpx_xml)
-            ui.setupUi(previewForm)
-            previewForm.exec_()
             
+            preview_ui = Preview_UI(600, 500)
 
             # 프리뷰 창 생성 후 띄우기
             # previewForm = QtWidgets.QDialog()
