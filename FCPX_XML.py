@@ -49,10 +49,29 @@ class FCPX_XML:
         # asset-clip 태그는 파이널컷에서 메인 스토리라인에 들어가는 각 동영상 클립의 정보
         for asset_clip in self.__xml_root.iter("asset-clip"):
             for title in asset_clip.iter("title"):
-                # 자막 텍스트 추출
+                # 일반자막 엘리먼트 (부모 엘리먼트 포함) 추출
                 nodeDict = {"node": title, "parent": asset_clip}
                 title_elements.append(nodeDict)
         return title_elements
+
+    # XML에서 새로 예능자막 템플릿을 적용한 태그를 찾는 함수
+    def loadAllVideoElements(self) -> list:
+        # 모든 예능자막 태그 엘리먼트를 담는 리스트
+        video_elements = []
+
+        # 모든 자막 템플릿의 ID 정보 저장
+        templateIDs = []
+        for template in self.__funny_title_text_templates.get_all_template():
+            templateIDs.append(template["effect"]["id"])
+
+        for asset_clip in self.__xml_root.iter("asset-clip"):
+            for video in asset_clip.iter("video"):
+                # Generator 템플릿이 적용된 클립 중 예능자막 템플릿이 적용된 엘리먼트를 찾아 예능자막 엘리먼트 (부모 엘리먼트 포함) 추출
+                if video.attrib["ref"] in templateIDs:
+                    nodeDict = {"node": video, "parent": asset_clip}
+                    video_elements.append(nodeDict)
+
+        return video_elements
 
 
     # 각 자막 텍스트에 대해 감정분석
