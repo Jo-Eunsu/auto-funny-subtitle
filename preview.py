@@ -160,14 +160,15 @@ class Preview_UI(QtWidgets.QWidget):
             self.startLineEdits.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
             self.startLineEdits[-1].setObjectName("startLineEdit")
 
-            # 태그 안의 시작시간을 직접 계산해서 텍스트박스에 넣어주기
-            offset_attrib = videoElement['node'].attrib['offset']                       # 첫번째 값: '161300/2997s'
-            offset_attrib = offset_attrib.rstrip('s')                           # 두번째 값: '161300/2997'
-            start_numbers = offset_attrib.split('/')                            # start_numbers = ['161300', '2997']
-            dividend, divisor = int(start_numbers[0]), int(start_numbers[1])    # dividend = 161300, divisor = 2997
-            start_seconds = dividend / divisor                                  # start_seconds = 53.8204871538…
+            #시작 시간을 직접 계산해서 텍스트 박스애 넣어 주기
+            offset_attrib = videoElement['node'].attrib['offset']                           #'161300/2997s'
+            offset_attrib = offset_attrib.rstrip('s')                               #'161300/2997'
+            start_numbers = offset_attrib .split('/')                               #['161300, '2997']
+            dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        #dividend = 161300, divisor = 2997
+            start_second = dividend / divisor
 
-            self.startLineEdits[-1].setText(self.secondsToHMS(start_seconds))
+            print(self.secondsToHMS(start_second))
+            self.startLineEdits[-1].setText(self.secondsToHMS(start_second))
             self.titleGridLayout.addWidget(self.startLineEdits[-1], 1, 2, 1, 1)
 
 
