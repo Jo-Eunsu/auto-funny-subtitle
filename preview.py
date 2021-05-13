@@ -122,7 +122,7 @@ class Preview_UI(QtWidgets.QWidget):
     # 예능자막 태그를 전부 불러와서 UI에 적용시키는 함수
     def initializeTitles(self):
         # 텍스트박스와 프리뷰 이미지 라벨을 리스트로 초기화
-        self.startLineEdits = self.endLineEdits = self.templateSelectors = self.titlePlainTextEdits = self.previewLabels = []
+        self.startLineEditList = self.endLineEditList = self.templateSelectorList = self.titlePlainTextEdits = self.previewLabelList = []
 
         # 모든 변환된 예능자막 템플릿 태그(<video> 태그)를 불러오기
         self.videoElements = self.modified_xml.loadAllVideoElements()
@@ -157,8 +157,8 @@ class Preview_UI(QtWidgets.QWidget):
 
             # 시작 시각 (시:분:초:1/100초)을 표시하고 수정할 수 있는 라인에디트 박스
             # TODO: 시작 시각을 video태그에서 검색한 다음 계산해서 settext 명령어로 텍스트를 삽입
-            self.startLineEdits.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
-            self.startLineEdits[-1].setObjectName("startLineEdit")
+            self.startLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startLineEditList[-1].setObjectName("startLineEdit")
 
             #시작 시간을 직접 계산해서 텍스트 박스애 넣어 주기
             offset_attrib = videoElement['node'].attrib['offset']                           #'161300/2997s'
@@ -167,9 +167,8 @@ class Preview_UI(QtWidgets.QWidget):
             dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        #dividend = 161300, divisor = 2997
             start_second = dividend / divisor
 
-            print(self.secondsToHMS(start_second))
-            self.startLineEdits[-1].setText(self.secondsToHMS(start_second))
-            self.titleGridLayout.addWidget(self.startLineEdits[-1], 1, 2, 1, 1)
+            self.startLineEditList[-1].setText(self.secondsToHMS(start_second))
+            self.titleGridLayout.addWidget(self.startLineEditList[-1], 1, 2, 1, 1)
 
 
             # '끝' 라벨
@@ -188,10 +187,20 @@ class Preview_UI(QtWidgets.QWidget):
 
             # 끝 시각 (시:분:초:1/100초)을 표시하고 수정할 수 있는 라인에디트 박스
             # TODO: 끝 시각을 video태그에서 검색한 다음 계산해서 settext 명령어로 텍스트를 삽입
-            self.endLineEdit = QtWidgets.QLineEdit(self.scrollAreaWidgetContents)
-            self.endLineEdit.setObjectName("endLineEdit")
-            self.endLineEdits[-1].setText("")
-            self.titleGridLayout.addWidget(self.endLineEdit, 2, 2, 1, 1)
+            self.endLineEditList.append( QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.endLineEditList[-1].setObjectName("endLineEdit")
+
+            #끝 시간을 직접 계산해서 텍스트 박스애 넣어 주기
+            offset_attrib = videoElement['node'].attrib['duration']                           #'161300/2997s'
+            offset_attrib = offset_attrib.rstrip('s')                               #'161300/2997'
+            duration_numbers = offset_attrib .split('/')                               #['161300, '2997']
+            dividend, divisor = int(duration_numbers[0]), int(duration_numbers[1])        #dividend = 161300, divisor = 2997
+            duration_second = dividend / divisor
+            end_second = start_second + duration_second
+
+
+            self.endLineEditList[-1].setText(self.secondsToHMS(end_second))
+            self.titleGridLayout.addWidget(self.endLineEditList[-1], 2, 2, 1, 1)
 
             # 2열과 3열 사이 Spacer 설정  
             spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
