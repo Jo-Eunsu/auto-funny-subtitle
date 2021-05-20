@@ -123,6 +123,8 @@ class Preview_UI(QtWidgets.QWidget):
     def initializeTitles(self):
         # 텍스트박스와 프리뷰 이미지 라벨을 리스트로 초기화
         self.startLineEditList = self.endLineEditList = self.templateSelectorList = self.titlePlainTextEdits = self.previewLabelList = []
+        self.startHHLineEditList = self.startMMLineEditList = self.startSSLineEditList = self.startMSLineEditList = []
+        self.endHHLineEditList = self.endMMLineEditList = self.endSSLineEditList = self.endMSLineEditList = []
 
         # 모든 변환된 예능자막 템플릿 태그(<video> 태그)를 불러오기
         self.videoElements = self.modified_xml.loadAllVideoElements()
@@ -157,8 +159,10 @@ class Preview_UI(QtWidgets.QWidget):
 
             # 시작 시각 (시:분:초:1/100초)을 표시하고 수정할 수 있는 라인에디트 박스
             # TODO: 시작 시각을 video태그에서 검색한 다음 계산해서 settext 명령어로 텍스트를 삽입
-            self.startLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
-            self.startLineEditList[-1].setObjectName("startLineEdit")
+            self.startLayout = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents)
+            self.startLayout.setObjectName("startLayout")
+            self.startLayout.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.titleGridLayout.addLayout(self.startLayout, 1, 2, 1, 1)
 
             #시작 시간을 직접 계산해서 텍스트 박스애 넣어 주기
             offset_attrib = videoElement['node'].attrib['offset']                           #'161300/2997s'
@@ -167,8 +171,45 @@ class Preview_UI(QtWidgets.QWidget):
             dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        #dividend = 161300, divisor = 2997
             start_second = dividend / divisor
 
-            self.startLineEditList[-1].setText(self.secondsToHMS(start_second))
-            self.titleGridLayout.addWidget(self.startLineEditList[-1], 1, 2, 1, 1)
+            # (구) 시분초 텍스트를 텍스트박스에 표시
+            # self.startLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            # self.startLineEditList[-1].setObjectName("startLineEdit")
+            # self.startLineEditList[-1].setText(self.secondsToHMSS(start_second))
+            # self.titleGridLayout.addWidget(self.startLineEditList[-1], 1, 2, 1, 1)
+
+            # 시작 시간, 분, 초, 밀리초 부분을 따로 라인에디트로 만듬
+            hh, mm, ss, ms = self.secondsToHMSSTuple(start_second)
+            self.startHHLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startHHLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.startHHLineEditList[-1].setText(hh)
+            self.startLayout.addWidget(self.startHHLineEditList[-1])
+            
+            self.startTimeDividor1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            self.startTimeDividor1.setText(":")
+            self.startLayout.addWidget(self.startTimeDividor1)
+
+            self.startMMLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startMMLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.startMMLineEditList[-1].setText(mm)
+            self.startLayout.addWidget(self.startMMLineEditList[-1])
+
+            self.startTimeDividor2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            self.startTimeDividor2.setText(":")
+            self.startLayout.addWidget(self.startTimeDividor2)
+
+            self.startSSLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startSSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.startSSLineEditList[-1].setText(ss)
+            self.startLayout.addWidget(self.startSSLineEditList[-1])
+
+            self.startTimeDividor3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            self.startTimeDividor3.setText(".")
+            self.startLayout.addWidget(self.startTimeDividor3)
+
+            self.startMSLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startMSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.startMSLineEditList[-1].setText(ms)
+            self.startLayout.addWidget(self.startMSLineEditList[-1])
 
 
             # '끝' 라벨
@@ -199,7 +240,9 @@ class Preview_UI(QtWidgets.QWidget):
             end_second = start_second + duration_second
 
 
-            self.endLineEditList[-1].setText(self.secondsToHMS(end_second))
+
+            
+            self.endLineEditList[-1].setText(self.secondsToHMSS(end_second))
             self.titleGridLayout.addWidget(self.endLineEditList[-1], 2, 2, 1, 1)
 
             # 2열과 3열 사이 Spacer 설정  
@@ -247,9 +290,14 @@ class Preview_UI(QtWidgets.QWidget):
             self.titleTextLayout.setObjectName("titleTextLayout")
             self.titleGridLayout.addLayout(self.titleTextLayout, 2, 5, 1, 1)
 
-            self.titlePlainTextEdit = QtWidgets.QPlainTextEdit(self.scrollAreaWidgetContents)
-            self.titlePlainTextEdit.setObjectName("titlePlainTextEdit")
-            self.titleTextLayout.addWidget(self.titlePlainTextEdit)
+            # 자막 텍스트 표시
+            self.titlePlainTextEdits.append(QtWidgets.QPlainTextEdit(self.scrollAreaWidgetContents))
+            self.titlePlainTextEdits[-1].setObjectName("titlePlainTextEdit")
+            for param in videoElement["node"].iter():
+                if param.attrib["name"] == "Text":
+                    self.titlePlainTextEdits[-1].setPlainText(param.attrib["value"])
+
+            self.titleTextLayout.addWidget(self.titlePlainTextEdits[-1])
 
             # 미리보기 이미지의 왼쪽 요소를 전체 레이아웃에 왼쪽부터 삽입
             self.titleWholeLayout.addLayout(self.titleGridLayout)
@@ -268,7 +316,7 @@ class Preview_UI(QtWidgets.QWidget):
             self.multipleTitleLayout.addLayout(self.titleWholeLayout)
 
     #초를 시분초로 바꾸는 함수
-    def secondsToHMS(self, seconds: float) -> str:
+    def secondsToHMSS(self, seconds: float) -> str:
         hours = int(seconds // 3600)
         minuts = int( ( seconds - (hours*3600) ) // 60 )
         ss = int( seconds % 60 )
@@ -279,6 +327,19 @@ class Preview_UI(QtWidgets.QWidget):
         ms = "{:.3f}".format(seconds)[-3:]
 
         return hours + ":" + minuts + ":" + ss + "." + ms
+
+    #초를 시분초로 바꾸는 함수 (튜플 변환)
+    def secondsToHMSSTuple(self, seconds: float) -> tuple:
+        hours = int(seconds // 3600)
+        minuts = int( ( seconds - (hours*3600) ) // 60 )
+        ss = int( seconds % 60 )
+
+        hours = str(hours).zfill(2)
+        minuts = str(minuts).zfill(2)
+        ss = str(ss).zfill(2)
+        ms = "{:.3f}".format(seconds)[-3:]
+
+        return hours, minuts, ss, ms
 
 
 # 메인함수 실행
