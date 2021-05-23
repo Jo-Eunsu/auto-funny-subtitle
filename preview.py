@@ -156,7 +156,7 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 시작 시각 (시:분:초:1/100초)을 표시하고 수정할 수 있는 라인에디트 박스
             # TODO: 시작 시각을 video태그에서 검색한 다음 계산해서 settext 명령어로 텍스트를 삽입
-            self.startLayout = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents)
+            self.startLayout = QtWidgets.QHBoxLayout()
             self.startLayout.setObjectName("startLayout")
             self.startLayout.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
             self.titleGridLayout.addLayout(self.startLayout, 1, 2, 1, 1)
@@ -169,37 +169,47 @@ class Preview_UI(QtWidgets.QDialog):
             start_second = dividend / divisor
 
             # 시작 시간, 분, 초, 밀리초 부분을 따로 라인에디트로 만듬
+
             hh, mm, ss, ms = self.secondsToHMSSTuple(start_second)
+
+            # 시각 텍스트박스 
             self.startHHLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
             self.startHHLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
             self.startHHLineEditList[-1].setText(hh)
+            self.startHHLineEditList[-1].setValidator(QtGui.QIntValidator(0, 99))
             self.startLayout.addWidget(self.startHHLineEditList[-1])
             
             self.startTimeDividor1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.startTimeDividor1.setText(":")
             self.startLayout.addWidget(self.startTimeDividor1)
 
+            # 분 텍스트 박스
             self.startMMLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
             self.startMMLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
             self.startMMLineEditList[-1].setText(mm)
+            self.startMMLineEditList[-1].setValidator(QtGui.QIntValidator(0, 59))
             self.startLayout.addWidget(self.startMMLineEditList[-1])
 
             self.startTimeDividor2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.startTimeDividor2.setText(":")
             self.startLayout.addWidget(self.startTimeDividor2)
-
+            
+            # 초 텍스트 박스
             self.startSSLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
             self.startSSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
             self.startSSLineEditList[-1].setText(ss)
+            self.startSSLineEditList[-1].setValidator(QtGui.QIntValidator(0, 59))
             self.startLayout.addWidget(self.startSSLineEditList[-1])
 
             self.startTimeDividor3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.startTimeDividor3.setText(".")
             self.startLayout.addWidget(self.startTimeDividor3)
 
+            # 밀리초 텍스트 박스
             self.startMSLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
             self.startMSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
             self.startMSLineEditList[-1].setText(ms)
+            self.startMSLineEditList[-1].setValidator(QtGui.QIntValidator(0, 999))
             self.startLayout.addWidget(self.startMSLineEditList[-1])
 
 
