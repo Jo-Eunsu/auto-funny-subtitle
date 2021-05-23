@@ -209,7 +209,7 @@ class MainWindow_UI(QtWidgets.QMainWindow):
                         # 파일 불러오기가 완료되었다는 안내 프롬프트 띄우기. 새로 파일을 불러왔으므로 변환 상태를 0으로 지정
                         self.progressbar.setValue(0)
                         self.progressMessage.setText("파일 불러오기 완료")
-                        QtWidgets.QApplication.processEvents()
+                        QtWidgets.QApplication.processEvents()  
 
                         # 버튼의 활성 상태 설정
                         self.xmlConversionButton.setEnabled(True)

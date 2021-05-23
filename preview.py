@@ -61,9 +61,6 @@ class Preview_UI(QtWidgets.QWidget):
         # 각 예능자막 텍스트 태그를 불러오고, 요소를 불러와 UI에 적용하는 과정(Initialize)
         self.initializeTitles()
 
-
-       
-
         # 버튼 2개가 들어갈 레이아웃 설정하고 안에다가 스페이서 3개, 버튼 2개 집어넣음
 
         self.buttonLayout = QtWidgets.QHBoxLayout()
@@ -170,12 +167,6 @@ class Preview_UI(QtWidgets.QWidget):
             start_numbers = offset_attrib .split('/')                               #['161300, '2997']
             dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        #dividend = 161300, divisor = 2997
             start_second = dividend / divisor
-
-            # (구) 시분초 텍스트를 텍스트박스에 표시
-            # self.startLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
-            # self.startLineEditList[-1].setObjectName("startLineEdit")
-            # self.startLineEditList[-1].setText(self.secondsToHMSS(start_second))
-            # self.titleGridLayout.addWidget(self.startLineEditList[-1], 1, 2, 1, 1)
 
             # 시작 시간, 분, 초, 밀리초 부분을 따로 라인에디트로 만듬
             hh, mm, ss, ms = self.secondsToHMSSTuple(start_second)
