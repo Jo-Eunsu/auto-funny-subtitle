@@ -305,6 +305,10 @@ class Preview_UI(QtWidgets.QWidget):
 
             # 만들어진 요소를 이어붙이기
             self.multipleTitleLayout.addLayout(self.titleWholeLayout)
+            
+            # 디버깅 용도: 처리되고 있는 자막 표시
+            
+            print("showing titles", text())
 
     #초를 시분초로 바꾸는 함수
     def secondsToHMSS(self, seconds: float) -> str:
