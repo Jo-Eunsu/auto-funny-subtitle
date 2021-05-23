@@ -128,6 +128,7 @@ class Preview_UI(QtWidgets.QWidget):
             
         videoElement: Element = None #타입 지정 
         for videoElement in self.videoElements:
+            title_text = ''
 
             # 시작, 끝, 자막템플릿 종류, 자막 텍스트 등 정보를 UI에 표시
             # 전체 레이아웃
@@ -287,6 +288,7 @@ class Preview_UI(QtWidgets.QWidget):
             for param in videoElement["node"].iter():
                 if param.attrib["name"] == "Text":
                     self.titlePlainTextEdits[-1].setPlainText(param.attrib["value"])
+                    title_text = param.attrib["value"]
 
             self.titleTextLayout.addWidget(self.titlePlainTextEdits[-1])
 
@@ -308,7 +310,7 @@ class Preview_UI(QtWidgets.QWidget):
             
             # 디버깅 용도: 처리되고 있는 자막 표시
             
-            print("showing titles", text())
+            print("showing titles", title_text)
 
     #초를 시분초로 바꾸는 함수
     def secondsToHMSS(self, seconds: float) -> str:
