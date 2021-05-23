@@ -14,8 +14,8 @@ from preview import Preview_UI
 
 class MainWindow_UI(QtWidgets.QMainWindow):
 
-    # 창 크기 초기화(가로: 700, 세로: 300)
-    def __init__(self, width, height):
+    # 창 크기 초기화(가로: 700, 세로: 300) 
+    def __init__(self, width=700, height=300):
         super().__init__()
         self.__width = width
         self.__height = height
