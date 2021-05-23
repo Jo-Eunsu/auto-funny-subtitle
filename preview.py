@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import sys, copy
 from FCPX_XML import FCPX_XML
 
-class Preview_UI(QtWidgets.QWidget):
+class Preview_UI(QtWidgets.QDialog):
 
     # 초기화: 해당 창의 크기(가로, 세로) 설정
     # 프리뷰 화면이 열릴때 XML 객체도 같이 가지고 올 수 있도록 설정 
@@ -27,7 +27,6 @@ class Preview_UI(QtWidgets.QWidget):
 
         # 창 설정 후 출력
         self.setupUi()
-        self.show()
 
     # ui 형성 (가로:900, 세로:400)
     def setupUi(self):
@@ -302,7 +301,7 @@ class Preview_UI(QtWidgets.QWidget):
             # 미리보기 이미지 라벨 (지금 작업 안함)
             self.previewLabel = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.previewLabel.setObjectName("previewLabel")
-            "Preview Image (Alternative Text)"
+            self.previewLabel.setText("Preview Image (Alternative Text)")
             self.titleWholeLayout.addWidget(self.previewLabel)
 
             # 만들어진 요소를 이어붙이기
@@ -344,6 +343,7 @@ def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
     preview_xml = FCPX_XML('히밥님12.fcpxml')
     preview_ui = Preview_UI(preview_xml, 800, 500)
+    preview_ui.show()
     sys.exit(app.exec_())
 
     return 0

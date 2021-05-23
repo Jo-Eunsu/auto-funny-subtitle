@@ -278,6 +278,7 @@ class MainWindow_UI(QtWidgets.QMainWindow):
                 raise ValueError
             
             preview_ui = Preview_UI(self.fcpx_xml, 800, 500)
+            result = preview_ui.exec_() 
 
             # 프리뷰 창 생성 후 띄우기
             # previewForm = QtWidgets.QDialog()
