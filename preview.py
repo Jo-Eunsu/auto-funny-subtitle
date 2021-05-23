@@ -18,7 +18,7 @@ class Preview_UI(QtWidgets.QDialog):
     # 초기화: 해당 창의 크기(가로, 세로) 설정
     # 프리뷰 화면이 열릴때 XML 객체도 같이 가지고 올 수 있도록 설정 
     def __init__(self, xml: FCPX_XML, width=800, height=500):
-        super().__init__()
+        super().__init__() 
         self.__width = width
         self.__height = height
         self.fcpx_xml: FCPX_XML = xml
@@ -168,15 +168,18 @@ class Preview_UI(QtWidgets.QDialog):
             dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        #dividend = 161300, divisor = 2997
             start_second = dividend / divisor
 
-            # 시작 시간, 분, 초, 밀리초 부분을 따로 라인에디트로 만듬
+            # 시작 시간, 분, 초, 밀리초 부분을 화살표 없는 스핀박스로 만듬.
 
             hh, mm, ss, ms = self.secondsToHMSSTuple(start_second)
 
             # 시각 텍스트박스 
-            self.startHHLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startHHLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.startHHLineEditList[-1].setMinimum(0)
+            self.startHHLineEditList[-1].setMaximum(99)
+            self.startHHLineEditList[-1].setSingleStep(1)
+            self.startHHLineEditList[-1].setValue(int(hh))
             self.startHHLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startHHLineEditList[-1].setText(hh)
-            self.startHHLineEditList[-1].setValidator(QtGui.QIntValidator(0, 99))
+            self.startHHLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
             self.startLayout.addWidget(self.startHHLineEditList[-1])
             
             self.startTimeDividor1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -184,10 +187,13 @@ class Preview_UI(QtWidgets.QDialog):
             self.startLayout.addWidget(self.startTimeDividor1)
 
             # 분 텍스트 박스
-            self.startMMLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startMMLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.startMMLineEditList[-1].setMinimum(0)
+            self.startMMLineEditList[-1].setMaximum(59)
+            self.startMMLineEditList[-1].setSingleStep(1)
+            self.startMMLineEditList[-1].setValue(int(mm))
             self.startMMLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startMMLineEditList[-1].setText(mm)
-            self.startMMLineEditList[-1].setValidator(QtGui.QIntValidator(0, 59))
+            self.startMMLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
             self.startLayout.addWidget(self.startMMLineEditList[-1])
 
             self.startTimeDividor2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -195,10 +201,13 @@ class Preview_UI(QtWidgets.QDialog):
             self.startLayout.addWidget(self.startTimeDividor2)
             
             # 초 텍스트 박스
-            self.startSSLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startSSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.startSSLineEditList[-1].setMinimum(0)
+            self.startSSLineEditList[-1].setMaximum(59)
+            self.startSSLineEditList[-1].setSingleStep(1)
+            self.startSSLineEditList[-1].setValue(int(ss))
             self.startSSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startSSLineEditList[-1].setText(ss)
-            self.startSSLineEditList[-1].setValidator(QtGui.QIntValidator(0, 59))
+            self.startSSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
             self.startLayout.addWidget(self.startSSLineEditList[-1])
 
             self.startTimeDividor3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -206,10 +215,13 @@ class Preview_UI(QtWidgets.QDialog):
             self.startLayout.addWidget(self.startTimeDividor3)
 
             # 밀리초 텍스트 박스
-            self.startMSLineEditList.append(QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
+            self.startMSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.startMSLineEditList[-1].setMinimum(0)
+            self.startMSLineEditList[-1].setMaximum(999)
+            self.startMSLineEditList[-1].setSingleStep(1)
+            self.startMSLineEditList[-1].setValue(int(ms))
             self.startMSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startMSLineEditList[-1].setText(ms)
-            self.startMSLineEditList[-1].setValidator(QtGui.QIntValidator(0, 999))
+            self.startMSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
             self.startLayout.addWidget(self.startMSLineEditList[-1])
 
 
@@ -229,8 +241,10 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 끝 시각 (시:분:초:1/100초)을 표시하고 수정할 수 있는 라인에디트 박스
             # TODO: 끝 시각을 video태그에서 검색한 다음 계산해서 settext 명령어로 텍스트를 삽입
-            self.endLineEditList.append( QtWidgets.QLineEdit(self.scrollAreaWidgetContents))
-            self.endLineEditList[-1].setObjectName("endLineEdit")
+            self.endLayout = QtWidgets.QHBoxLayout()
+            self.endLayout.setObjectName("endlayout")
+            self.endLayout.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.titleGridLayout.addLayout(self.endLayout, 2, 2, 1, 1)
 
             #끝 시간을 직접 계산해서 텍스트 박스애 넣어 주기
             offset_attrib = videoElement['node'].attrib['duration']                           #'161300/2997s'
@@ -243,8 +257,59 @@ class Preview_UI(QtWidgets.QDialog):
 
 
             
-            self.endLineEditList[-1].setText(self.secondsToHMSS(end_second))
-            self.titleGridLayout.addWidget(self.endLineEditList[-1], 2, 2, 1, 1)
+            hh, mm, ss, ms = self.secondsToHMSSTuple(end_second)
+
+            # 시각 텍스트박스 
+            self.endHHLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.endHHLineEditList[-1].setMinimum(0)
+            self.endHHLineEditList[-1].setMaximum(99)
+            self.endHHLineEditList[-1].setSingleStep(1)
+            self.endHHLineEditList[-1].setValue(int(hh))
+            self.endHHLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.endHHLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endLayout.addWidget(self.endHHLineEditList[-1])
+            
+            self.endTimeDividor1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            self.endTimeDividor1.setText(":")
+            self.endLayout.addWidget(self.endTimeDividor1)
+
+            # 분 텍스트 박스
+            self.endMMLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.endMMLineEditList[-1].setMinimum(0)
+            self.endMMLineEditList[-1].setMaximum(59)
+            self.endMMLineEditList[-1].setSingleStep(1)
+            self.endMMLineEditList[-1].setValue(int(mm))
+            self.endMMLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.endMMLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endLayout.addWidget(self.endMMLineEditList[-1])
+
+            self.endTimeDividor2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            self.endTimeDividor2.setText(":")
+            self.endLayout.addWidget(self.endTimeDividor2)
+            
+            # 초 텍스트 박스
+            self.endSSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.endSSLineEditList[-1].setMinimum(0)
+            self.endSSLineEditList[-1].setMaximum(59)
+            self.endSSLineEditList[-1].setSingleStep(1)
+            self.endSSLineEditList[-1].setValue(int(ss))
+            self.endSSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.endSSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endLayout.addWidget(self.endSSLineEditList[-1])
+
+            self.endTimeDividor3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            self.endTimeDividor3.setText(".")
+            self.endLayout.addWidget(self.endTimeDividor3)
+
+            # 밀리초 텍스트 박스
+            self.endMSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
+            self.endMSLineEditList[-1].setMinimum(0)
+            self.endMSLineEditList[-1].setMaximum(999)
+            self.endMSLineEditList[-1].setSingleStep(1)
+            self.endMSLineEditList[-1].setValue(int(ms))
+            self.endMSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
+            self.endMSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endLayout.addWidget(self.endMSLineEditList[-1])
 
             # 2열과 3열 사이 Spacer 설정  
             spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
