@@ -1,6 +1,6 @@
 
 # FCPX XML 수정을 위해서는 Template_JSON 클래스와 AzureAnalytics 및 ElementTree(XML 처리 모듈) 클래스가 필요
-from typing import NoReturn, Tuple, TypeVar
+from typing import List, NoReturn, Tuple, TypeVar
 from xml.etree.ElementTree import Element, ElementTree, SubElement, parse
 from Template_JSON import Template_JSON
 from AzureAnalytics import AzureAnalytics
@@ -191,7 +191,12 @@ class FCPX_XML:
             if param_attrib["name"] == "Text":
                 param_attrib["value"] = text
             # param 태그를 만들어서 video 태그 안에 달아주기
-            SubElement(video_element, "param", param_attrib)                
+            SubElement(video_element, "param", param_attrib)            
+
+
+    # Templ
+    def get_all_template(self) -> List:
+        return self.__funny_title_text_templates.get_all_template()    
         
 
     # 새로운 XML 파일을 작성하는 메소드 (리턴값은 xml 구조를 가지는 ElementTree)

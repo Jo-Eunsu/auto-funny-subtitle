@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf8'?>
+
 <fcpxml version="1.9">
     <resources>
         <format id="r1" name="FFVideoFormat1080p2398" frameDuration="1001/24000s" width="1920" height="1080" colorSpace="1-1-1 (Rec. 709)" />
