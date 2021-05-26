@@ -410,6 +410,10 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 만들어진 요소를 이어붙이기
             self.multipleTitleLayout.addLayout(self.titleWholeLayout)
+            self.titleGridLayout.setColumnStretch(1, 1)
+            self.titleGridLayout.setColumnStretch(2, 2)
+            self.titleGridLayout.setColumnStretch(3, 1000)
+            self.titleGridLayout.setColumnStretch(4, 3)
             
             # 디버깅 용도: 처리되고 있는 자막 표시
             
@@ -446,7 +450,7 @@ class Preview_UI(QtWidgets.QDialog):
 def main() -> int:
     app = QtWidgets.QApplication(sys.argv)
     preview_xml = FCPX_XML('contest_woowakgood_edit.fcpxml')
-    preview_ui = Preview_UI(preview_xml, 800, 500)
+    preview_ui = Preview_UI(preview_xml, 1000, 600)
     preview_ui.show()
     sys.exit(app.exec_())
 
