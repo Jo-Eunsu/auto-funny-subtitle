@@ -26,6 +26,7 @@ class Preview_UI(QtWidgets.QDialog):
         self.fcpx_xml: FCPX_XML = xml
         self.modified_xml = copy.deepcopy(self.fcpx_xml)
         self.__xml_saved = True
+        self.videoElements = self.modified_xml.loadAllVideoElements()
 
         # 창 설정 후 출력
         self.setupUi()
@@ -85,7 +86,7 @@ class Preview_UI(QtWidgets.QDialog):
         self.saveButton.setObjectName("saveButton")
         self.buttonLayout.addWidget(self.saveButton)
         self.saveButton.setText('저장')
-        self.saveButton.clicked.connect(self.close)
+        self.saveButton.clicked.connect(self.filesave)
 
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
 
@@ -108,7 +109,7 @@ class Preview_UI(QtWidgets.QDialog):
         else:
             buttonSelected = QtWidgets.QMessageBox.question(self, '수정된 자막이 저장되지 않음', '수정된 자막 파일이 저장되지 않았습니다.\n저장하고 종료하시려면 Save를, 저장하지 않고 종료하시려면 Discard를 눌러주세요.\n종료를 취소하려면 Cancel을 눌러주세요.', QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Discard | QtWidgets.QMessageBox.Cancel, QtWidgets.QMessageBox.Cancel)
             if buttonSelected == QtWidgets.QMessageBox.Save: 
-                #self.filesave()
+                self.filesave()
                 event.accept()
             elif buttonSelected == QtWidgets.QMessageBox.Discard:
                 event.accept()
@@ -118,20 +119,67 @@ class Preview_UI(QtWidgets.QDialog):
     def readyToSave(self):
         self.__xml_saved = False
     
+    def filesave(self):
+        videoElement: dict = None
+        for i, videoElement in enumerate(self.videoElements):
+            offset_text = self.HMSSToSecondsStr(
+                hours=int(self.startHHLineEditList[i].value()),
+                minutes=int(self.startMMLineEditList[i].value()), 
+                ss=int(self.startSSLineEditList[i].value()), 
+                ms=int(self.startMSLineEditList[i].value()),
+                divisor=int(self.startDivisorList[i])
+            )
+            duration_text = self.HMSSToSecondsStr(
+                hours=int(self.endHHLineEditList[i].value()-self.startHHLineEditList[i].value()),
+                minutes=int(self.endMMLineEditList[i].value()-self.startMMLineEditList[i].value()), 
+                ss=int(self.endSSLineEditList[i].value()-self.startSSLineEditList[i].value()), 
+                ms=int(self.endMSLineEditList[i].value()-self.startMSLineEditList[i].value()),
+                divisor=int(self.durationDivisorList[i])
+            )
 
+            # 기존 video 태그 변환
+            self.modified_xml.video_xml_modification(
+                video_element=videoElement["node"], 
+                offset_attrib=offset_text,
+                duration_attrib=duration_text,
+                template_name=self.templateSelectorList[i].currentText(),
+                title_text=self.titlePlainTextEdits[i].toPlainText()
+            )
+                    
+
+        del self.fcpx_xml
+        self.fcpx_xml = self.modified_xml
+        self.modified_xml = copy.deepcopy(self.fcpx_xml)
+        print("저장 완료")
+        self.__xml_saved = True
+            
 
     # 예능자막 태그를 전부 불러와서 UI에 적용시키는 함수
     def initializeTitles(self):
         # 텍스트박스와 프리뷰 이미지 라벨을 리스트로 초기화
-        self.startLineEditList = self.endLineEditList = self.templateSelectorList = self.titlePlainTextEdits = self.previewLabelList = []
-        self.startHHLineEditList = self.startMMLineEditList = self.startSSLineEditList = self.startMSLineEditList = []
-        self.endHHLineEditList = self.endMMLineEditList = self.endSSLineEditList = self.endMSLineEditList = []
+        self.startLineEditList = []
+        self.endLineEditList = []
+        self.templateSelectorList = []
+        self.titlePlainTextEdits = []
+        self.previewLabelList = []
+
+        self.startHHLineEditList = []
+        self.startMMLineEditList = []
+        self.startSSLineEditList = []
+        self.startMSLineEditList = []
+
+        self.endHHLineEditList = []
+        self.endMMLineEditList = []
+        self.endSSLineEditList = []
+        self.endMSLineEditList = []
+
+        self.startDivisorList = []
+        self.durationDivisorList = []
 
         # 모든 변환된 예능자막 템플릿 태그(<video> 태그)를 불러오기
-        self.videoElements = self.modified_xml.loadAllVideoElements()
             
         videoElement: Element = None #타입 지정 
-        for videoElement in self.videoElements:
+        for i, videoElement in enumerate(self.videoElements):
             title_text = ''
 
             # 시작, 끝, 자막템플릿 종류, 자막 텍스트 등 정보를 UI에 표시
@@ -167,14 +215,14 @@ class Preview_UI(QtWidgets.QDialog):
             self.titleGridLayout.addLayout(self.startLayout, 1, 2, 1, 1)
 
             #시작 시간을 직접 계산해서 텍스트 박스애 넣어 주기
-            offset_attrib = videoElement['node'].attrib['offset']                           #'161300/2997s'
-            offset_attrib = offset_attrib.rstrip('s')                               #'161300/2997'
-            start_numbers = offset_attrib .split('/')                               #['161300, '2997']
-            dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        #dividend = 161300, divisor = 2997
+            offset_attrib = videoElement['node'].attrib['offset']                   # '161300/2997s'
+            offset_attrib = offset_attrib.rstrip('s')                               # '161300/2997'
+            start_numbers = offset_attrib .split('/')                               # ['161300, '2997']
+            dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        # dividend = 161300, divisor = 2997
+            self.startDivisorList.append(divisor)                                   #  나누는 수를 리스트로 따로 저장(나중에 저장할 때 사용)
             start_second = dividend / divisor
 
             # 시작 시간, 분, 초, 밀리초 부분을 화살표 없는 스핀박스로 만듬.
-
             hh, mm, ss, ms = self.secondsToHMSSTuple(start_second)
 
             # 시각 텍스트박스 
@@ -256,10 +304,11 @@ class Preview_UI(QtWidgets.QDialog):
             self.titleGridLayout.addLayout(self.endLayout, 2, 2, 1, 1)
 
             #끝 시간을 직접 계산해서 텍스트 박스애 넣어 주기
-            offset_attrib = videoElement['node'].attrib['duration']                           #'161300/2997s'
-            offset_attrib = offset_attrib.rstrip('s')                               #'161300/2997'
-            duration_numbers = offset_attrib .split('/')                               #['161300, '2997']
-            dividend, divisor = int(duration_numbers[0]), int(duration_numbers[1])        #dividend = 161300, divisor = 2997
+            offset_attrib = videoElement['node'].attrib['duration']                     # '161300/2997s'
+            offset_attrib = offset_attrib.rstrip('s')                                   # '161300/2997'
+            duration_numbers = offset_attrib .split('/')                                # ['161300, '2997']
+            dividend, divisor = int(duration_numbers[0]), int(duration_numbers[1])      # dividend = 161300, divisor = 2997
+            self.durationDivisorList.append(divisor)                                    # 나누는 수를 리스트로 따로 저장(나중에 저장할 때 사용)
             duration_second = dividend / divisor
             end_second = start_second + duration_second
 
@@ -403,10 +452,17 @@ class Preview_UI(QtWidgets.QDialog):
             self.titleWholeLayout.addItem(spacerItem6)
 
             # 미리보기 이미지 라벨 (지금 작업 안함)
-            self.previewLabel = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            self.previewLabel.setObjectName("previewLabel")
-            self.previewLabel.setText("Preview Image (Alternative Text)")
-            self.titleWholeLayout.addWidget(self.previewLabel)
+            self.previewLabelList.append(QtWidgets.QLabel(self.scrollAreaWidgetContents))
+            self.previewLabelList[-1].setObjectName("previewLabel")
+            self.previewLabelList[-1].setText("Preview Image (Alternative Text)")
+            self.SetPreviewImage(self.previewLabelList[-1], self.templateSelectorList[-1].currentText())
+            self.titleWholeLayout.addWidget(self.previewLabelList[-1])
+
+            # 자막 템플릿 콤보박스에서 다른 값을 선택하면 프리뷰 이미지 변경
+    
+            self.templateSelectorList[-1].currentIndexChanged.connect(
+                lambda: self.SetPreviewImage(self.previewLabelList[-1], self.templateSelectorList[-1].currentText())
+            )
 
             # 만들어진 요소를 이어붙이기
             self.multipleTitleLayout.addLayout(self.titleWholeLayout)
@@ -444,6 +500,18 @@ class Preview_UI(QtWidgets.QDialog):
         ms = "{:.3f}".format(seconds)[-3:]
 
         return hours, minuts, ss, ms
+    
+    def HMSSToSecondsStr(self, hours: int, minutes: int, ss: int, ms: int, divisor: int) -> str:
+        seconds = float(hours) * 3600 + float(minutes) * 60 + float(ss) + float(ms) * 0.001
+        seconds = int(seconds * divisor)
+        seconds = str(seconds) + '/' + str(divisor) + 's'
+        return seconds
+
+    # 프리뷰 이미지 설정하는 함수
+    def SetPreviewImage(self, label: QtWidgets.QLabel, emotion: str):
+        template_path = "title-template/" + emotion + "/large.png"
+        label.setPixmap(QtGui.QPixmap(template_path))
+
 
 
 # 메인함수 실행

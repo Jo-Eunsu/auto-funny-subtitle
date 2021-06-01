@@ -72,6 +72,12 @@ class Template_JSON:
                 all_template_list.append(template_emotion_num)
         return all_template_list
 
+    def get_template_at_name(self, name: str) -> dict:
+        all_template_list = self.get_all_template()
+        for template in all_template_list:
+            if name == template["effect"]["name"]:
+                return template
+
     # 모든 감정의 종류를 리스트 형태로 리턴하는 함수
     def get_emotion_list(self) -> list:
         return self.__template_info.keys()

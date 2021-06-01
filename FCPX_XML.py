@@ -175,7 +175,7 @@ class FCPX_XML:
         # 각 title 태그에 들어 있는 텍스트의 감정에 알맞는 템플릿(json) 불러오기
         template_json = self.__funny_title_text_templates.get_template_at_number(emotion, template_number)["video"]
         # 템플릿 json의 id를 ref로 변수 생성해서 자막 텍스트에 연결하도록 지정
-        ref: int = self.__funny_title_text_templates.get_template_at_number(emotion, template_number)["effect"]["id"]
+        ref: str = self.__funny_title_text_templates.get_template_at_number(emotion, template_number)["effect"]["id"]
         # 해당 템플릿 json의 video 태그 속성 불러오기
         video_tag_attrib = title_element.attrib
         # video 태그의 이름 속성을 템플릿의 video 속성에서 붙여넣기
@@ -192,6 +192,35 @@ class FCPX_XML:
                 param_attrib["value"] = text
             # param 태그를 만들어서 video 태그 안에 달아주기
             SubElement(video_element, "param", param_attrib)            
+
+    # 이미 적용된 video 엘리먼트를 다시 한 번 바꾸는 함수
+    def video_xml_modification(self, video_element: Element, offset_attrib: str, duration_attrib: str, template_name: str, title_text: str) -> NoReturn:
+
+        # 새로 바뀐 감정에 알맞는 템플릿(json) 불러오기
+        template_json = self.__funny_title_text_templates.get_template_at_name(template_name)["video"]
+        # 템플릿 json의 id를 ref로 변수 생성해서 자막 텍스트에 연결하도록 지정
+        ref: str = self.__funny_title_text_templates.get_template_at_name(template_name)["effect"]["id"]
+        # 해당 템플릿 json의 video 태그 속성 불러오기
+        video_tag_attrib = video_element.attrib
+        # video 태그의 속성 수정
+        video_tag_attrib["name"] = template_json["name"]
+        video_tag_attrib["ref"] = ref
+        video_tag_attrib["offset"] = offset_attrib
+        video_tag_attrib["duration"] = duration_attrib
+
+        # 기존의 모든 param 속성 삭제
+        for param in video_element.iter("param"):
+            video_element.remove(param)
+
+        # json 파일에 담겨 있는 여러 param 태그 탐색 후 param 태그 추가
+        for param_attrib in template_json["param"]:
+            # param 태그를 만들어서 video 태그 안에 달아주기
+            SubElement(video_element, "param", param_attrib)    
+
+        # 자막 텍스트 삽입
+        for param in video_element.iter("param"):
+            if param.attrib["name"] == "Text":
+                param.attrib["value"] = title_text 
 
 
     # Templ
