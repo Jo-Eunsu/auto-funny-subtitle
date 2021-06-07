@@ -227,14 +227,14 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 시각 텍스트박스 
             self.startHHLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.startHHLineEditList[-1].setMinimum(0)
-            self.startHHLineEditList[-1].setMaximum(99)
-            self.startHHLineEditList[-1].setSingleStep(1)
-            self.startHHLineEditList[-1].setValue(int(hh))
-            self.startHHLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startHHLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.startHHLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.startLayout.addWidget(self.startHHLineEditList[-1])
+            self.startHHLineEditList[i].setMinimum(0)
+            self.startHHLineEditList[i].setMaximum(99)
+            self.startHHLineEditList[i].setSingleStep(1)
+            self.startHHLineEditList[i].setValue(int(hh))
+            self.startHHLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.startHHLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.startHHLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.startLayout.addWidget(self.startHHLineEditList[i])
             
             self.startTimeDividor1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.startTimeDividor1.setText(":")
@@ -242,14 +242,14 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 분 텍스트 박스
             self.startMMLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.startMMLineEditList[-1].setMinimum(0)
-            self.startMMLineEditList[-1].setMaximum(59)
-            self.startMMLineEditList[-1].setSingleStep(1)
-            self.startMMLineEditList[-1].setValue(int(mm))
-            self.startMMLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startMMLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.startMMLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.startLayout.addWidget(self.startMMLineEditList[-1])
+            self.startMMLineEditList[i].setMinimum(0)
+            self.startMMLineEditList[i].setMaximum(59)
+            self.startMMLineEditList[i].setSingleStep(1)
+            self.startMMLineEditList[i].setValue(int(mm))
+            self.startMMLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.startMMLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.startMMLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.startLayout.addWidget(self.startMMLineEditList[i])
 
             self.startTimeDividor2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.startTimeDividor2.setText(":")
@@ -257,14 +257,14 @@ class Preview_UI(QtWidgets.QDialog):
             
             # 초 텍스트 박스
             self.startSSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.startSSLineEditList[-1].setMinimum(0)
-            self.startSSLineEditList[-1].setMaximum(59)
-            self.startSSLineEditList[-1].setSingleStep(1)
-            self.startSSLineEditList[-1].setValue(int(ss))
-            self.startSSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startSSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.startSSLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.startLayout.addWidget(self.startSSLineEditList[-1])
+            self.startSSLineEditList[i].setMinimum(0)
+            self.startSSLineEditList[i].setMaximum(59)
+            self.startSSLineEditList[i].setSingleStep(1)
+            self.startSSLineEditList[i].setValue(int(ss))
+            self.startSSLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.startSSLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.startSSLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.startLayout.addWidget(self.startSSLineEditList[i])
 
             self.startTimeDividor3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.startTimeDividor3.setText(".")
@@ -272,14 +272,14 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 밀리초 텍스트 박스
             self.startMSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.startMSLineEditList[-1].setMinimum(0)
-            self.startMSLineEditList[-1].setMaximum(999)
-            self.startMSLineEditList[-1].setSingleStep(1)
-            self.startMSLineEditList[-1].setValue(int(ms))
-            self.startMSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.startMSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.startMSLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.startLayout.addWidget(self.startMSLineEditList[-1])
+            self.startMSLineEditList[i].setMinimum(0)
+            self.startMSLineEditList[i].setMaximum(999)
+            self.startMSLineEditList[i].setSingleStep(1)
+            self.startMSLineEditList[i].setValue(int(ms))
+            self.startMSLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.startMSLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.startMSLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.startLayout.addWidget(self.startMSLineEditList[i])
 
 
             # '끝' 라벨
@@ -319,14 +319,14 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 시각 텍스트박스 
             self.endHHLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.endHHLineEditList[-1].setMinimum(0)
-            self.endHHLineEditList[-1].setMaximum(99)
-            self.endHHLineEditList[-1].setSingleStep(1)
-            self.endHHLineEditList[-1].setValue(int(hh))
-            self.endHHLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.endHHLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.endHHLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.endLayout.addWidget(self.endHHLineEditList[-1])
+            self.endHHLineEditList[i].setMinimum(0)
+            self.endHHLineEditList[i].setMaximum(99)
+            self.endHHLineEditList[i].setSingleStep(1)
+            self.endHHLineEditList[i].setValue(int(hh))
+            self.endHHLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.endHHLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endHHLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.endLayout.addWidget(self.endHHLineEditList[i])
             
             self.endTimeDividor1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.endTimeDividor1.setText(":")
@@ -334,14 +334,14 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 분 텍스트 박스
             self.endMMLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.endMMLineEditList[-1].setMinimum(0)
-            self.endMMLineEditList[-1].setMaximum(59)
-            self.endMMLineEditList[-1].setSingleStep(1)
-            self.endMMLineEditList[-1].setValue(int(mm))
-            self.endMMLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.endMMLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.endMMLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.endLayout.addWidget(self.endMMLineEditList[-1])
+            self.endMMLineEditList[i].setMinimum(0)
+            self.endMMLineEditList[i].setMaximum(59)
+            self.endMMLineEditList[i].setSingleStep(1)
+            self.endMMLineEditList[i].setValue(int(mm))
+            self.endMMLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.endMMLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endMMLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.endLayout.addWidget(self.endMMLineEditList[i])
 
             self.endTimeDividor2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.endTimeDividor2.setText(":")
@@ -349,14 +349,14 @@ class Preview_UI(QtWidgets.QDialog):
             
             # 초 텍스트 박스
             self.endSSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.endSSLineEditList[-1].setMinimum(0)
-            self.endSSLineEditList[-1].setMaximum(59)
-            self.endSSLineEditList[-1].setSingleStep(1)
-            self.endSSLineEditList[-1].setValue(int(ss))
-            self.endSSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.endSSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.endSSLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.endLayout.addWidget(self.endSSLineEditList[-1])
+            self.endSSLineEditList[i].setMinimum(0)
+            self.endSSLineEditList[i].setMaximum(59)
+            self.endSSLineEditList[i].setSingleStep(1)
+            self.endSSLineEditList[i].setValue(int(ss))
+            self.endSSLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.endSSLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endSSLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.endLayout.addWidget(self.endSSLineEditList[i])
 
             self.endTimeDividor3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             self.endTimeDividor3.setText(".")
@@ -364,14 +364,14 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 밀리초 텍스트 박스
             self.endMSLineEditList.append(QtWidgets.QSpinBox(self.scrollAreaWidgetContents))
-            self.endMSLineEditList[-1].setMinimum(0)
-            self.endMSLineEditList[-1].setMaximum(999)
-            self.endMSLineEditList[-1].setSingleStep(1)
-            self.endMSLineEditList[-1].setValue(int(ms))
-            self.endMSLineEditList[-1].setAlignment(QtCore.Qt.AlignRight)
-            self.endMSLineEditList[-1].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
-            self.endMSLineEditList[-1].valueChanged.connect(self.readyToSave)
-            self.endLayout.addWidget(self.endMSLineEditList[-1])
+            self.endMSLineEditList[i].setMinimum(0)
+            self.endMSLineEditList[i].setMaximum(999)
+            self.endMSLineEditList[i].setSingleStep(1)
+            self.endMSLineEditList[i].setValue(int(ms))
+            self.endMSLineEditList[i].setAlignment(QtCore.Qt.AlignRight)
+            self.endMSLineEditList[i].setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
+            self.endMSLineEditList[i].valueChanged.connect(self.readyToSave)
+            self.endLayout.addWidget(self.endMSLineEditList[i])
 
             # 2열과 3열 사이 Spacer 설정  
             spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -397,21 +397,21 @@ class Preview_UI(QtWidgets.QDialog):
             # 콤보박스
             # TODO: 콤보박스에 현재 프로그램이 불러온 예능자막 템플릿의 제목이 리스트로 들어가고, 선택 시 해당 자막이 적용된 태그로 교체
             self.templateSelectorList.append(QtWidgets.QComboBox(self.scrollAreaWidgetContents))
-            self.templateSelectorList[-1].setObjectName("templateSelector")
+            self.templateSelectorList[i].setObjectName("templateSelector")
             
             # 자막 템플릿을 콤보박스에 추가 
             template_list = self.fcpx_xml.get_all_template()
             for template in template_list:
-                self.templateSelectorList[-1].addItem(template["video"]["name"])
+                self.templateSelectorList[i].addItem(template["video"]["name"])
             
             template_name = videoElement["node"].attrib["name"]
-            defalutIndex = self.templateSelectorList[-1].findText(template_name)
-            self.templateSelectorList[-1].setCurrentIndex(defalutIndex)
+            defalutIndex = self.templateSelectorList[i].findText(template_name)
+            self.templateSelectorList[i].setCurrentIndex(defalutIndex)
 
             # 자막 템플릿을 바꿨을때 저장되지 않은 상태로 바꾸기
-            self.templateSelectorList[-1].currentIndexChanged.connect(self.readyToSave)
+            self.templateSelectorList[i].currentIndexChanged.connect(self.readyToSave)
 
-            self.titleTemplateComboLayout.addWidget(self.templateSelectorList[-1])    
+            self.titleTemplateComboLayout.addWidget(self.templateSelectorList[i])    
 
             # 오른쪽에 Spacer 배치
             spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -435,14 +435,14 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 자막 텍스트 표시
             self.titlePlainTextEdits.append(QtWidgets.QPlainTextEdit(self.scrollAreaWidgetContents))
-            self.titlePlainTextEdits[-1].setObjectName("titlePlainTextEdit")
+            self.titlePlainTextEdits[i].setObjectName("titlePlainTextEdit")
             for param in videoElement["node"].iter():
                 if param.attrib["name"] == "Text":
-                    self.titlePlainTextEdits[-1].setPlainText(param.attrib["value"])
+                    self.titlePlainTextEdits[i].setPlainText(param.attrib["value"])
                     title_text = param.attrib["value"]
 
-            self.titlePlainTextEdits[-1].textChanged.connect(self.readyToSave)
-            self.titleTextLayout.addWidget(self.titlePlainTextEdits[-1])
+            self.titlePlainTextEdits[i].textChanged.connect(self.readyToSave)
+            self.titleTextLayout.addWidget(self.titlePlainTextEdits[i])
 
             # 미리보기 이미지의 왼쪽 요소를 전체 레이아웃에 왼쪽부터 삽입
             self.titleWholeLayout.addLayout(self.titleGridLayout)
@@ -453,15 +453,15 @@ class Preview_UI(QtWidgets.QDialog):
 
             # 미리보기 이미지 라벨 (지금 작업 안함)
             self.previewLabelList.append(QtWidgets.QLabel(self.scrollAreaWidgetContents))
-            self.previewLabelList[-1].setObjectName("previewLabel")
-            self.previewLabelList[-1].setText("Preview Image (Alternative Text)")
-            self.SetPreviewImage(self.previewLabelList[-1], self.templateSelectorList[-1].currentText())
-            self.titleWholeLayout.addWidget(self.previewLabelList[-1])
+            self.previewLabelList[i].setObjectName("previewLabel")
+            self.previewLabelList[i].setText("Preview Image (Alternative Text)")
+            self.SetPreviewImage(self.previewLabelList[i], self.templateSelectorList[i].currentText())
+            self.titleWholeLayout.addWidget(self.previewLabelList[i])
 
             # 자막 템플릿 콤보박스에서 다른 값을 선택하면 프리뷰 이미지 변경
     
-            self.templateSelectorList[-1].currentIndexChanged.connect(
-                lambda: self.SetPreviewImage(self.previewLabelList[-1], self.templateSelectorList[-1].currentText())
+            self.templateSelectorList[i].currentIndexChanged.connect(
+                lambda: self.SetPreviewImage(self.previewLabelList[i], self.templateSelectorList[i].currentText())
             )
 
             # 만들어진 요소를 이어붙이기
