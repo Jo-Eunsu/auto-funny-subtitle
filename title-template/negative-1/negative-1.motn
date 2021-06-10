@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE ozxmlscene>
 <ozml version="5.11">
 
@@ -174,7 +174,7 @@
 	<resolutionMode>0</resolutionMode>
 	<dynamicResolution>0</dynamicResolution>
 	<viewmode>0</viewmode>
-	<overlayOptions>125708</overlayOptions>
+	<overlayOptions>125724</overlayOptions>
 	<oscOptions>30</oscOptions>
 	<compensateAspectRatio>1</compensateAspectRatio>
 	<renderFields>0</renderFields>
@@ -230,7 +230,7 @@
 	<displayEffects>1</displayEffects>
 	<videoVerticalZoom>1</videoVerticalZoom>
 	<audioVerticalZoom>1</audioVerticalZoom>
-	<displayRange in="-43043 116000 3 0" out="1204203 116000 3 0"/>
+	<displayRange in="-43043 105900 3 0" out="1103102 105900 3 0"/>
 </timeline>
 
 <curveeditor>
@@ -238,8 +238,8 @@
 	<snapping>0</snapping>
 	<displayAudioWaveform>0</displayAudioWaveform>
 	<lockKeyframesInTime>0</lockKeyframesInTime>
-	<displayRange in="-43043 116000 3 0" out="1204203 116000 3 0"/>
-	<currentviewvolume originx="-0.37106034482758621" originy="-62.5" width="10.752120689655172" height="125"/>
+	<displayRange in="-43043 105900 3 0" out="1103102 105900 3 0"/>
+	<currentviewvolume originx="-0.40644948064211522" originy="-62.5" width="10.822898961284231" height="125"/>
 	<snapshotChannels>0</snapshotChannels>
 </curveeditor>
 
@@ -284,15 +284,20 @@
 		<target object="10009" channel="./2/369" name="Text"/>
 		<target object="10040" channel="./3" name="Size"/>
 	</publishSettings>
-	<currentFrame>0 120000 1 0</currentFrame>
-	<currentObject>10000</currentObject>
+	<currentFrame>0 1 1 0</currentFrame>
+	<currentObject>10009</currentObject>
 	<activeLayer>10738</activeLayer>
 	<timeRange offset="0 1 1 0" duration="1201200 120000 1 0"/>
 	<playRange offset="0 1 1 0" duration="1201200 120000 1 0"/>
 	<flags>1</flags>
 	<audioTracks>0</audioTracks>
 	<timemarkerset/>
-	<guideset/>
+	<guideset>
+		<guide>
+			<location>-349.8618774</location>
+			<vertical>0</vertical>
+		</guide>
+	</guideset>
 	<curvesets selected="1"/>
 	<scenenode name="Project" id="10000" factoryID="17" version="5">
 		<scenenode name="Widget" id="10002" factoryID="13" version="5">
@@ -311,7 +316,7 @@
 		<flags>0</flags>
 		<timing in="0 1 1 0" out="-2002 120000 1 0" offset="0 1 1 0"/>
 		<foldFlags>0</foldFlags>
-		<baseFlags>268435473</baseFlags>
+		<baseFlags>16</baseFlags>
 		<enabled>0</enabled>
 		<parameter name="Properties" id="1" flags="8589938704"/>
 		<parameter name="Object" id="2" flags="8589938704"/>
@@ -571,7 +576,7 @@
 							<parameter name="Stretch" id="105" flags="8606744592" default="0" value="0"/>
 						</parameter>
 					</mask>
-					<aspectRatio>0</aspectRatio>
+					<aspectRatio>1</aspectRatio>
 					<flags>0</flags>
 					<timing in="0 1 1 0" out="1199198 120000 1 0" offset="0 1 1 0"/>
 					<foldFlags>16384</foldFlags>
@@ -1072,18 +1077,18 @@
 							</parameter>
 						</parameter>
 					</style>
-					<styleRun style="10040" offset="0" length="10"/>
+					<styleRun style="10040" offset="0" length="8"/>
 					<aspectRatio>1</aspectRatio>
 					<flags>0</flags>
 					<timing in="0 1 1 0" out="1199198 120000 1 0" offset="0 1 1 0"/>
 					<foldFlags>0</foldFlags>
-					<baseFlags>34078736</baseFlags>
+					<baseFlags>302514193</baseFlags>
 					<parameter name="Properties" id="1" flags="8589938704">
 						<parameter name="Transform" id="100" flags="8589938704">
 							<parameter name="Position" id="101" flags="8589938704">
 								<foldFlags>15</foldFlags>
-								<parameter name="X" id="1" flags="8606711824" default="0" value="5.6399999999725026"/>
-								<parameter name="Y" id="2" flags="8606711824" default="0" value="472.2941894532251"/>
+								<parameter name="X" id="1" flags="8606711824" default="0" value="4.8599997901935126"/>
+								<parameter name="Y" id="2" flags="8606711824" default="0" value="484.99996948237691"/>
 							</parameter>
 						</parameter>
 						<parameter name="Lighting" id="230" flags="8589938706">
@@ -1107,7 +1112,7 @@
 					</parameter>
 					<parameter name="Object" id="2" flags="8589938704">
 						<parameter name="Text" id="369" flags="8606777344">
-							<text>무창이 개멋있음</text>
+							<text>샘플 텍스트</text>
 						</parameter>
 						<parameter name="Render Text" id="360" flags="8590000146" default="0" value="0"/>
 						<parameter name="Face Camera" id="352" flags="8589934610" default="0" value="0"/>
@@ -1127,7 +1132,7 @@
 						<parameter name="Auto-Shrink" id="370" flags="8606810128" default="0" value="0"/>
 						<parameter name="Crop At Margins" id="372" flags="8606744592" default="0" value="0"/>
 						<parameter name="Basic" id="2000" flags="12884938770" factoryID="0">
-							<parameter name="Substance" id="1999779444" flags="12884906002" factoryID="0">
+							<parameter name="Substance" id="1999780042" flags="12884906002" factoryID="0">
 								<parameter name="Color" id="1" flags="4295004162">
 									<foldFlags>15</foldFlags>
 								</parameter>
@@ -1311,6 +1316,7 @@
 
 	<footage name="Media Layer" id="10006">
 		<clip name="negative-1-dusts" id="1999779615">
+			<pathURL>file:///Users/jo-eunsu/auto-funny-subtitle/title-template/negative-1/Media/negative-1-dusts.png</pathURL>
 			<relativeURL>Media/negative-1-dusts.png</relativeURL>
 			<missingWidth>1920</missingWidth>
 			<missingHeight>1080</missingHeight>

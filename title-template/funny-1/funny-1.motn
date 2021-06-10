@@ -118,25 +118,31 @@
 	<version>1</version>
 </factory>
 
-<factory id="20" uuid="deca4859b16011d7a12d0003936f6f92">
-	<description>ProPlugin Filter</description>
-	<manufacturer>Apple</manufacturer>
-	<version>1</version>
-</factory>
-
-<factory id="21" uuid="f32e7a31146f11d8a20a000a95af9f7e">
-	<description>Gradient</description>
-	<manufacturer>Apple</manufacturer>
-	<version>1</version>
-</factory>
-
-<factory id="22" uuid="fca4a88380df4dab943a0962bdb1ae75">
+<factory id="20" uuid="dbca752470fd11d7980100039389b702">
 	<description>Channel</description>
 	<manufacturer>Apple</manufacturer>
 	<version>1</version>
 </factory>
 
-<factory id="23" uuid="fdc1944b229111d7b1c300039389b702">
+<factory id="21" uuid="deca4859b16011d7a12d0003936f6f92">
+	<description>ProPlugin Filter</description>
+	<manufacturer>Apple</manufacturer>
+	<version>1</version>
+</factory>
+
+<factory id="22" uuid="f32e7a31146f11d8a20a000a95af9f7e">
+	<description>Gradient</description>
+	<manufacturer>Apple</manufacturer>
+	<version>1</version>
+</factory>
+
+<factory id="23" uuid="fca4a88380df4dab943a0962bdb1ae75">
+	<description>Channel</description>
+	<manufacturer>Apple</manufacturer>
+	<version>1</version>
+</factory>
+
+<factory id="24" uuid="fdc1944b229111d7b1c300039389b702">
 	<description>Channel</description>
 	<manufacturer>Apple</manufacturer>
 	<version>1</version>
@@ -257,14 +263,16 @@
 		<glyphOSCMode>0</glyphOSCMode>
 		<animateFlag>0</animateFlag>
 		<parameterColorSpaceID>3</parameterColorSpaceID>
-		<savePreviewMovie>0</savePreviewMovie>
+		<savePreviewMovie>1</savePreviewMovie>
 		<Object3DEnvironments>100</Object3DEnvironments>
 	</sceneSettings>
 	<publishSettings>
 		<version>2</version>
+		<target object="10009" channel="./2/369" name="Text"/>
+		<target object="10040" channel="./3" name="Size"/>
+		<target object="10040" channel="./14/16" name="Color"/>
 	</publishSettings>
-	<currentFrame>4004 120000 1 0</currentFrame>
-	<currentObject>10003</currentObject>
+	<currentFrame>0 1 1 0</currentFrame>
 	<activeLayer>10003</activeLayer>
 	<timeRange offset="0 1 1 0" duration="1201200 120000 1 0"/>
 	<playRange offset="0 1 1 0" duration="1201200 120000 1 0"/>
@@ -273,7 +281,7 @@
 	<timemarkerset/>
 	<guideset>
 		<guide>
-			<location>-703.1117554</location>
+			<location>-700.0599976</location>
 			<vertical>0</vertical>
 		</guide>
 	</guideset>
@@ -451,8 +459,8 @@
 				<parameter name="Transform" id="100" flags="8589938704">
 					<parameter name="Position" id="101" flags="8589938688">
 						<foldFlags>15</foldFlags>
-						<parameter name="X" id="1" flags="8606711824" default="0" value="0.99999999911563009"/>
-						<parameter name="Y" id="2" flags="8606711824" default="0" value="-765.76712512960103"/>
+						<parameter name="X" id="1" flags="8606711824" default="0" value="0.089991568606365036"/>
+						<parameter name="Y" id="2" flags="8606711824" default="0" value="-770.99997425067795"/>
 					</parameter>
 				</parameter>
 				<parameter name="Lighting" id="230" flags="8589938706">
@@ -486,8 +494,8 @@
 					</parameter>
 					<parameter name="End Point" id="309" flags="8589938688">
 						<foldFlags>15</foldFlags>
-						<parameter name="X" id="1" flags="8606711824" default="100" value="-10"/>
-						<parameter name="Y" id="2" flags="8606711824" default="0" value="10"/>
+						<parameter name="X" id="1" flags="8606711824" default="100" value="-5"/>
+						<parameter name="Y" id="2" flags="8606711824" default="0" value="5"/>
 					</parameter>
 					<parameter name="Size" id="347" flags="8589938690">
 						<foldFlags>15</foldFlags>
@@ -524,18 +532,24 @@
 				<previewHeight>0</previewHeight>
 				<presetName>Normal</presetName>
 				<timing in="0 1 1 0" out="1199198 120000 1 0" offset="0 1 1 0"/>
-				<baseFlags>8657043504</baseFlags>
+				<baseFlags>8657043505</baseFlags>
 				<foldFlags>786432</foldFlags>
 				<parameter name="Font" id="83" flags="12884906000">
-					<font>payboocOTFExtraBold</font>
+					<font>BinggraeSamanco-Bold</font>
 					<defaultFont>Helvetica</defaultFont>
 				</parameter>
-				<parameter name="Size" id="3" flags="8606711824" default="48" value="150"/>
+				<parameter name="Size" id="3" flags="8606711824" default="48" value="240"/>
 				<parameter name="Spacing" id="81" flags="8589938704">
-					<parameter name="Tracking" id="79" flags="8606711824" default="0" value="0.029999999999999999"/>
+					<parameter name="Tracking" id="79" flags="8606711824" default="0" value="0.02"/>
 				</parameter>
-				<parameter name="Face" id="14" flags="8589938704">
+				<parameter name="Face" id="14" flags="8589938705">
 					<foldFlags>131072</foldFlags>
+					<parameter name="Color" id="16" flags="8589938704">
+						<foldFlags>15</foldFlags>
+						<parameter name="Red" id="1" flags="8606711824" default="1" value="0.99953407049179077"/>
+						<parameter name="Green" id="2" flags="8606711824" default="1" value="0.98835557699203491"/>
+						<parameter name="Blue" id="3" flags="8606711824" default="1" value="0.47265523672103882"/>
+					</parameter>
 					<parameter name="Texture" id="18" flags="77313609744">
 						<parameter name="Image" id="1" flags="77326254096" default="0" value="0"/>
 						<parameter name="Wrap Mode" id="5" flags="8606777360" default="0" value="1"/>
@@ -586,7 +600,8 @@
 				<parameter name="Transform" id="100" flags="8589938704">
 					<parameter name="Position" id="101" flags="8589938704">
 						<foldFlags>15</foldFlags>
-						<parameter name="Y" id="2" flags="8606711824" default="0" value="-760.2671508793054"/>
+						<parameter name="X" id="1" flags="8606711824" default="0" value="-2.3500061035644535"/>
+						<parameter name="Y" id="2" flags="8606711824" default="0" value="-760.26715087938305"/>
 					</parameter>
 				</parameter>
 				<parameter name="Lighting" id="230" flags="8589938706">
@@ -630,7 +645,7 @@
 				<parameter name="Auto-Shrink" id="370" flags="8606810128" default="0" value="0"/>
 				<parameter name="Crop At Margins" id="372" flags="8606744592" default="0" value="0"/>
 				<parameter name="Basic" id="2000" flags="12884938770" factoryID="0">
-					<parameter name="Substance" id="1999780070" flags="12884906002" factoryID="0">
+					<parameter name="Substance" id="1999779998" flags="12884906002" factoryID="0">
 						<parameter name="Color" id="1" flags="4295004162">
 							<foldFlags>15</foldFlags>
 						</parameter>
@@ -638,7 +653,7 @@
 					</parameter>
 				</parameter>
 			</parameter>
-			<filter name="Stroke" id="10868" factoryID="20" pluginUUID="0CB21C8A-7983-418D-B7EC-EDBB20AF4732" pluginVersion="3" pluginName="Stroke" pluginDynamicParams="0">
+			<filter name="Stroke" id="10868" factoryID="21" pluginUUID="0CB21C8A-7983-418D-B7EC-EDBB20AF4732" pluginVersion="3" pluginName="Stroke" pluginDynamicParams="0">
 				<timing in="0 1 1 0" out="1199198 120000 1 0" offset="0 1 1 0"/>
 				<baseFlags>8589934608</baseFlags>
 				<parameter name="Stroke Type" id="1" flags="12901744656" default="0" value="0"/>
@@ -669,14 +684,8 @@
 		<flags>0</flags>
 		<timing in="0 1 1 0" out="1199198 120000 1 0" offset="0 1 1 0"/>
 		<foldFlags>0</foldFlags>
-		<baseFlags>268959761</baseFlags>
+		<baseFlags>524304</baseFlags>
 		<parameter name="Properties" id="1" flags="8589938704">
-			<parameter name="Transform" id="100" flags="8589938704">
-				<parameter name="Position" id="101" flags="8589938704">
-					<foldFlags>15</foldFlags>
-					<parameter name="Y" id="2" flags="8606711824" default="0" value="12.732849121093523"/>
-				</parameter>
-			</parameter>
 			<parameter name="Lighting" id="230" flags="8589938706">
 				<foldFlags>15</foldFlags>
 			</parameter>
@@ -713,11 +722,6 @@
 				</parameter>
 				<parameter name="Reflection" id="223" flags="8589971474">
 					<foldFlags>131087</foldFlags>
-				</parameter>
-				<parameter name="Crop" id="216" flags="8589938704">
-					<foldFlags>131087</foldFlags>
-					<parameter name="Bottom" id="3" flags="8606711824" default="0" value="840"/>
-					<parameter name="Top" id="4" flags="8606711824" default="0" value="840"/>
 				</parameter>
 				<parameter name="Media" id="324" flags="8589938704">
 					<parameter name="Source Media" id="300" flags="12901744656" default="1999779962" value="1999779962"/>

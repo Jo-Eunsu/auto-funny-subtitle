@@ -277,7 +277,7 @@ class MainWindow_UI(QtWidgets.QMainWindow):
             if self.__xml_modified == False:
                 raise ValueError
             
-            preview_ui = Preview_UI(self.fcpx_xml, 800, 500)
+            preview_ui = Preview_UI(self.fcpx_xml, 1200, 700)
             preview_ui.exec_() 
             self.fcpx_xml = preview_ui.fcpx_xml
 

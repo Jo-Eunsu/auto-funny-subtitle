@@ -16,7 +16,7 @@ class Template_JSON:
     def __init__(self) -> None:
         # 템플릿 파일 불러오기
         self.append_template("title-template/positive-1.json", "positive")
-        self.append_template("title-template/positive-2.json", "positive")
+        self.append_template("title-template/funny-1.json", "funny")
         self.append_template("title-template/neutral-1.json", "neutral")
         self.append_template("title-template/negative-1.json", "negative")
 
@@ -24,6 +24,7 @@ class Template_JSON:
         self.__template_select["positive"] = 0
         self.__template_select["neutral"] = 0
         self.__template_select["negative"] = 0
+        self.__template_select['funny'] = 0
 
     # json 파일을 열어서 딕셔너리 자료형으로 리턴하는 함수
     def __open_json(self, json_file_path: str) -> dict:

@@ -97,9 +97,9 @@ class FCPX_XML:
         positive_score = neutral_score = negative_score = 0.0
         # 감정을 분석해서 결과값에 감정 문자열과 자막 번호 지정하는 코드
         # 1. 특수 함수 - 필터링을 통해 감정 설정
-        if document.find("ㅋㅋ") is not EMPTY:
-            result_emotion = 'positive'
-            result_emotion_num = 1
+        if self.__detect_funny(document) is not EMPTY:
+            result_emotion = 'funny'
+            result_emotion_num = 0
         elif self.__detect_abuse(document) is not EMPTY:
             result_emotion = 'negative'
             result_emotion_num = 0
@@ -135,6 +135,14 @@ class FCPX_XML:
     # 문장 안에서 욕설을 찾아내는 함수 - 욕설이 없을 경우 -1 리턴, 있을 경우 위치값 리턴
     def __detect_abuse(self, sentence: str) -> int: 
         filter = ["시발", "개새끼", "병신", "썅", "좆같네", "좃같네", "좋같네", "아 씨", "아씨", "야발"]
+        for filter_item in filter: 
+            if sentence.find(filter_item) is not EMPTY:
+                return sentence.find(filter_item)
+        return EMPTY 
+
+    # 문장 안에서 즐거움을 찾아내는 함수 - 'ㅋㅋㅋ'와 '하하하'
+    def __detect_funny(self, sentence: str) -> int: 
+        filter = ["ㅋㅋ", "하하하", "웃겨"]
         for filter_item in filter: 
             if sentence.find(filter_item) is not EMPTY:
                 return sentence.find(filter_item)

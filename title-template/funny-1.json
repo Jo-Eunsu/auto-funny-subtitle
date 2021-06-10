@@ -1,0 +1,28 @@
+{
+    "effect": {
+        "id":"s5",
+        "name":"funny-1",
+        "uid":"~/Generators.localized/예능자막/funny-1/funny-1.motn"
+    },
+    "video": {
+        "name": "funny-1",
+        "param": [
+            {
+                "name": "Position",
+                "key": "9999/10003/10009/1/100/101",
+                "value": "-2.35001 -760.2674"
+            },
+            {
+                "name": "Alignment",
+                "key": "9999/10003/10009/2/354/10038/401",
+                "value": "1 (Center)"
+            },
+            {
+                "name": "Text",
+                "key": "9999/10003/10009/2/369",
+                "value": ""
+            }
+        
+        ]
+    }
+}    
