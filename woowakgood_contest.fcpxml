@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fcpxml>
+
+<fcpxml version="1.9">
+    <resources>
+        <format id="r1" name="FFVideoFormat1080p2398" frameDuration="1001/24000s" width="1920" height="1080" colorSpace="1-1-1 (Rec. 709)"/>
+        <asset id="r2" name="제일 작게 만든 작품이 우승 - 치즐 건축콘테스트 '식물 편'-xDhfujd8OJE" uid="3F552A77BD95710221BAB31CC86D354F" start="0s" duration="16038400/15360s" hasVideo="1" format="r3" hasAudio="1" audioSources="1" audioChannels="2" audioRate="44100">
+            <media-rep kind="original-media" sig="3F552A77BD95710221BAB31CC86D354F" src="file:///Users/jo-eunsu/Movies/%E1%84%8B%E1%85%AE%E1%84%8B%E1%85%AA%E1%86%A8%E1%84%80%E1%85%AE%E1%86%AE.fcpbundle/2021-05-04/Original%20Media/%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AF%20%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%80%E1%85%A6%20%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB%20%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8B%E1%85%B5%20%E1%84%8B%E1%85%AE%E1%84%89%E1%85%B3%E1%86%BC%20-%20%E1%84%8E%E1%85%B5%E1%84%8C%E1%85%B3%E1%86%AF%20%E1%84%80%E1%85%A5%E1%86%AB%E1%84%8E%E1%85%AE%E1%86%A8%E1%84%8F%E1%85%A9%E1%86%AB%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%20'%E1%84%89%E1%85%B5%E1%86%A8%E1%84%86%E1%85%AE%E1%86%AF%20%E1%84%91%E1%85%A7%E1%86%AB'-xDhfujd8OJE.mp4">
+                <bookmark>Ym9vayAEAAAAAAQQMAAAABPkE1Z1yekNoI8z/okW74Ol3YXdUAa0Fsd9GFG4l1hjHAMAAAQAAAADAwAAABgAKAUAAAABAQAAVXNlcnMAAAAIAAAAAQEAAGpvLWV1bnN1BgAAAAEBAABNb3ZpZXMAACIAAAABAQAA4YSL4YWu4YSL4YWq4Yao4YSA4YWu4YauLmZjcGJ1bmRsZQAACgAAAAEBAAAyMDIxLTA1LTA0AAAOAAAAAQEAAE9yaWdpbmFsIE1lZGlhAADKAAAAAQEAAOGEjOGFpuGEi+GFteGGryDhhIzhhaHhhqjhhIDhhaYg4YSG4YWh4Yar4YSD4YWz4YarIOGEjOGFoeGGqOGEkeGFruGGt+GEi+GFtSDhhIvhha7hhInhhbPhhrwgLSDhhI7hhbXhhIzhhbPhhq8g4YSA4YWl4Yar4YSO4YWu4Yao4YSP4YWp4Yar4YSQ4YWm4YSJ4YWz4YSQ4YWzICfhhInhhbXhhqjhhIbhha7hhq8g4YSR4YWn4YarJy14RGhmdWpkOE9KRS5tcDQAABwAAAABBgAAEAAAACAAAAAwAAAAQAAAAGwAAACAAAAAmAAAAAgAAAAEAwAAsGAAAAAAAAAIAAAABAMAAGmGAAAAAAAACAAAAAQDAACYhgAAAAAAAAgAAAAEAwAAp+0tAAAAAAAIAAAABAMAALbtLQAAAAAACAAAAAQDAADI7S0AAAAAAAgAAAAEAwAA0O0tAAAAAAAcAAAAAQYAAJABAACgAQAAsAEAAMABAADQAQAA4AEAAPABAAAIAAAAAAQAAEHCprn4gAAAGAAAAAECAAABAAAAAAAAAA8AAAAAAAAAAAAAAAAAAAAIAAAABAMAAAUAAAAAAAAABAAAAAMDAAD1AQAACAAAAAEJAABmaWxlOi8vLxMAAAABAQAATWFjaW50b3NoIEhEIC0gRGF0YQAIAAAABAMAAACwqL+iAAAACAAAAAAEAABBwd5EgAAAACQAAAABAQAANzU2Qjc4OTMtNjhENC00MTAxLTkxNjEtRUExQjJEMUUzQTM3GAAAAAECAACBAAAAAQAAAO8TAAABAAAAAAAAAAAAAAABAAAAAQEAAC8AAAAAAAAAAQUAAMwAAAD+////AQAAAAAAAAAQAAAABBAAAGwBAAAAAAAABRAAAAACAAAAAAAAEBAAADQCAAAAAAAAQBAAACQCAAAAAAAAAiAAAAgDAAAAAAAABSAAAHACAAAAAAAAECAAAIACAAAAAAAAESAAALwCAAAAAAAAEiAAAJwCAAAAAAAAEyAAAKwCAAAAAAAAICAAAOgCAAAAAAAAMCAAABQDAAAAAAAAAcAAAFQCAAAAAAAAEcAAACAAAAAAAAAAEsAAAGQCAAAAAAAAENAAAAQAAAAAAAAA</bookmark>
+            </media-rep>
+            <metadata>
+                <md key="com.apple.proapps.studio.rawToLogConversion" value="0"/>
+                <md key="com.apple.proapps.spotlight.kMDItemProfileName" value="HD (1-1-1)"/>
+                <md key="com.apple.proapps.studio.cameraISO" value="0"/>
+                <md key="com.apple.proapps.studio.cameraColorTemperature" value="0"/>
+                <md key="com.apple.proapps.spotlight.kMDItemCodecs">
+                    <array>
+                        <string>'avc1'</string>
+                        <string>AAC</string>
+                    </array>
+                </md>
+                <md key="com.apple.proapps.mio.ingestDate" value="2021-05-04 15:19:38 +0900"/>
+            </metadata>
+        </asset>
+        <format id="r3" name="FFVideoFormat720p30" frameDuration="100/3000s" width="1280" height="720" colorSpace="1-1-1 (Rec. 709)"/>
+        <effect id="r4" name="Basic Title" uid=".../Titles.localized/Bumper:Opener.localized/Basic Title.localized/Basic Title.moti"/>
+    </resources>
+    <library location="file:///Users/jo-eunsu/Movies/%E1%84%8B%E1%85%AE%E1%84%8B%E1%85%AA%E1%86%A8%E1%84%80%E1%85%AE%E1%86%AE.fcpbundle/">
+        <event name="2021-05-04" uid="A6BDAED5-BA16-4FBF-B0C8-0E6C64142EE4">
+            <project name="contest" uid="9445F823-DF12-40E8-80A4-03B6A23D648B" modDate="2021-05-12 21:52:35 +0900">
+                <sequence duration="2055053/24000s" format="r1" tcStart="0s" tcFormat="NDF" audioLayout="stereo" audioRate="48k">
+                    <spine>
+                        <asset-clip name="제일 작게 만든 작품이 우승 - 치즐 건축콘테스트 '식물 편'-xDhfujd8OJE" offset="0s" ref="r2" duration="351351/24000s" audioRole="dialogue" format="r3" tcFormat="NDF">
+                            <conform-rate srcFrameRate="30" scaleEnabled="0"/>
+                        </asset-clip>
+                        <asset-clip name="제일 작게 만든 작품이 우승 - 치즐 건축콘테스트 '식물 편'-xDhfujd8OJE" offset="351351/24000s" ref="r2" duration="1251250/24000s" start="351351/24000s" audioRole="dialogue" format="r3" tcFormat="NDF">
+                            <conform-rate srcFrameRate="30" scaleEnabled="0"/>
+                            <title name="식물편 입니다 - Basic Title" lane="1" offset="351351/24000s" ref="r4" duration="140140/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts1">식물편 입니다</text-style>
+                                </text>
+                                <text-style-def id="ts1">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="저거 뭐냐? - Basic Title" lane="1" offset="379379/24000s" ref="r4" duration="120120/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts2">저거 뭐냐?</text-style>
+                                </text>
+                                <text-style-def id="ts2">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="ㅋㅋㅋㅋㅋㅋㅋㅋ - Basic Title" lane="1" offset="403403/24000s" ref="r4" duration="190190/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts3">ㅋㅋㅋㅋㅋㅋㅋㅋ</text-style>
+                                </text>
+                                <text-style-def id="ts3">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="어 식물편인데 음 - Basic Title" lane="1" offset="441441/24000s" ref="r4" duration="250250/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts4">어 식물편인데 음</text-style>
+                                </text>
+                                <text-style-def id="ts4">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="맨날 동물하고 곤충했는데 - Basic Title" lane="1" offset="491491/24000s" ref="r4" duration="250250/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts5">맨날 동물하고 곤충했는데</text-style>
+                                </text>
+                                <text-style-def id="ts5">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="식물하면 신선할것 같아서 - Basic Title" lane="1" offset="541541/24000s" ref="r4" duration="275275/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts6">식물하면 신선할것 같아서</text-style>
+                                </text>
+                                <text-style-def id="ts6">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="오늘 식물이에요 - Basic Title" lane="1" offset="596596/24000s" ref="r4" duration="310310/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts7">오늘 식물이에요</text-style>
+                                </text>
+                                <text-style-def id="ts7">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="시작해보도록 하겠습니다 - Basic Title" lane="1" offset="658658/24000s" ref="r4" duration="185185/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts8">시작해보도록 하겠습니다</text-style>
+                                </text>
+                                <text-style-def id="ts8">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                        </asset-clip>
+                        <asset-clip name="제일 작게 만든 작품이 우승 - 치즐 건축콘테스트 '식물 편'-xDhfujd8OJE" offset="1602601/24000s" ref="r2" duration="452452/24000s" start="1602601/24000s" audioRole="dialogue" format="r3" tcFormat="NDF">
+                            <conform-rate srcFrameRate="30" scaleEnabled="0"/>
+                            <title name="오 분위기 괜찮은데 - Basic Title" lane="1" offset="1602601/24000s" ref="r4" duration="145145/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts9">오 분위기 괜찮은데</text-style>
+                                </text>
+                                <text-style-def id="ts9">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="먹으면 안 될 것 같은 - Basic Title" lane="1" offset="1854853/24000s" ref="r4" duration="180180/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts10">먹으면 안 될 것 같은</text-style>
+                                </text>
+                                <text-style-def id="ts10">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="초록 둘레 띠까지 좋았습니다 - Basic Title" lane="1" offset="1890889/24000s" ref="r4" duration="370370/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts11">초록 둘레 띠까지 좋았습니다</text-style>
+                                </text>
+                                <text-style-def id="ts11">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                            <title name="감사드립니다 땡큐 - Basic Title" lane="1" offset="2002000/24000s" ref="r4" duration="230230/120000s" start="86486400/24000s">
+                                <param name="Flatten" key="9999/999166631/999166633/2/351" value="1"/>
+                                <param name="Alignment" key="9999/999166631/999166633/2/354/999169573/401" value="1 (Center)"/>
+                                <text>
+                                    <text-style ref="ts12">감사드립니다 땡큐</text-style>
+                                </text>
+                                <text-style-def id="ts12">
+                                    <text-style font="Helvetica" fontSize="63" fontFace="Regular" fontColor="1 0.999974 0.999991 1" alignment="center"/>
+                                </text-style-def>
+                            </title>
+                        </asset-clip>
+                    </spine>
+                </sequence>
+            </project>
+        </event>
+        <smart-collection name="Projects" match="all">
+            <match-clip rule="is" type="project"/>
+        </smart-collection>
+        <smart-collection name="All Video" match="any">
+            <match-media rule="is" type="videoOnly"/>
+            <match-media rule="is" type="videoWithAudio"/>
+        </smart-collection>
+        <smart-collection name="Audio Only" match="all">
+            <match-media rule="is" type="audioOnly"/>
+        </smart-collection>
+        <smart-collection name="Stills" match="all">
+            <match-media rule="is" type="stills"/>
+        </smart-collection>
+        <smart-collection name="Favorites" match="all">
+            <match-ratings value="favorites"/>
+        </smart-collection>
+    </library>
+</fcpxml>

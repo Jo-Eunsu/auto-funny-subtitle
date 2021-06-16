@@ -288,11 +288,14 @@ class Preview_UI(QtWidgets.QDialog):
             startEndGrid.addWidget(startWidget, 1, 2, 1, 1)
 
             #시작 시간을 직접 계산해서 텍스트 박스애 넣어 주기
-            offset_attrib = videoElement['node'].attrib['offset']                   # '161300/2997s'
-            offset_attrib = offset_attrib.rstrip('s')                               # '161300/2997'
-            start_numbers = offset_attrib .split('/')                               # ['161300, '2997']
-            dividend, divisor = int(start_numbers[0]), int(start_numbers[1])        # dividend = 161300, divisor = 2997
-            self.startDivisorList.append(divisor)                                   #  나누는 수를 리스트로 따로 저장(나중에 저장할 때 사용)
+            offset_attrib = videoElement['node'].attrib['offset']            
+            offset_attrib = offset_attrib.rstrip('s')                        
+            start_numbers = offset_attrib .split('/')                        
+            if len(start_numbers) == 1:
+                dividend, divisor = int(start_numbers[0]), 1
+            else:
+                dividend, divisor = int(start_numbers[0]), int(start_numbers[1])   
+            self.startDivisorList.append(divisor)                               
             start_second = dividend / divisor
 
             # 시작 시간, 분, 초, 밀리초 부분을 화살표 없는 스핀박스로 만듬.
@@ -374,11 +377,14 @@ class Preview_UI(QtWidgets.QDialog):
             startEndGrid.addWidget(endWidget, 2, 2, 1, 1)
 
             # 끝 시간을 직접 계산해서 텍스트 박스애 넣어 주기
-            offset_attrib = videoElement['node'].attrib['duration']                     # '161300/2997s'
-            offset_attrib = offset_attrib.rstrip('s')                                   # '161300/2997'
-            duration_numbers = offset_attrib .split('/')                                # ['161300, '2997']
-            dividend, divisor = int(duration_numbers[0]), int(duration_numbers[1])      # dividend = 161300, divisor = 2997
-            self.durationDivisorList.append(divisor)                                    # 나누는 수를 리스트로 따로 저장(나중에 저장할 때 사용)
+            offset_attrib = videoElement['node'].attrib['duration']               
+            offset_attrib = offset_attrib.rstrip('s')                             
+            duration_numbers = offset_attrib .split('/')                        
+            if len(duration_numbers) == 1:
+                dividend, divisor = int(duration_numbers[0]), 1
+            else:
+                dividend, divisor = int(duration_numbers[0]), int(duration_numbers[1])   
+            self.durationDivisorList.append(divisor)                              
             duration_second = dividend / divisor
             end_second = start_second + duration_second
 
